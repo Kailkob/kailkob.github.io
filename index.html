@@ -436,9 +436,6 @@
 
     /* ---------- contacto ---------- */
     .contact { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3rem); }
-    .cta { font-size: clamp(2.8rem, 9vw, 6.4rem); line-height: .95; text-transform: uppercase; margin-bottom: 2rem; }
-    .cta span { display: block; }
-    .cta .c1 { color: var(--lime); margin-left: 10%; } .cta .c2 { margin-left: 0; } .cta .c3 { color: var(--lilac); margin-left: 22%; }
     .contact-card { position: relative; display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--lime) var(--paper-bg); background-blend-mode: multiply; color: var(--ink); clip-path: polygon(0 2%, 4% 0, 30% 1.5%, 60% 0, 97% 1.2%, 100% 0, 99% 50%, 100% 98%, 70% 100%, 40% 98.5%, 3% 100%, 0 97%, 1% 50%); }
     @media (min-width: 52rem) { .contact-card { grid-template-columns: 1fr 1.3fr; align-items: center; } }
     .contact-card .envelope { width: min(100%, 15rem); justify-self: center; color: var(--ink); }
@@ -686,7 +683,7 @@
     <!-- CONTACTO -->
     <section class="contact" id="contacto" aria-labelledby="h-contacto">
       <div class="wrap">
-        <h2 class="cta chalk" id="h-contacto"><span class="c1">escucha,</span><span class="c2">lee</span><span class="c3">y escríbeme</span></h2>
+        <h2 class="sr-only" id="h-contacto">Contacto</h2>
         <div style="position: relative">
         <span class="critter" data-c="catPeek" aria-hidden="true" style="width: clamp(5rem, 9vw, 6.5rem); right: 12%; top: calc(-1 * clamp(2.4rem, 4.4vw, 3.2rem)); z-index: 0;"></span>
         <div class="contact-card" style="position: relative; z-index: 1">
