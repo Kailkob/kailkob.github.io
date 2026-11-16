@@ -10,7 +10,7 @@
   <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=Pirata+One&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0a0a0a;
@@ -27,7 +27,7 @@
       --maxw: 78rem;
       --gutter: clamp(1rem, 4vw, 3rem);
       --hand: "Shadows Into Light Two", "Comic Sans MS", cursive;
-      --gothic: "UnifrakturMaguntia", serif;
+      --gothic: "Pirata One", serif;
       --serif: "IM Fell English", Georgia, serif;
       --torn: polygon(0% 2%, 4% 0%, 9% 1.5%, 15% .2%, 22% 1.8%, 30% .4%, 37% 2%, 45% .3%, 52% 1.6%, 60% 0%, 67% 1.9%, 74% .5%, 81% 2%, 88% .2%, 94% 1.5%, 100% .4%, 98.6% 7%, 100% 14%, 98.4% 22%, 99.8% 31%, 98.2% 40%, 100% 49%, 98.5% 58%, 99.7% 67%, 98.3% 76%, 100% 85%, 98.6% 93%, 99.5% 100%, 93% 98.4%, 86% 100%, 78% 98.2%, 70% 99.8%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 99.7%, 30% 98.2%, 22% 100%, 14% 98.4%, 7% 99.8%, 0% 98.6%, 1.4% 91%, 0% 83%, 1.6% 74%, .2% 65%, 1.8% 56%, .3% 47%, 1.5% 38%, 0% 29%, 1.7% 20%, .2% 11%);
       --strip: polygon(0 18%, 3% 8%, 7% 16%, 12% 4%, 17% 14%, 22% 6%, 28% 15%, 33% 3%, 39% 13%, 45% 5%, 51% 16%, 56% 7%, 62% 14%, 68% 2%, 74% 12%, 80% 6%, 86% 15%, 92% 4%, 96% 12%, 100% 7%, 100% 86%, 96% 95%, 91% 85%, 86% 97%, 80% 88%, 74% 98%, 68% 87%, 62% 96%, 56% 86%, 50% 97%, 44% 88%, 38% 98%, 32% 86%, 26% 95%, 20% 87%, 14% 97%, 8% 88%, 3% 96%, 0 90%);
@@ -101,6 +101,47 @@
     .scribbled { position: relative; }
     .scribbled::after { content: ""; position: absolute; left: -12%; right: -10%; top: -22%; bottom: -26%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M150 12 C110 2 40 4 14 26 C-6 44 30 72 100 74 C160 76 196 58 192 36 C188 16 140 8 96 10 C70 12 50 16 38 22' fill='none' stroke='%23c8f03c' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; pointer-events: none; }
 
+    /* ---------- dibujos a línea ---------- */
+    .ink { filter: url(#ink); }
+    .doodle-svg { width: 12rem; color: var(--chalk); }
+    .star-svg { width: 1em; height: 1em; color: var(--lime); }
+    .band-rat { position: absolute; z-index: 3; width: clamp(5rem, 11vw, 8rem); color: var(--chalk); top: calc(38% - clamp(3rem, 6vw, 4.6rem)); left: 8%; transform: rotate(-3deg); pointer-events: none; }
+    @media (max-width: 40rem) { .band-rat { display: none; } }
+    .rats-row { display: flex; justify-content: center; gap: clamp(.5rem, 3vw, 2rem); color: var(--lilac-ink); margin-bottom: .6rem; }
+    .rats-row svg { width: clamp(4rem, 9vw, 6.5rem); height: auto; }
+    .rats-row svg:nth-child(2) { transform: translateY(4px) scale(.85); } .rats-row svg:nth-child(3) { transform: translateY(-2px) scale(.7); }
+
+    /* ---------- carrusel de videoclips ---------- */
+    .clips { padding: clamp(3rem, 7vw, 5rem) 0; }
+    .carousel { position: relative; }
+    .stage3d { position: relative; height: clamp(15rem, 44vw, 30rem); perspective: 1100px; touch-action: pan-y; }
+    .clip { position: absolute; left: 50%; top: 0; width: min(64vw, 46rem); aspect-ratio: 16 / 9; margin-left: calc(min(64vw, 46rem) / -2);
+      transition: transform .5s var(--ease-out), opacity .4s, filter .4s; transform-style: preserve-3d; background: var(--ink); border: 2px solid var(--chalk); padding: 6px; }
+    .clip[data-pos="0"] { transform: none; z-index: 3; }
+    .clip[data-pos="-1"] { transform: translateX(-62%) scale(.72) rotateY(38deg); opacity: .65; z-index: 2; filter: grayscale(.8); cursor: pointer; }
+    .clip[data-pos="1"] { transform: translateX(62%) scale(.72) rotateY(-38deg); opacity: .65; z-index: 2; filter: grayscale(.8); cursor: pointer; }
+    .clip[data-pos="hidden"] { transform: scale(.5); opacity: 0; pointer-events: none; z-index: 1; }
+    @media (hover: hover) and (pointer: fine) { .clip[data-pos="-1"]:hover, .clip[data-pos="1"]:hover { opacity: .9; filter: none; } }
+    .clip .face { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; display: grid; place-items: center; }
+    .clip .face img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.2) contrast(1.05); }
+    .clip .face svg.art { width: 100%; height: 100%; }
+    .clip iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .clip .play { position: absolute; inset: 0; margin: auto; width: 4.2rem; height: 4.2rem; border-radius: 50%; display: grid; place-items: center; background: #0a0a0acc; border: 2px solid var(--chalk); color: var(--chalk); }
+    .clip .play .tri { margin-left: .3rem; font-size: 1.5rem; }
+    @media (hover: hover) and (pointer: fine) { .clip .play:hover { background: var(--lime); color: var(--ink); border-color: var(--lime); } }
+    .clip .soon { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%) rotate(-3deg); padding: .3rem 1rem; clip-path: var(--tag); background: var(--lilac); color: var(--lilac-ink); font-size: 1.2rem; white-space: nowrap; }
+    .clip-nav { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 1.4rem; }
+    .clip-nav button { width: 3rem; height: 3rem; border-radius: 50%; border: 1.6px solid var(--chalk); display: grid; place-items: center; font-size: 1.4rem; }
+    @media (hover: hover) and (pointer: fine) { .clip-nav button:hover { background: var(--lime); color: var(--ink); border-color: var(--lime); } }
+    .clip-caption { text-align: center; min-width: 14rem; }
+    .clip-caption strong { display: block; font-weight: 400; font-family: "Pirata One", var(--gothic); font-size: clamp(2rem, 5vw, 2.8rem); color: var(--lilac); line-height: 1; letter-spacing: .03em; }
+    .clip-caption span { color: var(--muted); font-size: 1.05rem; letter-spacing: .08em; }
+    .clip-caption a { color: var(--chalk); border-bottom: 1.5px solid var(--lime); }
+    .dots { display: flex; justify-content: center; gap: .5rem; margin-top: .9rem; }
+    .dots button { width: .75rem; height: .75rem; border-radius: 50%; border: 1.5px solid var(--chalk); padding: 0; }
+    .dots button[aria-current="true"] { background: var(--lime); border-color: var(--lime); }
+    @media (max-width: 40rem) { .clip { width: 82vw; margin-left: -41vw; } .clip[data-pos="-1"] { transform: translateX(-74%) scale(.6) rotateY(40deg); } .clip[data-pos="1"] { transform: translateX(74%) scale(.6) rotateY(-40deg); } .stage3d { height: 50vw; } }
+
     /* ---------- cabecera ---------- */
     header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--ink) 92%, transparent); padding-top: env(safe-area-inset-top, 0px); }
     header.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding-top: .7rem; padding-bottom: .7rem; }
@@ -117,7 +158,7 @@
     .mega { font-size: clamp(3.4rem, 15.5vw, 13rem); line-height: .9; letter-spacing: .02em; white-space: nowrap; position: relative; z-index: 1; }
     .stage { position: relative; }
     .band { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38%; height: clamp(7rem, 17vw, 12rem); transform: rotate(-3deg); clip-path: var(--strip); display: flex; align-items: center; overflow: hidden; z-index: 0; }
-    .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: var(--gothic); font-size: clamp(2.2rem, 6vw, 4.2rem); color: #2a1d3acc; animation: run 40s linear infinite; }
+    .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
     .hero-portrait { position: relative; z-index: 2; width: min(92vw, 40rem); margin: 0 auto; mix-blend-mode: normal; -webkit-mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); }
@@ -133,11 +174,11 @@
     .manifesto em.lilac { color: var(--lilac); }
     .notes { display: grid; gap: 2rem; margin-top: clamp(2rem, 5vw, 3.5rem); align-items: center; }
     @media (min-width: 52rem) { .notes { grid-template-columns: 12rem 1fr 1fr; gap: 3rem; margin-left: 12%; } }
-    .notes .doodle { width: 12rem; mix-blend-mode: screen; transform: rotate(-6deg); }
+    .notes .doodle { width: 12rem; transform: rotate(-6deg); color: var(--chalk); }
     .note h3 { font-family: var(--gothic); color: var(--lilac); font-size: 1.8rem; margin-bottom: .2rem; }
     .note h4 { font-size: 1.3rem; letter-spacing: .08em; margin-bottom: .6rem; }
     .note p { font: 1.12rem/1.6 var(--serif); letter-spacing: 0; color: #d8d2c4; max-width: 26rem; }
-    .star { position: absolute; right: 6%; top: 18%; font-size: clamp(4rem, 12vw, 8rem); color: var(--lime); transform: rotate(14deg); line-height: 1; pointer-events: none; }
+    .star { position: absolute; right: 6%; top: 18%; width: clamp(4rem, 12vw, 8rem); height: clamp(4rem, 12vw, 8rem); color: var(--lime); transform: rotate(14deg); pointer-events: none; }
 
     /* ---------- canciones ---------- */
     .songs { padding: clamp(3rem, 7vw, 5rem) 0; }
@@ -150,11 +191,10 @@
     @media (max-width: 57.99rem) { .song-tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; gap: .4rem; scroll-snap-type: x mandatory; } .song-tab { scroll-snap-align: start; font-size: 1.2rem; } }
     .cover-wrap { position: relative; margin-right: 2.5rem; margin-bottom: 1.5rem; }
     .cover { position: relative; z-index: 1; padding: 8px; background: var(--ink); border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
-    .vinyl { position: absolute; z-index: 0; width: 88%; aspect-ratio: 1; top: 6%; right: -30%; border-radius: 50%;
-      background: radial-gradient(circle, var(--lilac) 0 15%, #111 15.5% 17%, transparent 17.5%), repeating-radial-gradient(circle, #1c1c1c 0 2px, #2e2e2e 2px 3px), #111; box-shadow: 0 0 0 1.5px #efe8d855;
-      animation: spin 9s linear infinite; }
+    .vinyl { position: absolute; z-index: 0; width: 88%; aspect-ratio: 1; top: 6%; right: -30%; color: var(--chalk); animation: spin 14s linear infinite; }
+    .vinyl svg { width: 100%; height: 100%; display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .cover img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .cover img, .cover svg.art { width: 100%; aspect-ratio: 1; display: block; }
     .cover .tape { top: -.6rem; left: 50%; margin-left: -2.2rem; transform: rotate(-4deg); }
     .cover .sticker { position: absolute; left: -1rem; bottom: -1.2rem; padding: .3rem .9rem; font-size: 1.6rem; transform: rotate(-8deg); clip-path: var(--tag); background: var(--lilac); color: var(--lilac-ink); }
     .info h3 { font-family: var(--gothic); color: var(--lilac); font-size: clamp(2.8rem, 7vw, 4.8rem); line-height: .95; margin-bottom: .6rem; }
@@ -229,7 +269,7 @@
     .cta .c1 { color: var(--lime); margin-left: 10%; } .cta .c2 { margin-left: 0; } .cta .c3 { color: var(--lilac); margin-left: 22%; }
     .contact-card { position: relative; display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--lime) var(--paper-bg); background-blend-mode: multiply; color: var(--ink); clip-path: polygon(0 2%, 4% 0, 30% 1.5%, 60% 0, 97% 1.2%, 100% 0, 99% 50%, 100% 98%, 70% 100%, 40% 98.5%, 3% 100%, 0 97%, 1% 50%); }
     @media (min-width: 52rem) { .contact-card { grid-template-columns: 1fr 1.3fr; align-items: center; } }
-    .contact-card .envelope { width: min(100%, 15rem); justify-self: center; }
+    .contact-card .envelope { width: min(100%, 15rem); justify-self: center; color: var(--ink); }
     .contact-card h3 { font-size: 2rem; letter-spacing: .1em; margin-bottom: .2rem; }
     .contact-card .note { font: 1.05rem/1.5 var(--serif); letter-spacing: 0; margin-bottom: 1rem; }
     .links { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
@@ -259,6 +299,63 @@
     <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
     <symbol id="i-apple" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
     <symbol id="i-youtube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></g></symbol>
+    <!-- Dibujos a línea (estilo tinta): stroke = currentColor -->
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
+    <symbol id="d-rat" viewBox="-4 0 134 72">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 50 C16 34 28 17 50 15 C70 13 86 21 94 31 C101 35 108 39 116 44 C110 47 101 50 90 52 C74 57 44 59 31 56 C27 55 25 53 24 50 Z"/>
+        <path d="M84 27 C80 17 92 14 94 23 C95 27 92 30 89 30"/>
+        <path d="M87 25 C86 21 91 20 91 24"/>
+        <path d="M116 44 L124 40 M116 44 L125 45 M115 45 L122 50"/>
+        <path d="M86 52 L89 63 M85 63.5 L89 62 L93 63.5 M89 62 L89 66"/>
+        <path d="M44 57 L40 65 M36 66 L40 64.5 L44 66 M40 64.5 L40 68"/>
+        <path d="M66 56 L68 63 M64.5 64 L68 62.5 L71.5 64"/>
+        <path d="M24 50 C12 52 5 44 8 35 C11 27 6 21 0 23"/>
+        <path d="M18 51.5 l-1 -3.5 M13 50 l0.5 -3.5 M9.5 45.5 l3 -1.8 M8 39 l3.4 0.6 M8.6 32.5 l3 1.6 M5 27.5 l2.6 2.2"/>
+      </g>
+      <g fill="currentColor"><circle cx="102" cy="37" r="1.5"/><circle cx="116.3" cy="44" r="1.4"/>
+        <circle cx="45" cy="30" r=".75"/><circle cx="55" cy="25" r=".7"/><circle cx="62" cy="36" r=".75"/><circle cx="48" cy="44" r=".7"/><circle cx="70" cy="28" r=".7"/><circle cx="75" cy="44" r=".75"/><circle cx="38" cy="38" r=".7"/><circle cx="58" cy="48" r=".7"/><circle cx="80" cy="36" r=".65"/><circle cx="34" cy="48" r=".65"/></g>
+    </symbol>
+    <symbol id="d-cat" viewBox="0 0 130 80">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 60 C12 44 26 26 54 24 C84 22 108 34 110 52 C112 64 96 70 70 70 C46 70 30 68 22 60 Z"/>
+        <path d="M30 44 C28 34 34 26 44 26 C54 26 60 34 58 44 C56 52 34 54 30 44 Z"/>
+        <path d="M32 31 L31 19 L40 26 M48 26 L56 18 L56 31"/>
+        <path d="M36 40 q3 2.5 6 0 M48 40 q3 2.5 6 0"/>
+        <path d="M44 46 l1.6 1.4 l1.6 -1.4"/>
+        <path d="M33 46 l-9 -1 M33 48 l-9 2 M57 46 l9 -1 M57 48 l9 2"/>
+        <path d="M110 52 C118 60 112 74 96 74 C80 74 60 72 44 72"/>
+        <path d="M70 34 C76 40 78 50 74 58 M88 36 C92 44 92 52 88 60"/>
+        <path d="M100 18 l7 0 l-7 8 l7 0 M112 8 l5 0 l-5 6 l5 0"/>
+      </g>
+      <g fill="currentColor"><circle cx="66" cy="46" r=".75"/><circle cx="82" cy="50" r=".7"/><circle cx="96" cy="46" r=".75"/><circle cx="60" cy="60" r=".7"/><circle cx="90" cy="62" r=".7"/><circle cx="100" cy="58" r=".65"/></g>
+    </symbol>
+    <symbol id="d-moon" viewBox="0 0 40 40">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 3 C30 3 37 11 37 20 C37 30 29 37 20 37 C10 37 3 29 3 20 C3 11 11 3 20 3"/><circle cx="14" cy="15" r="3.2"/><circle cx="25" cy="25" r="4.4"/><circle cx="26" cy="12" r="1.8"/></g>
+      <g fill="currentColor"><circle cx="11" cy="25" r=".7"/><circle cx="18" cy="30" r=".65"/><circle cx="30" cy="19" r=".7"/><circle cx="19" cy="9" r=".6"/><circle cx="9" cy="20" r=".6"/></g>
+    </symbol>
+    <symbol id="d-river" viewBox="0 0 160 70">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M2 30 C30 22 50 34 80 28 S130 22 158 30"/><path d="M10 42 C40 34 64 46 92 40 S140 34 154 42"/><path d="M24 54 C50 48 76 58 104 52 S140 48 150 54"/>
+        <path d="M40 36 h12 M98 34 h10 M70 48 h9 M120 46 h8"/>
+        <path d="M10 70 q3 -12 0 -24 M15 70 q1 -9 6 -16 M20 70 q-1 -6 2 -11 M140 70 q-2 -11 2 -22 M146 70 q1 -9 -4 -15 M151 70 q0 -7 3 -12"/>
+        <path d="M10 46 c-1.5 -3 -1 -6 1 -8 c1.5 2.5 1.2 5.5 -1 8 M142 48 c-1.5 -3 -1 -6 1 -8 c1.5 2.5 1.2 5.5 -1 8"/>
+      </g>
+    </symbol>
+    <symbol id="d-envelope" viewBox="0 0 100 70">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 14 C30 12 70 13 94 14 C95 30 95 48 94 64 C70 65 30 65 6 64 C5 48 5 30 6 14 Z"/>
+        <path d="M6 15 C22 28 38 40 50 44 C62 40 78 28 94 15"/><path d="M7 63 L38 38 M93 63 L62 38"/>
+        <path d="M44 2 l2 6 M52 0 v7 M60 2 l-2 6"/>
+      </g>
+      <g fill="currentColor"><circle cx="20" cy="52" r=".7"/><circle cx="80" cy="50" r=".7"/><circle cx="50" cy="56" r=".7"/></g>
+    </symbol>
+    <symbol id="d-star" viewBox="0 0 40 40">
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M20 4 C19.5 14 20.5 26 20 36 M6 12 C14 16 26 24 34 28 M34 12 C26 16 14 24 6 28"/></g>
+    </symbol>
+    <symbol id="d-vinyl" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="50" cy="50" r="47"/><circle cx="50" cy="50" r="40" stroke-width=".8" stroke-dasharray="20 6 40 8"/><circle cx="50" cy="50" r="32" stroke-width=".8" stroke-dasharray="30 5 12 7"/><circle cx="50" cy="50" r="24" stroke-width=".8" stroke-dasharray="14 6 26 5"/><circle cx="50" cy="50" r="14"/><circle cx="50" cy="50" r="2.2" fill="currentColor"/></g>
+    </symbol>
     <symbol id="envelope" viewBox="0 0 200 150"><g stroke="#2a1d3a" stroke-width="2.4" stroke-linejoin="round"><path d="M8 50 L100 8 L192 50 V142 H8 Z" fill="#a688d6"/><path d="M8 142 L82 90 M192 142 L118 90" fill="none"/><path d="M8 52 L100 112 L192 52 V142 H8 Z" fill="#b99ae6"/></g><rect x="52" y="22" width="96" height="58" fill="#e9dcc0" stroke="#2a1d3a" stroke-width="2" transform="rotate(-4 100 51)"/><path d="M70 44 h60 M70 56 h44" stroke="#2a1d3a" stroke-width="2" stroke-linecap="round" transform="rotate(-4 100 51)"/></symbol>
   </svg>
 
@@ -266,8 +363,8 @@
     <div class="wrap">
       <nav aria-label="Secciones">
         <a href="#canciones">canciones</a>
+        <a href="#videoclips">videoclips</a>
         <a href="#textos">textos</a>
-        <a href="#visuales">visuales</a>
         <a href="#sobre-mi">sobre mí</a>
       </nav>
       <a class="logo" href="#inicio" translate="no">KAILKOB</a>
@@ -284,10 +381,45 @@
       </div>
       <div class="stage">
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
+        <svg class="band-rat ink" viewBox="-4 0 134 72" aria-hidden="true"><use href="#d-rat"/></svg>
         <img class="hero-portrait" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
       </div>
       <div class="wrap">
-        <a class="scroll-hint" href="#textos">toca para explorar ↓</a>
+        <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
+
+    <!-- CANCIONES -->
+    <section class="songs" id="canciones" aria-labelledby="h-canciones">
+      <div class="wrap">
+        <h2 class="sec-title" id="h-canciones"><span class="sr-only">Canciones</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:3deg;--y:2px">c</span><span class="r3" style="--r:3deg;--y:2px">a</span><span class="r2" style="--r:8deg;--y:-2px">n</span><span class="r1" style="--r:-3deg;--y:4px">c</span><span class="r2" style="--r:5deg;--y:2px">i</span><span class="r3" style="--r:-5deg;--y:0px">o</span><span class="r1" style="--r:-5deg;--y:4px">n</span><span class="r5" style="--r:-5deg;--y:-5px">e</span><span class="r4" style="--r:5deg;--y:2px">s</span></span></h2>
+        <div class="songs-grid">
+          <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
+          <div class="cover-wrap">
+            <span class="vinyl ink" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#d-vinyl"/></svg></span>
+            <div class="cover" id="cover"><span class="tape"></span><div id="cover-art"></div></div>
+            <div class="win" aria-hidden="true" style="right:-1rem; bottom:-1.6rem; transform: rotate(3deg)"><div class="win-bar"><span id="win-name" translate="no">1408.wav</span><span>✕</span></div><p id="win-meta">single · 28 feb 2025</p></div>
+          </div>
+          <div class="info" id="song-panel" role="tabpanel" tabindex="0"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOCLIPS -->
+    <section class="clips" id="videoclips" aria-labelledby="h-videoclips">
+      <div class="wrap">
+        <h2 class="sec-title" id="h-videoclips" style="justify-content:center"><span class="sr-only">Videoclips</span><span class="ransom" aria-hidden="true"><span class="r5" style="--r:3deg;--y:2px">v</span><span class="r5" style="--r:5deg;--y:-5px">i</span><span class="r3" style="--r:-5deg;--y:2px">d</span><span class="r3" style="--r:3deg;--y:-2px">e</span><span class="r1" style="--r:8deg;--y:4px">o</span><span class="r4" style="--r:3deg;--y:2px">c</span><span class="r2" style="--r:5deg;--y:2px">l</span><span class="r3" style="--r:3deg;--y:-5px">i</span><span class="r4" style="--r:3deg;--y:-2px">p</span><span class="r3" style="--r:8deg;--y:2px">s</span></span></h2>
+      </div>
+      <div class="carousel" aria-roledescription="carrusel" aria-label="Videoclips">
+        <div class="stage3d" id="stage3d"></div>
+        <div class="clip-nav">
+          <button class="press" type="button" id="clip-prev" aria-label="Videoclip anterior">←</button>
+          <div class="clip-caption" id="clip-caption" aria-live="polite"></div>
+          <button class="press" type="button" id="clip-next" aria-label="Videoclip siguiente">→</button>
+        </div>
+        <div class="dots" id="clip-dots"></div>
       </div>
     </section>
 
@@ -303,7 +435,7 @@
           <span class="l3">donde <em class="lilac scribbled">no llego.</em></span>
         </p>
         <div class="notes">
-          <img class="doodle" src="../img/rata-luna.jpg" alt="" width="205" height="145" loading="lazy">
+          <svg class="doodle ink" viewBox="0 0 170 120" aria-hidden="true"><use href="#d-moon" x="118" y="0" width="44" height="44" style="color:var(--lime)"/><use href="#d-rat" x="0" y="44" width="134" height="72"/></svg>
           <div class="grid-sheet">
           <span class="tape"></span>
           <article class="note">
@@ -317,51 +449,8 @@
           </article>
           </div>
         </div>
-        <span class="star chalk" aria-hidden="true">✳</span>
+        <svg class="star ink" viewBox="0 0 40 40" aria-hidden="true"><use href="#d-star"/></svg>
       </div>
-    </section>
-
-    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
-
-    <!-- CANCIONES -->
-    <section class="songs" id="canciones" aria-labelledby="h-canciones">
-      <div class="wrap">
-        <h2 class="sec-title" id="h-canciones"><span class="sr-only">Canciones</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:3deg;--y:2px">c</span><span class="r3" style="--r:3deg;--y:2px">a</span><span class="r2" style="--r:8deg;--y:-2px">n</span><span class="r1" style="--r:-3deg;--y:4px">c</span><span class="r2" style="--r:5deg;--y:2px">i</span><span class="r3" style="--r:-5deg;--y:0px">o</span><span class="r1" style="--r:-5deg;--y:4px">n</span><span class="r5" style="--r:-5deg;--y:-5px">e</span><span class="r4" style="--r:5deg;--y:2px">s</span></span></h2>
-        <div class="songs-grid">
-          <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
-          <div class="cover-wrap">
-            <span class="vinyl" aria-hidden="true"></span>
-            <div class="cover" id="cover"><span class="tape"></span><img id="cover-img" src="../img/1408.jpg" alt="" width="216" height="202"></div>
-            <div class="win" aria-hidden="true" style="right:-1rem; bottom:-1.6rem; transform: rotate(3deg)"><div class="win-bar"><span id="win-name" translate="no">1408.wav</span><span>✕</span></div><p id="win-meta">single · 28 feb 2025</p></div>
-          </div>
-          <div class="info" id="song-panel" role="tabpanel" tabindex="0"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISUALES -->
-    <section class="cinema" id="visuales" aria-labelledby="h-visuales">
-      <div class="wrap"><h2 class="sec-title" id="h-visuales" style="justify-content:center"><span class="sr-only">Visuales</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:8deg;--y:2px">v</span><span class="r5" style="--r:8deg;--y:4px">i</span><span class="r2" style="--r:3deg;--y:2px">s</span><span class="r1" style="--r:-3deg;--y:-2px">u</span><span class="r1" style="--r:-8deg;--y:-2px">a</span><span class="r2" style="--r:-3deg;--y:0px">l</span><span class="r2" style="--r:5deg;--y:2px">e</span><span class="r5" style="--r:-3deg;--y:-2px">s</span></span></h2></div>
-      <h3 class="cinema-title">Pequeño<br>cine</h3>
-      <div class="hall">
-        <div class="hall-inner">
-          <!-- EDITAR: cada marco puede enlazar a un vídeo concreto -->
-          <div class="wall left">
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/ding-dong-piro.jpg" alt="Ilustración de Ding Dong Piro: rata bajo la luna" loading="lazy" width="229" height="202"></a>
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/film-fragmentos.jpg" alt="Fragmentos: río de noche bajo la luna" loading="lazy" width="160" height="75"></a>
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/rata-roca.jpg" alt="Ilustración: rata sobre una roca aullando a la luna" loading="lazy" width="180" height="285"></a>
-          </div>
-          <div class="screen">
-            <iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-          <div class="wall right">
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/moto.jpg" alt="Ilustración: moto de noche bajo un cielo lila" loading="lazy" width="330" height="128"></a>
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/film-pruebas.jpg" alt="Pruebas: rata entre la hierba" loading="lazy" width="160" height="75"></a>
-            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/que-nos-sofoque-el-rio.jpg" alt="Ilustración de Que nos sofoque el río" loading="lazy" width="232" height="202"></a>
-          </div>
-        </div>
-      </div>
-      <p class="cinema-cap"><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></p>
     </section>
 
     <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
@@ -369,10 +458,10 @@
     <!-- SOBRE MÍ -->
     <section class="about" id="sobre-mi" aria-labelledby="h-sobre">
       <div class="wrap">
-        <h2 class="sec-title" id="h-sobre"><span class="sr-only">Sobre mí</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:-5deg;--y:4px">s</span><span class="r3" style="--r:8deg;--y:-2px">o</span><span class="r1" style="--r:5deg;--y:-5px">b</span><span class="r2" style="--r:8deg;--y:-5px">r</span><span class="r1" style="--r:8deg;--y:0px">e</span><span class="gap"></span><span class="r1" style="--r:-8deg;--y:-5px">m</span><span class="r4" style="--r:5deg;--y:0px">í</span></span><span class="hello chalk" aria-hidden="true">¡hola!</span></h2>
+        <h2 class="sec-title" id="h-sobre"><span class="sr-only">Sobre mí</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:-5deg;--y:4px">s</span><span class="r3" style="--r:8deg;--y:-2px">o</span><span class="r1" style="--r:5deg;--y:-5px">b</span><span class="r2" style="--r:8deg;--y:-5px">r</span><span class="r1" style="--r:8deg;--y:0px">e</span><span class="gap"></span><span class="r1" style="--r:-8deg;--y:-5px">m</span><span class="r4" style="--r:5deg;--y:0px">í</span></span></h2>
         <div class="about-grid">
           <div class="about-portrait">
-            <span class="big-star" aria-hidden="true" style="font-size: clamp(4rem, 10vw, 6.5rem); left: -1.6rem; top: -2.4rem;">✳</span>
+            <svg class="big-star ink" viewBox="0 0 40 40" aria-hidden="true" style="width: clamp(4rem, 10vw, 6.5rem); height: clamp(4rem, 10vw, 6.5rem); left: -1.8rem; top: -2.6rem;"><use href="#d-star"/></svg>
             <div class="polaroid"><img src="../img/retrato.jpg" alt="Retrato dibujado de Kailkob" loading="lazy" width="205" height="360"></div>
             <div class="win" aria-hidden="true" style="left: -1.5rem; bottom: 1.5rem; transform: rotate(-3deg)"><div class="win-bar"><span translate="no">kailkob.exe</span><span>✕</span></div><p>canciones, textos<br>y otras criaturas</p></div>
           </div>
@@ -393,15 +482,15 @@
       <div class="wrap">
         <h2 class="cta chalk" id="h-contacto"><span class="c1">escucha,</span><span class="c2">lee</span><span class="c3">y escríbeme</span></h2>
         <div class="contact-card">
-          <svg class="envelope" viewBox="0 0 200 150" aria-hidden="true"><use href="#envelope"/></svg>
+          <svg class="envelope ink" viewBox="0 0 100 70" aria-hidden="true"><use href="#d-envelope"/></svg>
           <div>
             <h3>escríbeme</h3>
             <!-- EDITAR: cuando haya email, añade aquí <a href="mailto:EMAIL">EMAIL</a> y borra esta nota -->
             <p class="note">El email llega pronto. Mientras, aquí está todo lo que suena:</p>
             <ul class="links">
-              <li><a class="press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</span></a></li>
-              <li><a class="press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</span></a></li>
-              <li><a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</span></a></li>
+              <li><a class="press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</span></a></li>
+              <li><a class="press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</span></a></li>
+              <li><a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</span></a></li>
               <!-- EDITAR: Instagram -->
             </ul>
           </div>
@@ -412,6 +501,7 @@
 
   <footer>
     <div class="footer-band lilac-paper">
+      <div class="rats-row ink" aria-hidden="true"><svg viewBox="-4 0 134 72"><use href="#d-rat"/></svg><svg viewBox="-4 0 134 72"><use href="#d-rat"/></svg><svg viewBox="-4 0 134 72"><use href="#d-rat"/></svg></div>
       <div class="wrap">
         <span>© <span id="y">2026</span> <span translate="no">KAILKOB</span> · canciones, textos y otras criaturas</span>
         <a href="#inicio">volver arriba ↑</a>
@@ -430,7 +520,7 @@
         creditos: [['lanzamiento', 'Single · 18 de septiembre de 2025'], ['género', 'Alternativa'], ['℗', '2025 Kailkob']] },
       { id: '1408', title: '1408', img: '../img/1408.jpg', meta: 'single · 28 feb 2025 · 3:38',
         href: 'https://music.apple.com/us/album/1408-single/1798072933', lang: 'ca', letra: '', historia: '',
-        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a href="#visuales">en Pequeño cine</a>']] },
+        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a href="#videoclips">ver videoclip</a>']] },
       { id: 'ddp', title: 'Ding Dong Piro', img: '../img/ding-dong-piro.jpg', meta: 'pronto', href: '', lang: '', letra: '',
         historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
         creditos: [] },
@@ -438,6 +528,22 @@
     ];
 
     const $ = id => document.getElementById(id);
+
+    /* Portadas dibujadas a línea (símbolos #d-*) */
+    function art(id) {
+      const rat = (x, y, w, flip) => flip
+        ? `<g transform="translate(${2 * x + w} 0) scale(-1 1)"><use href="#d-rat" x="${x}" y="${y}" width="${w}" height="${w * 72 / 134}"/></g>`
+        : `<use href="#d-rat" x="${x}" y="${y}" width="${w}" height="${w * 72 / 134}"/>`;
+      const scenes = {
+        blv: `<use href="#d-moon" x="78" y="22" width="44" height="44" style="color:var(--lime)"/>${rat(8, 104, 96)}${rat(96, 104, 96, true)}
+              <path d="M96 92 c-4 -7 -12 -3 -8 3 l8 8 l8 -8 c4 -6 -4 -10 -8 -3z" fill="none" stroke="var(--lilac)" stroke-width="1.8"/>`,
+        '1408': `<use href="#d-moon" x="140" y="18" width="40" height="40" style="color:var(--lilac)"/><use href="#d-cat" x="14" y="74" width="172" height="106"/>`,
+        ddp: `<use href="#d-moon" x="124" y="16" width="56" height="56" style="color:var(--lime)"/>${rat(14, 118, 120)}
+              <path d="M150 182 q2 -14 -1 -26 M156 182 q1 -10 6 -18 M10 184 q1 -9 -2 -16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`,
+        rio: `<use href="#d-moon" x="80" y="16" width="40" height="40" style="color:var(--lilac)"/><use href="#d-river" x="0" y="96" width="200" height="88"/>`,
+      };
+      return `<svg class="art ink" viewBox="0 0 200 200" role="img" aria-label="Ilustración de la canción" style="color:var(--chalk)">${scenes[id] || ''}</svg>`;
+    }
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
     let current = SONGS[1];
 
@@ -448,7 +554,7 @@
       const s = current;
       document.querySelectorAll('.song-tab').forEach(b => { const on = b.dataset.id === s.id; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
       $('song-panel').setAttribute('aria-labelledby', 't-' + s.id);
-      $('cover-img').src = s.img;
+      $('cover-art').innerHTML = art(s.id);
       $('win-name').textContent = s.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.wav';
       $('win-meta').textContent = s.meta;
       const lang = s.lang ? ` lang="${s.lang}"` : '';
@@ -486,6 +592,66 @@
       if (a.querySelector('.sr-only')) return;
       const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (se abre en otra pestaña)'; a.append(sr);
     });
+
+    /* ---------- carrusel de videoclips ---------- */
+    /* EDITAR: añade aquí los videoclips nuevos (id de YouTube en "video") */
+    const CLIPS = [
+      { title: '1408', video: 'HCXq8Izwtno', art: '1408' },
+      { title: 'BLV W/ME', video: '', art: 'blv' },
+      { title: 'Ding Dong Piro', video: '', art: 'ddp' },
+      { title: 'Que nos sofoque el río', video: '', art: 'rio' },
+    ];
+    let ci = 0;
+    const stage = $('stage3d');
+    stage.innerHTML = CLIPS.map((c, i) => `
+      <div class="clip" data-i="${i}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${CLIPS.length}: ${c.title}">
+        <div class="face">${c.video
+          ? `<img src="https://i.ytimg.com/vi/${c.video}/hqdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`
+          : `${art(c.art)}<span class="soon">videoclip pronto</span>`}</div>
+      </div>`).join('');
+    $('clip-dots').innerHTML = CLIPS.map((c, i) => `<button type="button" aria-label="Ir a ${c.title}" data-i="${i}"></button>`).join('');
+
+    function layout() {
+      const n = CLIPS.length;
+      stage.querySelectorAll('.clip').forEach(el => {
+        const i = +el.dataset.i; let d = (i - ci + n) % n; if (d > n / 2) d -= n;
+        const pos = Math.abs(d) <= 1 ? String(d) : 'hidden';
+        el.dataset.pos = pos;
+        el.setAttribute('aria-hidden', pos === '0' ? 'false' : 'true');
+        el.querySelectorAll('button, iframe').forEach(b => b.tabIndex = pos === '0' ? 0 : -1);
+        if (pos !== '0') { const f = el.querySelector('iframe'); if (f) stopVideo(el); }
+      });
+      const c = CLIPS[ci];
+      $('clip-caption').innerHTML = `<strong translate="no">${c.title}</strong><span>${c.video ? `videoclip · <a href="https://youtu.be/${c.video}" target="_blank" rel="noopener">verlo en YouTube<span class="sr-only"> (se abre en otra pestaña)</span></a>` : 'videoclip pronto'}</span>`;
+      $('clip-dots').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-current', i === ci));
+    }
+    function stopVideo(el) {
+      const c = CLIPS[+el.dataset.i];
+      el.querySelector('.face').innerHTML = `<img src="https://i.ytimg.com/vi/${c.video}/hqdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`;
+    }
+    const go = d => { ci = (ci + d + CLIPS.length) % CLIPS.length; layout(); };
+    $('clip-prev').onclick = () => go(-1);
+    $('clip-next').onclick = () => go(1);
+    $('clip-dots').onclick = e => { const b = e.target.closest('button'); if (b) { ci = +b.dataset.i; layout(); } };
+    stage.addEventListener('click', e => {
+      const el = e.target.closest('.clip'); if (!el) return;
+      if (el.dataset.pos === '-1') return go(-1);
+      if (el.dataset.pos === '1') return go(1);
+      if (e.target.closest('.play')) {
+        const c = CLIPS[+el.dataset.i];
+        el.querySelector('.face').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${c.video}?autoplay=1" title="Kailkob — ${c.title} (videoclip)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        el.querySelector('iframe').focus();
+      }
+    });
+    stage.parentElement.addEventListener('keydown', e => {
+      if (e.target.closest('iframe')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    });
+    let sx = null;
+    stage.addEventListener('pointerdown', e => { sx = e.clientX; });
+    stage.addEventListener('pointerup', e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); });
+    layout();
 
     const m = location.hash.match(/^#cancion-(.+)$/);
     if (m && SONGS.some(x => x.id === m[1])) { select(m[1], false); addEventListener('load', () => setTimeout(() => $('canciones').scrollIntoView({ behavior: 'instant' }), 60)); }
