@@ -107,6 +107,8 @@
     .star-svg { width: 1em; height: 1em; color: var(--lime); }
     .band-rat { position: absolute; z-index: 3; width: clamp(5rem, 11vw, 8rem); color: var(--chalk); top: calc(38% - clamp(3rem, 6vw, 4.6rem)); left: 8%; transform: rotate(-3deg); pointer-events: none; }
     @media (max-width: 40rem) { .band-rat { display: none; } }
+    /* retratos pasados a tinta */
+    .inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18); }
     .rats-row { display: flex; justify-content: center; gap: clamp(.5rem, 3vw, 2rem); color: var(--lilac-ink); margin-bottom: .6rem; }
     .rats-row svg { width: clamp(4rem, 9vw, 6.5rem); height: auto; }
     .rats-row svg:nth-child(2) { transform: translateY(4px) scale(.85); } .rats-row svg:nth-child(3) { transform: translateY(-2px) scale(.7); }
@@ -382,7 +384,7 @@
       <div class="stage">
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
         <svg class="band-rat ink" viewBox="-4 0 134 72" aria-hidden="true"><use href="#d-rat"/></svg>
-        <img class="hero-portrait" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
+        <img class="hero-portrait inked" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
       </div>
       <div class="wrap">
         <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
@@ -462,7 +464,7 @@
         <div class="about-grid">
           <div class="about-portrait">
             <svg class="big-star ink" viewBox="0 0 40 40" aria-hidden="true" style="width: clamp(4rem, 10vw, 6.5rem); height: clamp(4rem, 10vw, 6.5rem); left: -1.8rem; top: -2.6rem;"><use href="#d-star"/></svg>
-            <div class="polaroid"><img src="../img/retrato.jpg" alt="Retrato dibujado de Kailkob" loading="lazy" width="205" height="360"></div>
+            <div class="polaroid"><img class="inked" src="../img/retrato.jpg" alt="Retrato dibujado de Kailkob" loading="lazy" width="205" height="360"></div>
             <div class="win" aria-hidden="true" style="left: -1.5rem; bottom: 1.5rem; transform: rotate(-3deg)"><div class="win-bar"><span translate="no">kailkob.exe</span><span>✕</span></div><p>canciones, textos<br>y otras criaturas</p></div>
           </div>
           <div>
