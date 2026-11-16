@@ -120,12 +120,12 @@
     /* ---------- portada ---------- */
     .hero { position: relative; text-align: center; padding: clamp(2rem, 6vw, 4rem) 0 clamp(3rem, 7vw, 5rem); }
     .mega { font-size: clamp(3.4rem, 15.5vw, 13rem); line-height: .9; letter-spacing: .02em; white-space: nowrap; position: relative; z-index: 1; }
-    .stage { position: relative; margin-top: clamp(-2rem, -3vw, -.5rem); }
+    .stage { position: relative; }
     .band { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38%; height: clamp(7rem, 17vw, 12rem); transform: rotate(-3deg); clip-path: var(--strip); display: flex; align-items: center; overflow: hidden; z-index: 0; }
     .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: var(--gothic); font-size: clamp(2.2rem, 6vw, 4.2rem); color: #2a1d3acc; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
-    .hero-portrait { position: relative; z-index: 2; width: min(86vw, 30rem); margin: 0 auto; mix-blend-mode: normal; -webkit-mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); }
+    .hero-portrait { position: relative; z-index: 2; width: min(92vw, 40rem); margin: 0 auto; mix-blend-mode: normal; -webkit-mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
 
@@ -285,14 +285,10 @@
     <!-- PORTADA -->
     <section class="hero" id="inicio" aria-labelledby="h-inicio">
       <div class="wrap">
-        <div style="position:relative">
-          <span class="halftone-moon" aria-hidden="true"></span>
-          <h1 class="mega chalk" id="h-inicio" translate="no">KAILKOB</h1>
-          <p class="roles">canciones <span aria-hidden="true">✳</span> textos <span aria-hidden="true">✳</span> otras criaturas</p>
-        </div>
+        <h1 class="sr-only" id="h-inicio" translate="no">Kailkob</h1>
       </div>
       <div class="stage">
-        <div class="band lilac-paper" aria-hidden="true"><div class="run"><span>1408 · BLV W/ME · Ding Dong Piro · Que nos sofoque el río ·</span><span>1408 · BLV W/ME · Ding Dong Piro · Que nos sofoque el río ·</span><span>1408 · BLV W/ME · Ding Dong Piro · Que nos sofoque el río ·</span></div></div>
+        <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
         <img class="hero-portrait" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
       </div>
       <div class="wrap">
