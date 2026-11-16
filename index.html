@@ -232,16 +232,16 @@
     @media (hover: hover) and (pointer: fine) { header nav a:hover { opacity: 1; color: var(--lime); } .pill:hover { background-color: var(--lime); } }
 
     /* ---------- portada ---------- */
-    .hero { position: relative; text-align: center; padding: clamp(2rem, 6vw, 4rem) 0 clamp(3rem, 7vw, 5rem); }
+    .hero { position: relative; text-align: center; padding: clamp(.5rem, 2vw, 1.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
     .mega { font-size: clamp(3.4rem, 15.5vw, 13rem); line-height: .9; letter-spacing: .02em; white-space: nowrap; position: relative; z-index: 1; }
     .stage { position: relative; }
     .band { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38%; height: clamp(7rem, 17vw, 12rem); transform: rotate(-3deg); clip-path: var(--strip); display: flex; align-items: center; overflow: hidden; z-index: 0; }
     .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
-    .stage { position: relative; padding-top: clamp(5.5rem, 10vw, 8.5rem); }
-    .band { top: auto !important; bottom: clamp(3.5rem, 9vw, 6.5rem); }
-    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 58%, transparent 97%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 58%, transparent 97%), radial-gradient(120% 95% at 50% 0, #000 70%, transparent 100%); mask-composite: intersect; }
+    .stage { position: relative; padding-top: clamp(3.4rem, 6vw, 5rem); }
+    .band { top: auto !important; bottom: clamp(6.5rem, 12vw, 7.5rem); }
+    .cutout { position: relative; z-index: 2; display: block; width: min(96vw, 46rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 64%, transparent 97%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 64%, transparent 97%), radial-gradient(120% 95% at 50% 0, #000 70%, transparent 100%); mask-composite: intersect; }
     .cutout.inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18) drop-shadow(0 .8rem 1.2rem rgb(0 0 0 / .55)); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
@@ -828,7 +828,7 @@
         const ground = px => bandTop - (px - cx) * TILT;            // borde superior de la tira (inclinada)
         const fl = fig.offsetLeft, fw = fig.offsetWidth, ft = fig.offsetTop, fh = fig.offsetHeight;
         const j0 = fl + fw * .02 - rw * .55, j1 = fl + fw * .9 - rw * .35;   // tramo ocupado por la figura
-        const peak = ft + fh * .11 - rh * 1.4;                          // holgado por encima de la cabeza
+        const peak = ft + fh * .11 - rh * .75;                          // holgado por encima de la cabeza
         return { W, rw, rh, ground, j0, j1, peak };
       }
       function place(g, t) {
