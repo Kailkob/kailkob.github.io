@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Kailkob — canciones, textos y otras criaturas</title>
-  <meta name="description" content="Kailkob: canciones, textos y otras criaturas. Canciones, videoclips, letras y contacto.">
+  <meta name="description" content="Kailkob: canciones, textos y otras criaturas. Canciones, videoclips, letras y redes.">
   <meta property="og:title" content="Kailkob">
   <meta property="og:description" content="canciones, textos y otras criaturas">
   <meta property="og:type" content="website">
@@ -423,30 +423,33 @@
     /* ---------- sobre mí ---------- */
     .about { padding: clamp(3rem, 8vw, 6rem) 0; }
     .about-grid { display: grid; gap: 2.5rem; align-items: center; }
-    @media (min-width: 52rem) { .about-grid { grid-template-columns: .8fr 1.2fr; gap: 4rem; } }
-    .about-portrait { position: relative; width: min(100%, 19rem); justify-self: center; }
-    .polaroid { background: var(--chalk); padding: 10px 10px 2.6rem; transform: rotate(4deg); box-shadow: 0 1rem 2rem rgb(0 0 0 / .5); }
-    .polaroid img { width: 100%; aspect-ratio: 205 / 300; object-fit: cover; object-position: 50% 100%; }
+    @media (min-width: 52rem) { .about-grid { grid-template-columns: 1fr 1.15fr; gap: 3rem; } }
+    .about-portrait { position: relative; width: min(100%, 28rem); justify-self: center; }
+    .about-cutout { position: relative; display: block; width: 100%; height: auto; left: 12%; -webkit-mask-image: linear-gradient(#000 62%, transparent 96%), linear-gradient(90deg, transparent 0, #000 12%, #000 80%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 62%, transparent 96%), linear-gradient(90deg, transparent 0, #000 12%, #000 80%, transparent 100%); mask-composite: intersect; }
     .rows { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid #efe8d855; }
     .rows li { display: flex; align-items: baseline; justify-content: center; gap: 1rem; padding: .5rem 0 .3rem; border-bottom: 1.5px solid #efe8d855; }
     .rows small { font-size: .95rem; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; min-width: 7.5rem; text-align: right; }
     .rows strong { font-weight: 400; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; min-width: 0; }
     .rows li:nth-child(2) strong { color: var(--lilac); }
+    @media (max-width: 40rem) { .rows li { gap: .7rem; } .rows small { min-width: 5.5rem; font-size: .8rem; } .rows strong { font-size: clamp(1.9rem, 10vw, 2.6rem); } }
     .bio { font: 1.15rem/1.6 var(--serif); letter-spacing: 0; color: #d8d2c4; margin-top: 1.5rem; }
+    /* enlaces como pegatinas */
+    .find { margin-top: 2.2rem; text-align: center; }
+    .find-title { display: inline-flex; align-items: flex-end; gap: .4rem; font-size: 1.05rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+    .find-title svg { width: 2.2rem; height: 1.7rem; color: var(--lime); transform: translateY(.5rem); }
+    .stickers { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.1rem; }
+    .sticker { --rot: -4deg; display: inline-flex; align-items: center; gap: .55rem; padding: .6rem 1.25rem .55rem; font-size: 1.35rem; letter-spacing: .08em; clip-path: var(--tag); background-blend-mode: multiply; transform: rotate(var(--rot)); transition: transform .25s var(--ease-out); }
+    .stickers li:nth-child(2) .sticker { --rot: 3deg; } .stickers li:nth-child(3) .sticker { --rot: -1.5deg; } .stickers li:nth-child(4) .sticker { --rot: 4deg; } .stickers li:nth-child(5) .sticker { --rot: -3deg; }
+    .sticker svg { width: 1.35rem; height: 1.35rem; flex: none; }
+    .sticker.s1 { background: var(--lime); color: var(--ink); }
+    .sticker.s2 { background: var(--lilac-paper) var(--paper-bg); color: var(--lilac-ink); }
+    .sticker.s3 { background: var(--paper) var(--paper-bg); color: var(--paper-ink); }
+    .sticker.s4 { background: #3b2a52 var(--paper-bg); color: var(--chalk); }
+    .sticker.s5 { background: var(--chalk); color: var(--ink); }
+    .sticker:focus { outline: none; } .sticker:focus-visible { transform: rotate(0deg) scale(1.06); }
+    .stickers li:has(.sticker:focus-visible) { outline: 2px dashed var(--lime); outline-offset: 5px; border-radius: 4px; }
+    @media (hover: hover) and (pointer: fine) { .sticker:hover { transform: rotate(0deg) translateY(-4px) scale(1.06); } }
 
-    /* ---------- contacto ---------- */
-    .contact { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3rem); }
-    .contact-card { position: relative; display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--lime) var(--paper-bg); background-blend-mode: multiply; color: var(--ink); clip-path: polygon(0 2%, 4% 0, 30% 1.5%, 60% 0, 97% 1.2%, 100% 0, 99% 50%, 100% 98%, 70% 100%, 40% 98.5%, 3% 100%, 0 97%, 1% 50%); }
-    @media (min-width: 52rem) { .contact-card { grid-template-columns: 1fr 1.3fr; align-items: center; } }
-    .contact-card .envelope { width: min(100%, 15rem); justify-self: center; color: var(--ink); }
-    .contact-card h3 { font-size: 2rem; letter-spacing: .1em; margin-bottom: .2rem; }
-    .contact-card .note { font: 1.05rem/1.5 var(--serif); letter-spacing: 0; margin-bottom: 1rem; }
-    .links { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
-    .links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; background: #0a0a0a14; border: 1.5px solid #0a0a0a55; font-size: 1.3rem; letter-spacing: .08em; }
-    .links a::after { content: "→"; }
-    .links svg { width: 1.4rem; height: 1.4rem; flex: none; }
-    .links a span { display: inline-flex; align-items: center; gap: .7rem; }
-    @media (hover: hover) and (pointer: fine) { .links a:hover { background: var(--ink); color: var(--lime); } }
 
     footer { margin-top: 2rem; }
     .footer-band { position: relative; padding: 2.4rem 0 calc(1.8rem + env(safe-area-inset-bottom)); clip-path: polygon(0 16%, 4% 6%, 9% 14%, 15% 3%, 21% 13%, 28% 5%, 35% 15%, 42% 4%, 50% 12%, 57% 2%, 64% 13%, 71% 5%, 78% 14%, 85% 3%, 92% 12%, 100% 6%, 100% 100%, 0 100%); }
@@ -539,7 +542,6 @@
         <a href="#redes">redes</a>
         <a href="#letras">letras</a>
         <a href="#sobre-mi">sobre mí</a>
-        <a href="#contacto">contacto</a>
       </nav>
       <a class="pill press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span class="tri"></span>escuchar</a>
     </div>
@@ -664,8 +666,8 @@
         <div class="about-grid">
           <div class="about-portrait">
             <svg class="big-star ink" viewBox="0 0 40 40" aria-hidden="true" style="width: clamp(4rem, 10vw, 6.5rem); height: clamp(4rem, 10vw, 6.5rem); left: -1.8rem; top: -2.6rem;"><use href="#d-star"/></svg>
-            <div class="polaroid"><img class="inked" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob" loading="lazy" width="205" height="360"></div>
-            <div class="win" aria-hidden="true" style="left: -1.5rem; bottom: 1.5rem; transform: rotate(-3deg)"><div class="win-bar"><span translate="no">kailkob.exe</span><span>✕</span></div><p>canciones, textos<br>y otras criaturas</p></div>
+            <img class="about-cutout inked" src="img/kailkob-recorte.png?v=3" alt="Retrato dibujado de Kailkob" loading="lazy" width="450" height="384">
+            <div class="win" aria-hidden="true" style="right: 0; bottom: 8%; transform: rotate(-3deg)"><div class="win-bar"><span translate="no">kailkob.exe</span><span>✕</span></div><p>canciones, textos<br>y otras criaturas</p></div>
           </div>
           <div>
             <ul class="rows">
@@ -674,36 +676,23 @@
               <li><small>lo que persigo</small><strong class="chalk">obsesiones</strong></li>
             </ul>
             <!-- EDITAR: biografía corta → <p class="bio">…</p> -->
+            <div class="find">
+              <p class="find-title">encuéntrame en <svg class="ink" viewBox="0 0 40 30" aria-hidden="true"><path d="M3 6 C14 2 26 6 30 20 M24 16 l6 5 4-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+              <ul class="stickers">
+                <li><a class="sticker s1 press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</a></li>
+                <li><a class="sticker s2 press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</a></li>
+                <li><a class="sticker s3 press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a></li>
+                <li><a class="sticker s4 press" href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a></li>
+                <li><a class="sticker s5 press" href="https://www.tiktok.com/@kailkob" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a></li>
+                <!-- EDITAR: cuando haya email, añade aquí <li><a class="sticker s3 press" href="mailto:EMAIL">escríbeme</a></li> -->
+              </ul>
+            </div>
             <div style="position: relative; height: clamp(5rem, 9vw, 7rem); margin-top: 1rem"><span class="critter" data-c="catSit" aria-hidden="true" style="width: clamp(4.2rem, 7vw, 5.6rem); right: 6%; bottom: 0;"></span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section class="contact" id="contacto" aria-labelledby="h-contacto">
-      <div class="wrap">
-        <h2 class="sr-only" id="h-contacto">Contacto</h2>
-        <div style="position: relative">
-        <span class="critter" data-c="catPeek" aria-hidden="true" style="width: clamp(5rem, 9vw, 6.5rem); right: 12%; top: calc(-1 * clamp(2.4rem, 4.4vw, 3.2rem)); z-index: 0;"></span>
-        <div class="contact-card" style="position: relative; z-index: 1">
-          <svg class="envelope ink" viewBox="0 0 100 70" aria-hidden="true"><use href="#d-envelope"/></svg>
-          <div>
-            <h3>escríbeme</h3>
-            <!-- EDITAR: cuando haya email, añade aquí <a href="mailto:EMAIL">EMAIL</a> y borra esta nota -->
-            <p class="note">El email llega pronto. Mientras, aquí está todo lo que suena:</p>
-            <ul class="links">
-              <li><a class="press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</span></a></li>
-              <li><a class="press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</span></a></li>
-              <li><a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</span></a></li>
-              <li><a class="press" href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</span></a></li>
-              <li><a class="press" href="https://www.tiktok.com/@kailkob" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</span></a></li>
-            </ul>
-          </div>
-        </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
