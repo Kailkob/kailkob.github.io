@@ -221,6 +221,11 @@
     .ig-link { margin: .2rem .8rem 1rem; font-size: .95rem; color: var(--lime); letter-spacing: .04em; }
     @media (hover: hover) and (pointer: fine) { .ig-link:hover { text-decoration: underline; } }
     .phone:nth-child(even) { margin-top: 2.5rem; }
+    .swipe-hint { display: flex; justify-content: center; align-items: center; gap: .5rem; margin: -1rem 0 0; font-size: 1.15rem; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); transition: opacity .4s; }
+    .swipe-hint[hidden] { display: none; }
+    .swipe-hint svg { width: 2.4rem; height: 1.1rem; animation: nudge 1.4s var(--ease-out) infinite; }
+    .swipe-hint.gone { opacity: 0; }
+    @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(.45rem); } }
     .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem 1.2rem; margin-top: .5rem; }
     .social-links a { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem 1.2rem .4rem; border: 1.6px solid var(--chalk); border-radius: 999px; font-size: 1.25rem; letter-spacing: .08em; }
     .social-links svg { width: 1.3rem; height: 1.3rem; }
@@ -383,7 +388,17 @@
     .song-tab { text-align: left; font-size: 1.45rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .7rem .25rem; border-bottom: 1.5px solid #efe8d833; }
     .song-tab[aria-selected="true"] { background: var(--lime); color: var(--ink); border-color: var(--lime); clip-path: polygon(0 4%, 100% 0, 98% 100%, 1% 96%); }
     @media (hover: hover) and (pointer: fine) { .song-tab[aria-selected="false"]:hover { color: var(--lime); } }
-    @media (max-width: 57.99rem) { .song-tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; gap: .4rem; scroll-snap-type: x mandatory; } .song-tab { scroll-snap-align: start; font-size: 1.2rem; } }
+    /* móvil: desplegable en lugar de la lista */
+    .song-pick { display: none; }
+    @media (max-width: 57.99rem) {
+      .song-tabs { display: none; }
+      .song-pick { display: flex; flex-direction: column; gap: .35rem; }
+      .song-pick-label { font-size: .85rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+      .song-pick select { -webkit-appearance: none; appearance: none; width: 100%; border: 0; border-radius: 0; font: inherit; font-size: 1.4rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); padding: .55rem 3rem .45rem .9rem; clip-path: polygon(0 4%, 100% 0, 98% 100%, 1% 96%); cursor: pointer;
+        background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Cpath d='M2 3 L10 11 L18 3' fill='none' stroke='%230a0a0a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 1rem center / 1.1rem auto; }
+      .song-pick select:focus-visible { outline: 2px dashed var(--lime); outline-offset: 4px; }
+      .song-pick option { color: #0a0a0a; background: #efe8d8; text-transform: none; }
+    }
     .cover-wrap { position: relative; padding-top: 22%; margin-bottom: 2.4rem; max-width: 30rem; }
     .cover { position: relative; z-index: 1; width: 80%; padding: 8px; background: var(--ink); border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
     .vinyl { position: absolute; z-index: 0; width: 64%; aspect-ratio: 1; top: 0; right: 0; color: var(--chalk); animation: spin 14s linear infinite; will-change: transform; }
@@ -608,6 +623,7 @@
       <div class="wrap">
         <h2 class="sec-title" id="h-canciones"><span class="sr-only">Canciones</span><span class="ransom" aria-hidden="true"><span class="r4" style="--r:3deg;--y:2px">c</span><span class="r1" style="--r:3deg;--y:2px">a</span><span class="r4" style="--r:8deg;--y:-2px">n</span><span class="r2" style="--r:-3deg;--y:4px">c</span><span class="r4" style="--r:5deg;--y:2px">i</span><span class="r1" style="--r:-5deg;--y:0px">o</span><span class="r4" style="--r:-5deg;--y:4px">n</span><span class="r2" style="--r:-5deg;--y:-5px">e</span><span class="r5" style="--r:5deg;--y:2px">s</span></span></h2>
         <div class="songs-grid">
+          <label class="song-pick"><span class="song-pick-label">elige canción</span><select id="song-select"></select></label>
           <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
           <div class="cover-wrap">
             <span class="vinyl" aria-hidden="true"><svg class="ink" viewBox="0 0 100 100"><use href="#d-vinyl"/></svg></span>
@@ -646,6 +662,7 @@
         <p class="handle"><a href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener" translate="no">@kailkob</a></p>
       </div>
       <!-- EDITAR: para cambiar los vídeos, pon el código de cada reel (instagram.com/reel/CÓDIGO) -->
+      <p class="swipe-hint" id="swipe-hint" aria-hidden="true" hidden>desliza <svg class="ink" viewBox="0 0 44 20"><path d="M3 11 C14 7 26 13 38 9 M31 3 L39 9 L32 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
       <ul class="phones" aria-label="Últimos reels de Instagram">
             <li class="phone" style="--t:-3deg"><div class="phone-screen"><div class="ig-top"><span class="ig-ava" aria-hidden="true"></span><span translate="no">kailkob</span></div><a class="ig-media" href="https://www.instagram.com/reel/DGnNfRVIE0M/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/reel-1.jpg" alt="" width="480" height="852" loading="lazy"><span class="ig-play"><span class="tri"></span></span></a><div class="ig-bar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L21 4l-1.2 4.4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div><a class="ig-link" href="https://www.instagram.com/reel/DGnNfRVIE0M/" target="_blank" rel="noopener">ver en Instagram →</a></div></li>
             <li class="phone" style="--t:2deg"><div class="phone-screen"><div class="ig-top"><span class="ig-ava" aria-hidden="true"></span><span translate="no">kailkob</span></div><a class="ig-media" href="https://www.instagram.com/reel/DGmGoYPIu2x/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/reel-2.jpg" alt="" width="480" height="852" loading="lazy"><span class="ig-play"><span class="tri"></span></span></a><div class="ig-bar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.2-6.4L21 4l-1.2 4.4A8 8 0 0 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div><a class="ig-link" href="https://www.instagram.com/reel/DGmGoYPIu2x/" target="_blank" rel="noopener">ver en Instagram →</a></div></li>
@@ -768,6 +785,14 @@
 
     const $ = id => document.getElementById(id);
 
+    /* reels: «desliza» solo si hay móviles fuera de la pantalla; se va al deslizar */
+    addEventListener('DOMContentLoaded', () => {
+      const ph = document.querySelector('.phones'), hint = $('swipe-hint'); if (!ph || !hint) return;
+      const upd = () => { hint.hidden = ph.scrollWidth <= ph.clientWidth + 4; };
+      upd(); addEventListener('resize', upd);
+      ph.addEventListener('scroll', () => { if (ph.scrollLeft > 30) hint.classList.add('gone'); }, { passive: true });
+    });
+
     /* botón «escuchar»: ventanita para elegir reproductor */
     (() => {
       const set = (menu, on) => { const b = menu.querySelector('[aria-controls]'), p = menu.querySelector('.listen-pop'); if (!b || !p) return; p.hidden = !on; b.setAttribute('aria-expanded', on); };
@@ -822,6 +847,8 @@
     })();
     let current = SONGS[1];
 
+    $('song-select').innerHTML = SONGS.map(s => `<option value="${s.id}">${s.title}${s.meta === 'pronto' ? ' · pronto' : ''}</option>`).join('');
+    $('song-select').addEventListener('change', e => select(e.target.value, true));
     $('song-tabs').innerHTML = SONGS.map(s =>
       `<button class="song-tab press" role="tab" id="t-${s.id}" aria-controls="song-panel" aria-selected="false" tabindex="-1" data-id="${s.id}" translate="no">${s.title}</button>`).join('');
 
@@ -851,6 +878,7 @@
 
     function select(id, fromUser) {
       const s = SONGS.find(x => x.id === id); if (!s) return;
+      $('song-select').value = id;
       current = s; render(fromUser);
       history.replaceState(null, '', '#cancion-' + id);
     }
