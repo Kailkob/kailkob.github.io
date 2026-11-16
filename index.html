@@ -29,7 +29,9 @@
     "sameAs": [
       "https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI",
       "https://music.apple.com/us/artist/kailkob/1797300511",
-      "https://www.youtube.com/@kailkob"
+      "https://www.youtube.com/@kailkob",
+      "https://www.instagram.com/kailkob/",
+      "https://www.tiktok.com/@kailkob"
     ],
     "album": [
       { "@type": "MusicAlbum", "name": "BLV W/ME", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2025-09-18", "url": "https://music.apple.com/us/album/blv-w-me-single/1841047244" },
@@ -189,6 +191,24 @@
     .paused, .paused * { animation-play-state: paused !important; }
     @media (prefers-reduced-motion: reduce) { .walk-track .mover { animation: none; transform: translateX(70%); } }
 
+    /* ---------- redes: móviles con reels ---------- */
+    .social { padding: clamp(3rem, 7vw, 5rem) 0; }
+    .handle { text-align: center; margin: -.6rem 0 2rem; font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: .08em; }
+    .handle a { border-bottom: 2px solid var(--lime); }
+    @media (hover: hover) and (pointer: fine) { .handle a:hover { color: var(--lime); } }
+    .phones { list-style: none; margin: 0 auto; padding: 1.5rem max(var(--gutter), calc(50vw - 39rem)) 2rem; display: flex; gap: clamp(1.2rem, 3vw, 2.4rem); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+    .phones::-webkit-scrollbar { display: none; }
+    .phone { --w: clamp(12rem, 22vw, 13.5rem); flex: 0 0 var(--w); scroll-snap-align: center; aspect-ratio: 9 / 18.5; padding: 12px 9px; border-radius: 2.2rem; background: var(--ink); transform: rotate(var(--t)); position: relative; }
+    .phone::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--chalk); border-radius: 2.2rem; filter: url(#ink); pointer-events: none; }
+    .phone::before { content: ""; position: absolute; top: 7px; left: 50%; width: 30%; height: 7px; margin-left: -15%; border-radius: 9px; background: var(--chalk); opacity: .85; z-index: 2; }
+    .phone-screen { position: relative; width: 100%; height: 100%; border-radius: 1.6rem; overflow: hidden; background: #000; filter: none; }
+    .phone-screen iframe { position: absolute; top: -54px; left: 0; width: 326px; height: calc(100% + 260px); border: 0; transform-origin: 0 0; transform: scale(var(--s, .75)); }
+    .phone:nth-child(even) { margin-top: 2.5rem; }
+    .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem 1.2rem; margin-top: .5rem; }
+    .social-links a { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem 1.2rem .4rem; border: 1.6px solid var(--chalk); border-radius: 999px; font-size: 1.25rem; letter-spacing: .08em; }
+    .social-links svg { width: 1.3rem; height: 1.3rem; }
+    @media (hover: hover) and (pointer: fine) { .social-links a:hover { background: var(--lime); color: var(--ink); border-color: var(--lime); } }
+
     /* ---------- carrusel de videoclips ---------- */
     .clips { padding: clamp(3rem, 7vw, 5rem) 0; }
     .carousel { position: relative; padding-bottom: .5rem; }
@@ -241,7 +261,7 @@
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
     .stage { position: relative; padding-top: clamp(3.4rem, 6vw, 5rem); }
     .band { top: auto !important; bottom: clamp(6.5rem, 12vw, 7.5rem); }
-    .cutout { position: relative; z-index: 2; display: block; width: min(96vw, 46rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 64%, transparent 97%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 64%, transparent 97%), radial-gradient(120% 95% at 50% 0, #000 70%, transparent 100%); mask-composite: intersect; }
+    .cutout { position: relative; z-index: 2; display: block; width: min(90vw, 42rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 64%, transparent 97%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 64%, transparent 97%), radial-gradient(120% 95% at 50% 0, #000 70%, transparent 100%); mask-composite: intersect; }
     .cutout.inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18) drop-shadow(0 .8rem 1.2rem rgb(0 0 0 / .55)); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
@@ -379,6 +399,8 @@
     </filter>
     <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
     <symbol id="i-apple" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></g></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></g></symbol>
     <symbol id="i-youtube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></g></symbol>
     <!-- Dibujos a línea (estilo tinta): stroke = currentColor -->
     <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter>
@@ -446,6 +468,7 @@
         <a href="#canciones">canciones</a>
         <a href="#videoclips">videoclips</a>
         <a href="#textos">textos</a>
+        <a href="#redes">redes</a>
         <a href="#sobre-mi">sobre mí</a>
       </nav>
       <a class="logo" href="#inicio" translate="no">KAILKOB</a>
@@ -464,7 +487,7 @@
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
         <span class="critter hero-rat" data-c="ratWalk" aria-hidden="true"></span>
         <!-- EDITAR: foto provisional recortada (PNG transparente); sustituye img/kailkob-recorte.png por la definitiva con el mismo nombre -->
-        <img class="cutout inked" src="img/kailkob-recorte.png?v=2" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="500" height="395" fetchpriority="high">
+        <img class="cutout inked" src="img/kailkob-recorte.png?v=3" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="450" height="384" fetchpriority="high">
       </div>
       <div class="wrap">
       </div>
@@ -503,6 +526,29 @@
           <button class="press" type="button" id="clip-next" aria-label="Videoclip siguiente">→</button>
         </div>
         <div class="dots" id="clip-dots"></div>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
+
+    <!-- REDES -->
+    <section class="social" id="redes" aria-labelledby="h-redes">
+      <div class="wrap">
+        <h2 class="sec-title" id="h-redes" style="justify-content:center"><span class="sr-only">Redes</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:5deg;--y:-5px">r</span><span class="r4" style="--r:-3deg;--y:-2px">e</span><span class="r3" style="--r:-8deg;--y:-2px">d</span><span class="r4" style="--r:-8deg;--y:0px">e</span><span class="r1" style="--r:5deg;--y:-5px">s</span></span></h2>
+        <p class="handle"><a href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener" translate="no">@kailkob</a></p>
+      </div>
+      <!-- EDITAR: para cambiar los vídeos, pon el código de cada reel (instagram.com/reel/CÓDIGO) -->
+      <ul class="phones" aria-label="Últimos reels de Instagram">
+            <li class="phone" style="--t:-3deg"><div class="phone-screen"><iframe src="https://www.instagram.com/reel/DGnNfRVIE0M/embed/" title="Reel de Instagram de Kailkob (1 de 5)" loading="lazy" scrolling="no" allowtransparency="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></li>
+            <li class="phone" style="--t:2deg"><div class="phone-screen"><iframe src="https://www.instagram.com/reel/DGmGoYPIu2x/embed/" title="Reel de Instagram de Kailkob (2 de 5)" loading="lazy" scrolling="no" allowtransparency="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></li>
+            <li class="phone" style="--t:-1.5deg"><div class="phone-screen"><iframe src="https://www.instagram.com/reel/DGk8GzVoJ_C/embed/" title="Reel de Instagram de Kailkob (3 de 5)" loading="lazy" scrolling="no" allowtransparency="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></li>
+            <li class="phone" style="--t:3deg"><div class="phone-screen"><iframe src="https://www.instagram.com/reel/DGfyfezI3O3/embed/" title="Reel de Instagram de Kailkob (4 de 5)" loading="lazy" scrolling="no" allowtransparency="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></li>
+            <li class="phone" style="--t:-2deg"><div class="phone-screen"><iframe src="https://www.instagram.com/reel/DGdOV9mI7Gm/embed/" title="Reel de Instagram de Kailkob (5 de 5)" loading="lazy" scrolling="no" allowtransparency="true" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></li>
+      </ul>
+      <div class="wrap social-links">
+        <a class="press" href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+        <a class="press" href="https://www.tiktok.com/@kailkob" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a>
+        <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a>
       </div>
     </section>
 
@@ -578,7 +624,8 @@
               <li><a class="press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</span></a></li>
               <li><a class="press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</span></a></li>
               <li><a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</span></a></li>
-              <!-- EDITAR: Instagram -->
+              <li><a class="press" href="https://www.instagram.com/kailkob/" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</span></a></li>
+              <li><a class="press" href="https://www.tiktok.com/@kailkob" target="_blank" rel="noopener"><span><svg class="ink" aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</span></a></li>
             </ul>
           </div>
         </div>
@@ -820,16 +867,28 @@
       const band = stage && stage.querySelector('.band'), fig = stage && stage.querySelector('.cutout');
       if (!rat || !band || !fig) return;
       const TILT = Math.tan(3 * Math.PI / 180);
-      let x = -200, last = 0, visible = true;
+      let x = -200, last = 0, visible = true, tops = null;
+      // silueta de la foto: primera fila opaca de cada columna
+      function readSilhouette() {
+        try {
+          const c = document.createElement('canvas'); c.width = fig.naturalWidth; c.height = fig.naturalHeight;
+          const g = c.getContext('2d'); g.drawImage(fig, 0, 0);
+          const d = g.getImageData(0, 0, c.width, c.height).data; tops = new Float32Array(c.width).fill(Infinity);
+          for (let ix = 0; ix < c.width; ix++) for (let iy = 0; iy < c.height; iy++) if (d[(iy * c.width + ix) * 4 + 3] > 40) { tops[ix] = iy; break; }
+        } catch (e) { tops = null; }
+      }
+      if (fig.complete && fig.naturalWidth) readSilhouette(); else fig.addEventListener('load', readSilhouette);
       new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(stage);
       function geo() {
         const W = stage.clientWidth, rw = rat.offsetWidth, rh = rat.offsetHeight;
         const bandTop = band.offsetTop + band.offsetHeight * .1, cx = W / 2;
         const ground = px => bandTop - (px - cx) * TILT;            // borde superior de la tira (inclinada)
         const fl = fig.offsetLeft, fw = fig.offsetWidth, ft = fig.offsetTop, fh = fig.offsetHeight;
-        const j0 = fl + fw * .02 - rw * .55, j1 = fl + fw * .9 - rw * .35;   // tramo ocupado por la figura
-        const peak = ft + fh * .11 - rh * .75;                          // holgado por encima de la cabeza
-        return { W, rw, rh, ground, j0, j1, peak };
+        const j0 = fl - rw * .7, j1 = fl + fw + rw * .7;                    // salta antes de tocar los hombros
+        const peak = ft + fh * .11 - rh * 1.15;                          // holgado por encima de la cabeza
+        const sc = fw / (fig.naturalWidth || 1);
+        const topAt = px => { if (!tops) return Infinity; const ix = Math.floor((px - fl) / sc); return ix < 0 || ix >= tops.length ? Infinity : ft + tops[ix] * sc; };
+        return { W, rw, rh, ground, j0, j1, peak, topAt };
       }
       function place(g, t) {
         const c = x + g.rw / 2;
@@ -839,6 +898,10 @@
           y = base + (top - base) * Math.pow(Math.sin(Math.PI * u), .6);
           rot = -Math.cos(Math.PI * u) * 24 - 3; air = true;
         }
+        // nunca por debajo de la silueta (con margen)
+        let minTop = Infinity;
+        for (let px = x + g.rw * .08; px < x + g.rw * .92; px += 3) minTop = Math.min(minTop, g.topAt(px));
+        if (minTop < Infinity) { const lim = minTop - g.rh * .95 - 12; if (y > lim) { y = lim; air = true; } }
         rat.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
         rat.classList.toggle('airborne', air); rat.classList.toggle('walking', !air);
       }
@@ -857,6 +920,12 @@
       place(geo());
       requestAnimationFrame(frame);
     })();
+
+    const fitPhones = () => document.querySelectorAll('.phone-screen').forEach(sc => {
+      const f = sc.querySelector('iframe'); if (!f) return;
+      const k = sc.clientWidth / 326; f.style.setProperty('--s', k); f.style.height = (sc.clientHeight / k + 260) + 'px';
+    });
+    fitPhones(); addEventListener('resize', fitPhones);
 
     const m = location.hash.match(/^#cancion-(.+)$/);
     if (m && SONGS.some(x => x.id === m[1])) { select(m[1], false); addEventListener('load', () => setTimeout(() => $('canciones').scrollIntoView({ behavior: 'instant' }), 60)); }
