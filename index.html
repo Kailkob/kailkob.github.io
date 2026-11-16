@@ -193,6 +193,8 @@
     @keyframes hop { 40% { transform: translateY(-12px) rotate(-6deg); } }
     @keyframes hopflip { 0%, 100% { transform: scaleX(-1); } 40% { transform: scaleX(-1) translateY(-12px) rotate(6deg); } }
     .paused, .paused * { animation-play-state: paused !important; }
+    /* táctil: los bichos mueven patas y cola; con el filtro SVG habría que recalcularlo en cada fotograma */
+    @media (hover: none) { .critter .ink { filter: none; } }
     @media (prefers-reduced-motion: reduce) { .walk-track .mover { animation: none; transform: translateX(70%); } }
 
     /* ---------- redes: móviles con reels ---------- */
@@ -284,7 +286,7 @@
     .mega { font-size: clamp(3.4rem, 15.5vw, 13rem); line-height: .9; letter-spacing: .02em; white-space: nowrap; position: relative; z-index: 1; }
     .stage { position: relative; }
     .band { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38%; height: clamp(7rem, 17vw, 12rem); transform: rotate(-3deg); clip-path: var(--strip); display: flex; align-items: center; overflow: hidden; z-index: 0; }
-    .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
+    .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; will-change: transform; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
     .stage { position: relative; padding-top: clamp(3.4rem, 6vw, 5rem); }
@@ -384,7 +386,7 @@
     @media (max-width: 57.99rem) { .song-tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; gap: .4rem; scroll-snap-type: x mandatory; } .song-tab { scroll-snap-align: start; font-size: 1.2rem; } }
     .cover-wrap { position: relative; padding-top: 22%; margin-bottom: 2.4rem; max-width: 30rem; }
     .cover { position: relative; z-index: 1; width: 80%; padding: 8px; background: var(--ink); border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
-    .vinyl { position: absolute; z-index: 0; width: 64%; aspect-ratio: 1; top: 0; right: 0; color: var(--chalk); animation: spin 14s linear infinite; }
+    .vinyl { position: absolute; z-index: 0; width: 64%; aspect-ratio: 1; top: 0; right: 0; color: var(--chalk); animation: spin 14s linear infinite; will-change: transform; }
     .vinyl svg { width: 100%; height: 100%; display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .cover img, .cover svg.art { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; }
@@ -604,7 +606,7 @@
         <div class="songs-grid">
           <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
           <div class="cover-wrap">
-            <span class="vinyl ink" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#d-vinyl"/></svg></span>
+            <span class="vinyl" aria-hidden="true"><svg class="ink" viewBox="0 0 100 100"><use href="#d-vinyl"/></svg></span>
             <span class="critter" data-c="catPeek" aria-hidden="true" style="width: clamp(5rem, 9vw, 7rem); left: 8%; top: calc(22% - clamp(2.6rem, 4.6vw, 3.6rem)); z-index: 1;"></span>
             <div class="cover" id="cover" style="z-index: 2"><span class="tape"></span><div id="cover-art"></div></div>
             <div class="win" aria-hidden="true" style="right: 0; bottom: -1.6rem; transform: rotate(3deg)"><div class="win-bar"><span id="win-name" translate="no">1408.wav</span><span>✕</span></div><p id="win-meta">single · 28 feb 2025</p></div>
@@ -980,7 +982,7 @@
 
     // solo se mueven cuando están a la vista
     const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)), { rootMargin: '80px' });
-    document.querySelectorAll('.critter, .walk-track').forEach(el => io.observe(el));
+    document.querySelectorAll('.critter, .walk-track, main > section, footer').forEach(el => io.observe(el));
 
     /* rata de la portada: camina por el borde de la tira y salta por encima de la cabeza */
     (() => {
@@ -999,7 +1001,8 @@
         } catch (e) { tops = null; }
       }
       if (fig.complete && fig.naturalWidth) readSilhouette(); else fig.addEventListener('load', readSilhouette);
-      new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(stage);
+      let running = false;
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running && !reduce.matches) { running = true; last = 0; requestAnimationFrame(frame); } }).observe(stage);
       function geo() {
         const W = stage.clientWidth, rw = rat.offsetWidth, rh = rat.offsetHeight;
         const bandTop = band.offsetTop + band.offsetHeight * .1, cx = W / 2;
@@ -1035,11 +1038,10 @@
           if (x > g.W + 40) x = -g.rw - 40;
         }
         place(g, t);
-        requestAnimationFrame(frame);
+        if (visible) requestAnimationFrame(frame); else running = false;
       }
       if (reduce.matches) { const g = geo(); x = g.W * .06; place(g); rat.classList.remove('walking'); return; }
       place(geo());
-      requestAnimationFrame(frame);
     })();
 
 
