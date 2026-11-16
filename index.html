@@ -241,7 +241,7 @@
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
     .stage { position: relative; padding-top: clamp(5.5rem, 10vw, 8.5rem); }
     .band { top: auto !important; bottom: clamp(3.5rem, 9vw, 6.5rem); }
-    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 84%, transparent 100%); mask-image: linear-gradient(#000 84%, transparent 100%); }
+    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 58%, transparent 97%), linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(#000 58%, transparent 97%), radial-gradient(120% 95% at 50% 0, #000 70%, transparent 100%); mask-composite: intersect; }
     .cutout.inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18) drop-shadow(0 .8rem 1.2rem rgb(0 0 0 / .55)); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
@@ -467,7 +467,6 @@
         <img class="cutout inked" src="img/kailkob-recorte.png?v=2" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="500" height="395" fetchpriority="high">
       </div>
       <div class="wrap">
-        <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
       </div>
     </section>
 
@@ -476,7 +475,7 @@
     <!-- CANCIONES -->
     <section class="songs" id="canciones" aria-labelledby="h-canciones">
       <div class="wrap">
-        <h2 class="sec-title" id="h-canciones"><span class="sr-only">Canciones</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:3deg;--y:2px">c</span><span class="r3" style="--r:3deg;--y:2px">a</span><span class="r2" style="--r:8deg;--y:-2px">n</span><span class="r1" style="--r:-3deg;--y:4px">c</span><span class="r2" style="--r:5deg;--y:2px">i</span><span class="r3" style="--r:-5deg;--y:0px">o</span><span class="r1" style="--r:-5deg;--y:4px">n</span><span class="r5" style="--r:-5deg;--y:-5px">e</span><span class="r4" style="--r:5deg;--y:2px">s</span></span></h2>
+        <h2 class="sec-title" id="h-canciones"><span class="sr-only">Canciones</span><span class="ransom" aria-hidden="true"><span class="r4" style="--r:3deg;--y:2px">c</span><span class="r1" style="--r:3deg;--y:2px">a</span><span class="r4" style="--r:8deg;--y:-2px">n</span><span class="r2" style="--r:-3deg;--y:4px">c</span><span class="r4" style="--r:5deg;--y:2px">i</span><span class="r1" style="--r:-5deg;--y:0px">o</span><span class="r4" style="--r:-5deg;--y:4px">n</span><span class="r2" style="--r:-5deg;--y:-5px">e</span><span class="r5" style="--r:5deg;--y:2px">s</span></span></h2>
         <div class="songs-grid">
           <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
           <div class="cover-wrap">
@@ -493,7 +492,7 @@
     <!-- VIDEOCLIPS -->
     <section class="clips" id="videoclips" aria-labelledby="h-videoclips">
       <div class="wrap">
-        <h2 class="sec-title" id="h-videoclips" style="justify-content:center"><span class="sr-only">Videoclips</span><span class="ransom" aria-hidden="true"><span class="r5" style="--r:3deg;--y:2px">v</span><span class="r5" style="--r:5deg;--y:-5px">i</span><span class="r3" style="--r:-5deg;--y:2px">d</span><span class="r3" style="--r:3deg;--y:-2px">e</span><span class="r1" style="--r:8deg;--y:4px">o</span><span class="r4" style="--r:3deg;--y:2px">c</span><span class="r2" style="--r:5deg;--y:2px">l</span><span class="r3" style="--r:3deg;--y:-5px">i</span><span class="r4" style="--r:3deg;--y:-2px">p</span><span class="r3" style="--r:8deg;--y:2px">s</span></span></h2>
+        <h2 class="sec-title" id="h-videoclips" style="justify-content:center"><span class="sr-only">Videoclips</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:3deg;--y:2px">v</span><span class="r4" style="--r:5deg;--y:-5px">i</span><span class="r3" style="--r:-5deg;--y:2px">d</span><span class="r5" style="--r:3deg;--y:-2px">e</span><span class="r4" style="--r:8deg;--y:4px">o</span><span class="r2" style="--r:3deg;--y:2px">c</span><span class="r4" style="--r:5deg;--y:2px">l</span><span class="r2" style="--r:3deg;--y:-5px">i</span><span class="r3" style="--r:3deg;--y:-2px">p</span><span class="r5" style="--r:8deg;--y:2px">s</span></span></h2>
       </div>
       <div class="carousel" aria-roledescription="carrusel" aria-label="Videoclips">
         <div class="stage3d" id="stage3d"></div>
@@ -512,7 +511,7 @@
     <!-- TEXTOS (manifiesto) -->
     <section class="manifesto-wrap" id="textos" aria-labelledby="h-textos">
       <div class="wrap">
-        <h2 class="sec-title" id="h-textos"><span class="sr-only">Textos</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:5deg;--y:-5px">t</span><span class="r3" style="--r:-3deg;--y:4px">e</span><span class="r4" style="--r:3deg;--y:-2px">x</span><span class="r1" style="--r:3deg;--y:-5px">t</span><span class="r3" style="--r:-3deg;--y:-2px">o</span><span class="r2" style="--r:5deg;--y:-5px">s</span></span></h2>
+        <h2 class="sec-title" id="h-textos"><span class="sr-only">Textos</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:5deg;--y:-5px">t</span><span class="r3" style="--r:-3deg;--y:4px">e</span><span class="r1" style="--r:3deg;--y:-2px">x</span><span class="r2" style="--r:3deg;--y:-5px">t</span><span class="r4" style="--r:-3deg;--y:-2px">o</span><span class="r5" style="--r:5deg;--y:-5px">s</span></span></h2>
         <p class="manifesto chalk">
           <span class="l1">hay <em>canciones</em></span>
           <span class="l2">que empiezan</span>
@@ -543,7 +542,7 @@
     <!-- SOBRE MÍ -->
     <section class="about" id="sobre-mi" aria-labelledby="h-sobre">
       <div class="wrap">
-        <h2 class="sec-title" id="h-sobre"><span class="sr-only">Sobre mí</span><span class="ransom" aria-hidden="true"><span class="r1" style="--r:-5deg;--y:4px">s</span><span class="r3" style="--r:8deg;--y:-2px">o</span><span class="r1" style="--r:5deg;--y:-5px">b</span><span class="r2" style="--r:8deg;--y:-5px">r</span><span class="r1" style="--r:8deg;--y:0px">e</span><span class="gap"></span><span class="r1" style="--r:-8deg;--y:-5px">m</span><span class="r4" style="--r:5deg;--y:0px">í</span></span></h2>
+        <h2 class="sec-title" id="h-sobre"><span class="sr-only">Sobre mí</span><span class="ransom" aria-hidden="true"><span class="r3" style="--r:-5deg;--y:4px">s</span><span class="r2" style="--r:8deg;--y:-2px">o</span><span class="r5" style="--r:5deg;--y:-5px">b</span><span class="r3" style="--r:8deg;--y:-5px">r</span><span class="r4" style="--r:8deg;--y:0px">e</span><span class="gap"></span><span class="r1" style="--r:-8deg;--y:-5px">m</span><span class="r3" style="--r:5deg;--y:0px">í</span></span></h2>
         <div class="about-grid">
           <div class="about-portrait">
             <svg class="big-star ink" viewBox="0 0 40 40" aria-hidden="true" style="width: clamp(4rem, 10vw, 6.5rem); height: clamp(4rem, 10vw, 6.5rem); left: -1.8rem; top: -2.6rem;"><use href="#d-star"/></svg>
@@ -699,7 +698,7 @@
     stage.innerHTML = CLIPS.map((c, i) => `
       <div class="clip" data-i="${i}" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${CLIPS.length}: ${c.title}">
         <div class="face">${c.video
-          ? `<img src="https://i.ytimg.com/vi/${c.video}/hqdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`
+          ? `<img src="https://i.ytimg.com/vi/${c.video}/maxresdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`
           : `${art(c.art)}<span class="soon">videoclip pronto</span>`}</div>
       </div>`).join('');
     $('clip-dots').innerHTML = CLIPS.map((c, i) => `<button type="button" aria-label="Ir a ${c.title}" data-i="${i}"></button>`).join('');
@@ -720,7 +719,7 @@
     }
     function stopVideo(el) {
       const c = CLIPS[+el.dataset.i];
-      el.querySelector('.face').innerHTML = `<img src="https://i.ytimg.com/vi/${c.video}/hqdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`;
+      el.querySelector('.face').innerHTML = `<img src="https://i.ytimg.com/vi/${c.video}/maxresdefault.jpg" alt="" loading="lazy"><button class="play press" type="button" aria-label="Reproducir el videoclip de ${c.title}"><span class="tri"></span></button>`;
     }
     const go = d => { ci = (ci + d + CLIPS.length) % CLIPS.length; layout(); };
     $('clip-prev').onclick = () => go(-1);
@@ -829,7 +828,7 @@
         const ground = px => bandTop - (px - cx) * TILT;            // borde superior de la tira (inclinada)
         const fl = fig.offsetLeft, fw = fig.offsetWidth, ft = fig.offsetTop, fh = fig.offsetHeight;
         const j0 = fl + fw * .02 - rw * .55, j1 = fl + fw * .9 - rw * .35;   // tramo ocupado por la figura
-        const peak = ft + fh * .11 - rh * .8;                          // holgado por encima de la cabeza
+        const peak = ft + fh * .11 - rh * 1.4;                          // holgado por encima de la cabeza
         return { W, rw, rh, ground, j0, j1, peak };
       }
       function place(g, t) {
