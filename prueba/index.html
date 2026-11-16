@@ -88,11 +88,6 @@
     .roles { margin-top: .9rem; color: var(--lime); font-size: clamp(.95rem, 2.2vw, 1.3rem); letter-spacing: .22em; text-transform: uppercase; }
     .big-star { position: absolute; color: var(--lime); line-height: 1; pointer-events: none; z-index: 3; }
 
-    /* tira rasgada con los ojos (trama) */
-    .eyes-strip { position: relative; width: 100vw; left: 50%; margin: clamp(1rem, 3vw, 2rem) 0 0 -50vw; padding: 13px 0; background: var(--chalk); clip-path: var(--strip); transform: rotate(1.5deg); }
-    .eyes-strip .inner { position: relative; height: clamp(5.5rem, 13vw, 9.5rem); clip-path: var(--strip); overflow: hidden; }
-    .eyes-strip img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; filter: grayscale(1) contrast(1.35) brightness(1.35); }
-    .eyes-strip .inner::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, transparent 46%, rgb(0 0 0 / .32) 50%) 0 0 / 4px 4px; }
 
     /* hoja cuadriculada */
     .grid-sheet { position: relative; padding: clamp(1.5rem, 4vw, 2.5rem); color: var(--paper-ink); transform: rotate(-.8deg);
@@ -296,7 +291,7 @@
       </div>
     </section>
 
-    <div class="eyes-strip" aria-hidden="true"><div class="inner"><img src="../img/mapa-retrato.jpg" alt="" width="470" height="340" loading="lazy"></div></div>
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
 
     <!-- TEXTOS (manifiesto) -->
     <section class="manifesto-wrap" id="textos" aria-labelledby="h-textos">
