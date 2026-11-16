@@ -124,7 +124,7 @@
 
     /* ---------- paneles ---------- */
     .panel-wrap { padding: clamp(1.5rem, 4vw, 2.75rem) 0; scroll-margin-top: 3.5rem; }
-    .label { font-weight: 400; line-height: 1.1; display: inline-block; font-size: clamp(2rem, 5.5vw, 3.2rem); letter-spacing: .08em; color: var(--chalk); border-bottom: 2px solid var(--lime); padding: 0 .4rem .2rem 0; margin: 0 0 1.1rem .2rem; transform: rotate(-1.5deg); transform-origin: left bottom; }
+    .label { font-weight: 400; line-height: 1.1; display: inline-block; font-size: clamp(2.1rem, 5.8vw, 3.4rem); letter-spacing: .08em; color: var(--chalk); padding: 0 .4rem .1rem 0; margin: 0 0 1rem .2rem; transform: rotate(-1.5deg); transform-origin: left bottom; filter: url(#chalk); -webkit-text-stroke: 1.1px var(--chalk); text-shadow: 0 0 1px #efe8d899, .6px .4px 0 #efe8d866, -.5px -.3px 0 #efe8d855; }
     .panel {
       position: relative; isolation: isolate;
       border: clamp(26px, 3.6vw, 40px) solid transparent;
@@ -317,6 +317,13 @@
   <a class="skip" href="#contenido">saltar al contenido</a>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="chalk" x="-4%" y="-15%" width="108%" height="130%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="11" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.6 0 0 0 2.25" result="holes"/>
+      <feComposite in="rough" in2="holes" operator="in"/>
+    </filter>
     <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
     <symbol id="i-apple" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
     <symbol id="i-youtube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></g></symbol>
