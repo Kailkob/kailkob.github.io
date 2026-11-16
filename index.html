@@ -923,7 +923,7 @@
 
     const fitPhones = () => document.querySelectorAll('.phone-screen').forEach(sc => {
       const f = sc.querySelector('iframe'); if (!f) return;
-      const k = sc.clientWidth / 326; f.style.setProperty('--s', k); f.style.height = (sc.clientHeight / k + 260) + 'px';
+      const k = sc.clientWidth / 326; f.style.setProperty('--s', k); f.style.top = (-54 * k) + 'px'; f.style.height = (sc.clientHeight / k + 260) + 'px';
     });
     fitPhones(); addEventListener('resize', fitPhones);
 
