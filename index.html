@@ -186,6 +186,13 @@
     .walk-track.rtl .critter svg { transform: scaleX(-1); }
     .walk-track .critter { position: absolute; bottom: 0; left: 0; pointer-events: auto; }
     @keyframes cross { from { transform: translateX(-12%); } to { transform: translateX(104%); } }
+    /* desfile del pie: entra el grupo entero y sale el gato antes de volver a empezar */
+    .walk-track.parade .mover { animation-name: parade; }
+    @keyframes parade { from { transform: translateX(-6rem); } to { transform: translateX(calc(100% + 37rem)); } }
+    .walk-track.parade .critter .legs-a, .walk-track.parade .critter .legs-b { animation-duration: .2s; }
+    .walk-track.parade .critter .bob { animation-duration: .1s; }
+    .walk-track.parade .critter[data-c="ratWalk"] .tail { animation-duration: .45s; }
+    .walk-track.parade .chaser .tail { animation-duration: .5s; }
     .critter .bubble { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, 6px) scale(.6); opacity: 0; padding: .1rem .6rem; background: var(--chalk); color: var(--ink); font-size: .95rem; white-space: nowrap; clip-path: var(--tag); pointer-events: none; transition: opacity .2s, transform .25s var(--ease-out); }
     .critter.hop svg { animation: hop .5s var(--ease-out); }
     .critter.hop .bubble { opacity: 1; transform: translate(-50%, -4px) scale(1); }
@@ -751,10 +758,16 @@
 
   <footer>
     <div class="footer-band lilac-paper">
-      <div style="position: relative; height: clamp(3.4rem, 6vw, 4.6rem)" aria-hidden="true">
-        <div class="walk-track" style="bottom: 0; --dur: 30s"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(4rem, 7vw, 5.5rem); color: var(--lilac-ink)"></span></div></div>
-        <div class="walk-track" style="bottom: 0; --dur: 30s; --delay: -1.6s"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(3.4rem, 6vw, 4.6rem); color: var(--lilac-ink)"></span></div></div>
-        <div class="walk-track" style="bottom: 0; --dur: 30s; --delay: -3s"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(2.8rem, 5vw, 3.8rem); color: var(--lilac-ink)"></span></div></div>
+      <!-- desfile: cinco ratas huyendo y un gato detrás (distancias fijas en rem, nunca se solapan) -->
+      <div style="position: relative; height: clamp(3.8rem, 6.5vw, 5rem)" aria-hidden="true">
+        <div class="walk-track parade" style="bottom: 0; --dur: 9s"><div class="mover">
+          <span class="critter" data-c="ratWalk" style="left: -0rem; width: clamp(3.6rem, 6vw, 4.8rem); color: var(--lilac-ink)"></span>
+          <span class="critter" data-c="ratWalk" style="left: -6.2rem; width: clamp(3rem, 5vw, 4rem); color: var(--lilac-ink)"></span>
+          <span class="critter" data-c="ratWalk" style="left: -12.4rem; width: clamp(3.9rem, 6.5vw, 5.2rem); color: var(--lilac-ink)"></span>
+          <span class="critter" data-c="ratWalk" style="left: -17.4rem; width: clamp(2.7rem, 4.5vw, 3.6rem); color: var(--lilac-ink)"></span>
+          <span class="critter" data-c="ratWalk" style="left: -23.2rem; width: clamp(3.3rem, 5.5vw, 4.4rem); color: var(--lilac-ink)"></span>
+          <span class="critter chaser" data-c="catWalk" style="left: -36rem; width: clamp(6rem, 10vw, 7.8rem); color: var(--lilac-ink)"></span>
+        </div></div>
       </div>
       <div class="wrap">
         <span>© <span id="y">2026</span> <span translate="no">KAILKOB</span> · canciones, textos y otras criaturas</span>
