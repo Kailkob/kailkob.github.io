@@ -201,10 +201,11 @@
     .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
-    .hero-card { position: relative; z-index: 2; width: min(72vw, 23rem); margin: 0 auto; padding: 10px 10px 12px; background: var(--chalk) var(--paper-bg); background-blend-mode: multiply; clip-path: var(--torn); transform: rotate(-2deg); }
-    .hero-card img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-    .hero-card-wrap { position: relative; z-index: 2; width: min(72vw, 23rem); margin: 0 auto; filter: drop-shadow(0 1rem 1.6rem rgb(0 0 0 / .55)); }
-    .hero-card-wrap .tape { top: .2rem; left: -.6rem; width: 9.5rem; height: 1.7rem; transform: rotate(-7deg); z-index: 5; }
+    .stage { padding-top: clamp(1rem, 3vw, 2rem); }
+    .band { top: auto !important; bottom: clamp(3.5rem, 9vw, 6.5rem); }
+    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; }
+    .cutout.inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18) drop-shadow(0 .8rem 1.2rem rgb(0 0 0 / .55)); }
+    .band-front { position: absolute; z-index: 3; left: 50%; bottom: clamp(.5rem, 2vw, 1.4rem); width: min(96vw, 46rem); height: clamp(3.4rem, 8vw, 5.4rem); transform: translateX(-50%) rotate(2deg); background: var(--chalk) var(--paper-bg); background-blend-mode: multiply; clip-path: var(--strip); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
 
@@ -424,9 +425,10 @@
       </div>
       <div class="stage">
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
-        <div class="walk-track" style="top: calc(38% - .4rem); --dur: 24s" aria-hidden="true"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(4.5rem, 9vw, 7rem)"></span></div></div>
-        <!-- EDITAR: foto provisional; cuando haya la definitiva, sustituye img/portada-vertical.jpg (vertical, 4:5) -->
-        <div class="hero-card-wrap"><span class="tape"></span><div class="hero-card"><img class="inked" src="../img/portada-vertical.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="320" height="400" fetchpriority="high"></div></div>
+        <div class="walk-track" style="bottom: calc(clamp(3.5rem, 9vw, 6.5rem) + clamp(7rem, 17vw, 12rem) - 1.2rem); --dur: 24s" aria-hidden="true"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(4.5rem, 9vw, 7rem)"></span></div></div>
+        <!-- EDITAR: foto provisional recortada (PNG transparente); sustituye img/kailkob-recorte.png por la definitiva con el mismo nombre -->
+        <img class="cutout inked" src="../img/kailkob-recorte.png" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="520" height="368" fetchpriority="high">
+        <span class="band-front" aria-hidden="true"></span>
       </div>
       <div class="wrap">
         <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
