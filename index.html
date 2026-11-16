@@ -403,16 +403,17 @@
     .listen[aria-disabled="true"] { opacity: .5; }
     @media (hover: hover) and (pointer: fine) { a.listen:hover { color: var(--lime); } }
     .table-title { font-size: 1.15rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .4rem; }
-    .credits { display: grid; grid-template-columns: minmax(7rem, auto) 1fr; margin: 0; border-top: 1.5px solid #efe8d855; }
-    .credits dt, .credits dd { padding: .5rem 0; border-bottom: 1px solid #efe8d826; }
-    .credits dt { color: var(--lilac); letter-spacing: .06em; }
-    .credits dd { margin: 0; font: 1.05rem/1.4 var(--serif); letter-spacing: 0; }
+    .credits-title { margin-top: 1.8rem; font-size: .85rem; color: var(--muted); }
+    .credits { display: grid; grid-template-columns: minmax(5.5rem, auto) 1fr; column-gap: .8rem; margin: 0; max-width: 26rem; border-top: 1px solid #efe8d833; opacity: .85; }
+    .credits dt, .credits dd { padding: .25rem 0; border-bottom: 1px solid #efe8d81a; }
+    .credits dt { color: var(--lilac); letter-spacing: .06em; font-size: .85rem; }
+    .credits dd { margin: 0; font: .85rem/1.4 var(--serif); letter-spacing: 0; color: #cfc8b9; }
     .credits dd a { border-bottom: 1.5px solid var(--lime); }
-    details.lyrics { margin: 0 0 1.5rem; }
-    details.lyrics summary { cursor: pointer; font-size: 1.15rem; letter-spacing: .16em; text-transform: uppercase; list-style: none; }
+    details.lyrics { margin: 1.2rem 0 0; }
+    details.lyrics summary { cursor: pointer; font-size: .9rem; color: var(--muted); letter-spacing: .16em; text-transform: uppercase; list-style: none; }
     details.lyrics summary::after { content: " +"; color: var(--lime); }
     details.lyrics[open] summary::after { content: " –"; }
-    details.lyrics p { white-space: pre-line; font: 1.1rem/1.65 var(--serif); letter-spacing: 0; margin-top: .8rem; }
+    details.lyrics p { white-space: pre-line; font: .95rem/1.6 var(--serif); letter-spacing: 0; margin-top: .8rem; }
     .swap { animation: swap .24s var(--ease-out); }
     @keyframes swap { from { opacity: 0; transform: translateY(6px); } }
 
@@ -826,11 +827,10 @@
       $('song-panel').innerHTML = `
         <h3 translate="no">${s.title}</h3>
         <p class="meta">${s.meta}</p>
-        <p class="story${s.historia ? '' : ' pending'}">${s.historia || 'Esta historia todavía se está escribiendo.'}</p>
+        ${s.historia ? `<p class="story">${s.historia}</p>` : ''}
         ${listen}
-        ${s.letra ? `<details class="lyrics"><summary>letra</summary><p${lang}>${s.letra}</p></details>` : `<p class="table-title" style="color:var(--muted)">letra: pronto</p>`}
-        <p class="table-title" style="margin-top:1rem">créditos</p>
-        ${s.creditos.length ? `<dl class="credits">${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '<p class="story pending">Los créditos llegarán pronto.</p>'}`;
+        ${s.letra ? `<details class="lyrics"><summary>letra</summary><p${lang}>${s.letra}</p></details>` : ''}
+        ${s.creditos.length ? `<p class="table-title credits-title">créditos</p><dl class="credits">${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : ''}`;
       if (animate) { const el = $('song-panel'); el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); }
     }
 
