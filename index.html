@@ -339,9 +339,9 @@
     }
     /* ---------- manifiesto (textos) ---------- */
     .manifesto-wrap { padding: clamp(3rem, 8vw, 6rem) 0 clamp(6rem, 12vw, 9rem); position: relative; overflow: hidden; }
-    .manifesto { font-size: clamp(2.3rem, 7.2vw, 5.4rem); line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+    .manifesto { font-size: clamp(1.7rem, 4.8vw, 3.6rem); line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
     .manifesto span { display: block; }
-    .manifesto .l1 { margin-left: 18%; } .manifesto .l2 { margin-left: 0; } .manifesto .l3 { margin-left: 30%; }
+    .manifesto .l1 { margin-left: 14%; } .manifesto .l2 { margin-left: 0; } .manifesto .l3 { margin-left: 22%; } .manifesto .l4 { margin-left: 40%; }
     .manifesto em { font-style: normal; color: var(--lime); }
     .manifesto em.lilac { color: var(--lilac); }
     .notes { display: grid; gap: 2rem; margin-top: clamp(2rem, 5vw, 3.5rem); align-items: center; }
@@ -366,7 +366,7 @@
     .vinyl { position: absolute; z-index: 0; width: 64%; aspect-ratio: 1; top: 0; right: 0; color: var(--chalk); animation: spin 14s linear infinite; }
     .vinyl svg { width: 100%; height: 100%; display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .cover img, .cover svg.art { width: 100%; aspect-ratio: 1; display: block; }
+    .cover img, .cover svg.art { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; }
     .cover .tape { top: -.6rem; left: 50%; margin-left: -2.2rem; transform: rotate(-4deg); }
     .cover .sticker { position: absolute; left: -1rem; bottom: -1.2rem; padding: .3rem .9rem; font-size: 1.6rem; transform: rotate(-8deg); clip-path: var(--tag); background: var(--lilac); color: var(--lilac-ink); }
     .info h3 { font-family: var(--gothic); color: var(--lilac); font-size: clamp(2.8rem, 7vw, 4.8rem); line-height: .95; margin-bottom: .6rem; }
@@ -633,7 +633,8 @@
         <p class="manifesto chalk">
           <span class="l1">hay <em>canciones</em></span>
           <span class="l2">que empiezan</span>
-          <span class="l3">donde <em class="lilac scribbled">no llego.</em></span>
+          <span class="l3">donde mi mente</span>
+          <span class="l4"><em class="lilac scribbled">no llega.</em></span>
         </p>
         <div class="nb-wrap" role="region" aria-roledescription="libreta" aria-label="Grimorio: letras, pensamientos y borradores">
           <div class="nb-tabs" role="toolbar" aria-label="Categorías de la libreta">
@@ -1001,7 +1002,7 @@
     /* EDITAR: pensamientos y borradores (cat: 'pensamientos' o 'borradores'). Las letras salen de SONGS (campo "letra"). */
     const TEXTOS = [
       { cat: 'pensamientos', title: 'cosas que no sé decir', body: 'A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.', serif: true },
-      { cat: 'pensamientos', title: 'hay canciones', body: 'hay canciones\nque empiezan\ndonde no llego.' },
+      { cat: 'pensamientos', title: 'hay canciones', body: 'hay canciones\nque empiezan\ndonde mi mente\nno llega.' },
       { cat: 'borradores', title: 'borradores de madrugada', body: 'una casa, un ruido,\nalgo que todavía\nno tiene nombre.' },
     ];
     (() => {
