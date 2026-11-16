@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kailkob — canciones, textos y otras criaturas (prueba)</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #121014;
+      --chalk: #efe8d8;
+      --paper: #e9dcc0;
+      --paper-ink: #2b241b;
+      --muted: #a39d90;
+      --lime: #c8f03c;
+      --lilac: #b99ae6;
+      --lilac-paper: #c7a8e8;
+      --lilac-ink: #2a1d3a;
+      --blue: #3346d9;
+      --maxw: 78rem;
+      --gutter: clamp(1rem, 4vw, 3rem);
+      --hand: "Shadows Into Light Two", "Comic Sans MS", cursive;
+      --gothic: "UnifrakturMaguntia", serif;
+      --serif: "IM Fell English", Georgia, serif;
+      --torn: polygon(0% 2%, 4% 0%, 9% 1.5%, 15% .2%, 22% 1.8%, 30% .4%, 37% 2%, 45% .3%, 52% 1.6%, 60% 0%, 67% 1.9%, 74% .5%, 81% 2%, 88% .2%, 94% 1.5%, 100% .4%, 98.6% 7%, 100% 14%, 98.4% 22%, 99.8% 31%, 98.2% 40%, 100% 49%, 98.5% 58%, 99.7% 67%, 98.3% 76%, 100% 85%, 98.6% 93%, 99.5% 100%, 93% 98.4%, 86% 100%, 78% 98.2%, 70% 99.8%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 99.7%, 30% 98.2%, 22% 100%, 14% 98.4%, 7% 99.8%, 0% 98.6%, 1.4% 91%, 0% 83%, 1.6% 74%, .2% 65%, 1.8% 56%, .3% 47%, 1.5% 38%, 0% 29%, 1.7% 20%, .2% 11%);
+      --strip: polygon(0 18%, 3% 8%, 7% 16%, 12% 4%, 17% 14%, 22% 6%, 28% 15%, 33% 3%, 39% 13%, 45% 5%, 51% 16%, 56% 7%, 62% 14%, 68% 2%, 74% 12%, 80% 6%, 86% 15%, 92% 4%, 96% 12%, 100% 7%, 100% 86%, 96% 95%, 91% 85%, 86% 97%, 80% 88%, 74% 98%, 68% 87%, 62% 96%, 56% 86%, 50% 97%, 44% 88%, 38% 98%, 32% 86%, 26% 95%, 20% 87%, 14% 97%, 8% 88%, 3% 96%, 0 90%);
+      --tag: polygon(2% 8%, 10% 0, 30% 6%, 55% 0, 80% 7%, 98% 0, 100% 40%, 97% 70%, 100% 100%, 75% 94%, 50% 100%, 25% 93%, 4% 100%, 0 60%);
+      --paper-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      --ease-out: cubic-bezier(.23, 1, .32, 1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; -webkit-text-size-adjust: 100%; color-scheme: dark; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+    body { margin: 0; background: var(--ink); color: var(--chalk); font: 400 1.15rem/1.5 var(--hand); letter-spacing: .03em; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; overflow-x: clip; }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; letter-spacing: inherit; }
+    a, button { touch-action: manipulation; }
+    button, .tag, .pill, nav a { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px dashed var(--lime); outline-offset: 4px; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, p { margin: 0; }
+    h1, h2, h3, h4 { font-weight: 400; line-height: 1; text-wrap: balance; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px)); }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 50; padding: .6rem 1rem; background: var(--lime); color: var(--ink); clip-path: var(--tag); }
+    .skip:focus { top: .6rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .chalk { filter: url(#chalk); -webkit-text-stroke: 1.1px currentColor; text-shadow: 0 0 1px #efe8d899, .6px .4px 0 #efe8d866, -.5px -.3px 0 #efe8d855; }
+    .paper { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); box-shadow: inset 0 0 2.5rem rgb(0 0 0 / .16); }
+    .lilac-paper { background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); }
+    .torn { clip-path: var(--torn); }
+    .kicker { font-size: 1.1rem; letter-spacing: .14em; color: var(--muted); margin-bottom: 1.4rem; }
+    .kicker::before { content: "| "; } .kicker::after { content: " |"; }
+    .tape { position: absolute; width: 4.4rem; height: 1.35rem; background: #b99ae6cc; clip-path: polygon(0 10%, 6% 0, 12% 12%, 18% 0, 100% 6%, 94% 100%, 88% 88%, 82% 100%, 0 92%); z-index: 3; pointer-events: none; }
+    .tape.lime { background: #c8f03cb3; }
+    .vine-rule { height: 0; border-top: 34px solid transparent; border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'%3E%3Cg transform=''%3E%3Cpath d='M48 24 C34 24 24 34 24 48' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M29 31 C22 25 17 19 15 9 M33 27 C33 19 36 13 42 9 M27 36 C20 37 13 34 8 29' fill='none' stroke='%23b99ae6' stroke-width='1' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Ccircle cx='15' cy='9' r='1.7'/%3E%3Ccircle cx='12' cy='11.5' r='1.7'/%3E%3Ccircle cx='17.5' cy='6' r='1.7'/%3E%3Ccircle cx='11' cy='7' r='1.7'/%3E%3Ccircle cx='14' cy='4' r='1.7'/%3E%3Ccircle cx='42' cy='9' r='1.4'/%3E%3Ccircle cx='44.5' cy='11' r='1.4'/%3E%3Ccircle cx='8' cy='29' r='1.4'/%3E%3Ccircle cx='6' cy='26' r='1.4'/%3E%3Cellipse cx='19' cy='20' rx='1.9' ry='4.2' transform='rotate(-35 19 20)'/%3E%3Cellipse cx='37' cy='16' rx='1.7' ry='3.6' transform='rotate(40 37 16)'/%3E%3Cellipse cx='16' cy='33' rx='1.7' ry='3.6' transform='rotate(-75 16 33)'/%3E%3Cellipse cx='39' cy='33' rx='1.7' ry='3.4' transform='rotate(45 39 33)'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(192 0) scale(-1 1)'%3E%3Cpath d='M48 24 C34 24 24 34 24 48' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M29 31 C22 25 17 19 15 9 M33 27 C33 19 36 13 42 9 M27 36 C20 37 13 34 8 29' fill='none' stroke='%23b99ae6' stroke-width='1' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Ccircle cx='15' cy='9' r='1.7'/%3E%3Ccircle cx='12' cy='11.5' r='1.7'/%3E%3Ccircle cx='17.5' cy='6' r='1.7'/%3E%3Ccircle cx='11' cy='7' r='1.7'/%3E%3Ccircle cx='14' cy='4' r='1.7'/%3E%3Ccircle cx='42' cy='9' r='1.4'/%3E%3Ccircle cx='44.5' cy='11' r='1.4'/%3E%3Ccircle cx='8' cy='29' r='1.4'/%3E%3Ccircle cx='6' cy='26' r='1.4'/%3E%3Cellipse cx='19' cy='20' rx='1.9' ry='4.2' transform='rotate(-35 19 20)'/%3E%3Cellipse cx='37' cy='16' rx='1.7' ry='3.6' transform='rotate(40 37 16)'/%3E%3Cellipse cx='16' cy='33' rx='1.7' ry='3.6' transform='rotate(-75 16 33)'/%3E%3Cellipse cx='39' cy='33' rx='1.7' ry='3.4' transform='rotate(45 39 33)'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(0 192) scale(1 -1)'%3E%3Cpath d='M48 24 C34 24 24 34 24 48' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M29 31 C22 25 17 19 15 9 M33 27 C33 19 36 13 42 9 M27 36 C20 37 13 34 8 29' fill='none' stroke='%23b99ae6' stroke-width='1' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Ccircle cx='15' cy='9' r='1.7'/%3E%3Ccircle cx='12' cy='11.5' r='1.7'/%3E%3Ccircle cx='17.5' cy='6' r='1.7'/%3E%3Ccircle cx='11' cy='7' r='1.7'/%3E%3Ccircle cx='14' cy='4' r='1.7'/%3E%3Ccircle cx='42' cy='9' r='1.4'/%3E%3Ccircle cx='44.5' cy='11' r='1.4'/%3E%3Ccircle cx='8' cy='29' r='1.4'/%3E%3Ccircle cx='6' cy='26' r='1.4'/%3E%3Cellipse cx='19' cy='20' rx='1.9' ry='4.2' transform='rotate(-35 19 20)'/%3E%3Cellipse cx='37' cy='16' rx='1.7' ry='3.6' transform='rotate(40 37 16)'/%3E%3Cellipse cx='16' cy='33' rx='1.7' ry='3.6' transform='rotate(-75 16 33)'/%3E%3Cellipse cx='39' cy='33' rx='1.7' ry='3.4' transform='rotate(45 39 33)'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(192 192) scale(-1 -1)'%3E%3Cpath d='M48 24 C34 24 24 34 24 48' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M29 31 C22 25 17 19 15 9 M33 27 C33 19 36 13 42 9 M27 36 C20 37 13 34 8 29' fill='none' stroke='%23b99ae6' stroke-width='1' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Ccircle cx='15' cy='9' r='1.7'/%3E%3Ccircle cx='12' cy='11.5' r='1.7'/%3E%3Ccircle cx='17.5' cy='6' r='1.7'/%3E%3Ccircle cx='11' cy='7' r='1.7'/%3E%3Ccircle cx='14' cy='4' r='1.7'/%3E%3Ccircle cx='42' cy='9' r='1.4'/%3E%3Ccircle cx='44.5' cy='11' r='1.4'/%3E%3Ccircle cx='8' cy='29' r='1.4'/%3E%3Ccircle cx='6' cy='26' r='1.4'/%3E%3Cellipse cx='19' cy='20' rx='1.9' ry='4.2' transform='rotate(-35 19 20)'/%3E%3Cellipse cx='37' cy='16' rx='1.7' ry='3.6' transform='rotate(40 37 16)'/%3E%3Cellipse cx='16' cy='33' rx='1.7' ry='3.6' transform='rotate(-75 16 33)'/%3E%3Cellipse cx='39' cy='33' rx='1.7' ry='3.4' transform='rotate(45 39 33)'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(48 0)'%3E%3Cpath d='M0 24 C14 18 22 18 32 24 S52 31 64 26 S86 20 96 24' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M14 20 q-2-6 1-10 M44 29 q1 6-2 10 M70 25 C71 18 74 13 79 8 M86 22 q3-5 8-6' fill='none' stroke='%23b99ae6' stroke-width='.95' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Cellipse cx='11' cy='12' rx='1.9' ry='4.2' transform='rotate(-30 11 12)'/%3E%3Cellipse cx='46' cy='37' rx='1.9' ry='4.2' transform='rotate(25 46 37)'/%3E%3Cellipse cx='26' cy='19' rx='1.6' ry='3.4' transform='rotate(-70 26 19)'/%3E%3Cellipse cx='57' cy='31' rx='1.6' ry='3.4' transform='rotate(70 57 31)'/%3E%3Cellipse cx='91' cy='15' rx='1.5' ry='3.2' transform='rotate(55 91 15)'/%3E%3Ccircle cx='79' cy='8' r='1.45'/%3E%3Ccircle cx='76' cy='10.5' r='1.45'/%3E%3Ccircle cx='81.5' cy='11' r='1.45'/%3E%3Ccircle cx='74' cy='14' r='1.45'/%3E%3Ccircle cx='78' cy='15.5' r='1.45'/%3E%3Ccircle cx='36' cy='28.5' r='1.1'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(144 192) scale(-1 -1)'%3E%3Cpath d='M0 24 C14 18 22 18 32 24 S52 31 64 26 S86 20 96 24' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M14 20 q-2-6 1-10 M44 29 q1 6-2 10 M70 25 C71 18 74 13 79 8 M86 22 q3-5 8-6' fill='none' stroke='%23b99ae6' stroke-width='.95' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Cellipse cx='11' cy='12' rx='1.9' ry='4.2' transform='rotate(-30 11 12)'/%3E%3Cellipse cx='46' cy='37' rx='1.9' ry='4.2' transform='rotate(25 46 37)'/%3E%3Cellipse cx='26' cy='19' rx='1.6' ry='3.4' transform='rotate(-70 26 19)'/%3E%3Cellipse cx='57' cy='31' rx='1.6' ry='3.4' transform='rotate(70 57 31)'/%3E%3Cellipse cx='91' cy='15' rx='1.5' ry='3.2' transform='rotate(55 91 15)'/%3E%3Ccircle cx='79' cy='8' r='1.45'/%3E%3Ccircle cx='76' cy='10.5' r='1.45'/%3E%3Ccircle cx='81.5' cy='11' r='1.45'/%3E%3Ccircle cx='74' cy='14' r='1.45'/%3E%3Ccircle cx='78' cy='15.5' r='1.45'/%3E%3Ccircle cx='36' cy='28.5' r='1.1'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(0 144) matrix(0 -1 1 0 0 0)'%3E%3Cpath d='M0 24 C14 18 22 18 32 24 S52 31 64 26 S86 20 96 24' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M14 20 q-2-6 1-10 M44 29 q1 6-2 10 M70 25 C71 18 74 13 79 8 M86 22 q3-5 8-6' fill='none' stroke='%23b99ae6' stroke-width='.95' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Cellipse cx='11' cy='12' rx='1.9' ry='4.2' transform='rotate(-30 11 12)'/%3E%3Cellipse cx='46' cy='37' rx='1.9' ry='4.2' transform='rotate(25 46 37)'/%3E%3Cellipse cx='26' cy='19' rx='1.6' ry='3.4' transform='rotate(-70 26 19)'/%3E%3Cellipse cx='57' cy='31' rx='1.6' ry='3.4' transform='rotate(70 57 31)'/%3E%3Cellipse cx='91' cy='15' rx='1.5' ry='3.2' transform='rotate(55 91 15)'/%3E%3Ccircle cx='79' cy='8' r='1.45'/%3E%3Ccircle cx='76' cy='10.5' r='1.45'/%3E%3Ccircle cx='81.5' cy='11' r='1.45'/%3E%3Ccircle cx='74' cy='14' r='1.45'/%3E%3Ccircle cx='78' cy='15.5' r='1.45'/%3E%3Ccircle cx='36' cy='28.5' r='1.1'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(192 48) matrix(0 1 -1 0 0 0)'%3E%3Cpath d='M0 24 C14 18 22 18 32 24 S52 31 64 26 S86 20 96 24' fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M14 20 q-2-6 1-10 M44 29 q1 6-2 10 M70 25 C71 18 74 13 79 8 M86 22 q3-5 8-6' fill='none' stroke='%23b99ae6' stroke-width='.95' stroke-linecap='round'/%3E%3Cg fill='%23b99ae6'%3E%3Cellipse cx='11' cy='12' rx='1.9' ry='4.2' transform='rotate(-30 11 12)'/%3E%3Cellipse cx='46' cy='37' rx='1.9' ry='4.2' transform='rotate(25 46 37)'/%3E%3Cellipse cx='26' cy='19' rx='1.6' ry='3.4' transform='rotate(-70 26 19)'/%3E%3Cellipse cx='57' cy='31' rx='1.6' ry='3.4' transform='rotate(70 57 31)'/%3E%3Cellipse cx='91' cy='15' rx='1.5' ry='3.2' transform='rotate(55 91 15)'/%3E%3Ccircle cx='79' cy='8' r='1.45'/%3E%3Ccircle cx='76' cy='10.5' r='1.45'/%3E%3Ccircle cx='81.5' cy='11' r='1.45'/%3E%3Ccircle cx='74' cy='14' r='1.45'/%3E%3Ccircle cx='78' cy='15.5' r='1.45'/%3E%3Ccircle cx='36' cy='28.5' r='1.1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 48 0 0 0 / 34px 0 0 0 round; opacity: .9; }
+    .press { transition: transform .16s var(--ease-out), color .16s, background-color .16s; }
+    .press:active { transform: scale(.97); }
+
+    /* ---------- cabecera ---------- */
+    header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--ink) 92%, transparent); padding-top: env(safe-area-inset-top, 0px); }
+    header.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding-top: .7rem; padding-bottom: .7rem; }
+    header nav { display: flex; gap: 1.3rem; font-size: 1.1rem; }
+    header nav a { opacity: .85; padding: .3rem 0; }
+    .logo { font-size: 1.6rem; letter-spacing: .14em; justify-self: center; }
+    .pill { justify-self: end; display: inline-flex; align-items: center; gap: .5rem; padding: .35rem 1rem .3rem; background: var(--lilac) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); clip-path: var(--tag); font-size: 1.1rem; letter-spacing: .08em; }
+    .pill .tri, .tri { display: inline-block; width: 0; height: 0; border-left: .55em solid currentColor; border-top: .34em solid transparent; border-bottom: .34em solid transparent; }
+    @media (max-width: 46rem) { header nav { display: none; } header.top .wrap { grid-template-columns: auto 1fr auto; } .logo { justify-self: start; } }
+    @media (hover: hover) and (pointer: fine) { header nav a:hover { opacity: 1; color: var(--lime); } .pill:hover { background-color: var(--lime); } }
+
+    /* ---------- portada ---------- */
+    .hero { position: relative; text-align: center; padding: clamp(2rem, 6vw, 4rem) 0 clamp(3rem, 7vw, 5rem); }
+    .mega { font-size: clamp(5.5rem, 24vw, 17rem); line-height: .78; letter-spacing: .02em; position: relative; z-index: 1; }
+    .mega span { display: block; }
+    .mega span:last-child { margin-left: .35em; }
+    .stage { position: relative; margin-top: clamp(-3.2rem, -5vw, -1rem); }
+    .band { position: absolute; left: 50%; width: 100vw; margin-left: -50vw; top: 38%; height: clamp(7rem, 17vw, 12rem); transform: rotate(-3deg); clip-path: var(--strip); display: flex; align-items: center; overflow: hidden; z-index: 0; }
+    .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: var(--gothic); font-size: clamp(2.2rem, 6vw, 4.2rem); color: #2a1d3acc; animation: run 40s linear infinite; }
+    @keyframes run { to { transform: translateX(-50%); } }
+    .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
+    .hero-portrait { position: relative; z-index: 2; width: min(86vw, 30rem); margin: 0 auto; mix-blend-mode: normal; -webkit-mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); }
+    .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
+    .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
+
+    /* ---------- manifiesto (textos) ---------- */
+    .manifesto-wrap { padding: clamp(3rem, 8vw, 6rem) 0; position: relative; }
+    .manifesto { font-size: clamp(2.3rem, 7.2vw, 5.4rem); line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+    .manifesto span { display: block; }
+    .manifesto .l1 { margin-left: 18%; } .manifesto .l2 { margin-left: 0; } .manifesto .l3 { margin-left: 30%; }
+    .manifesto em { font-style: normal; color: var(--lime); }
+    .manifesto em.lilac { color: var(--lilac); }
+    .notes { display: grid; gap: 2rem; margin-top: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+    @media (min-width: 52rem) { .notes { grid-template-columns: 12rem 1fr 1fr; gap: 3rem; margin-left: 12%; } }
+    .notes .doodle { width: 12rem; mix-blend-mode: screen; transform: rotate(-6deg); }
+    .note h3 { font-family: var(--gothic); color: var(--lilac); font-size: 1.8rem; margin-bottom: .2rem; }
+    .note h4 { font-size: 1.3rem; letter-spacing: .08em; margin-bottom: .6rem; }
+    .note p { font: 1.12rem/1.6 var(--serif); letter-spacing: 0; color: #d8d2c4; max-width: 26rem; }
+    .star { position: absolute; right: 6%; top: 18%; font-size: clamp(4rem, 12vw, 8rem); color: var(--lime); transform: rotate(14deg); line-height: 1; pointer-events: none; }
+
+    /* ---------- canciones ---------- */
+    .songs { padding: clamp(3rem, 7vw, 5rem) 0; }
+    .songs-grid { display: grid; gap: 2rem; align-items: start; }
+    @media (min-width: 58rem) { .songs-grid { grid-template-columns: 15rem minmax(0, 1fr) minmax(0, 1.25fr); gap: 2.5rem; } }
+    .song-tabs { display: grid; align-content: start; }
+    .song-tab { text-align: left; font-size: 1.45rem; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .7rem .25rem; border-bottom: 1.5px solid #efe8d833; }
+    .song-tab[aria-selected="true"] { background: var(--lime); color: var(--ink); border-color: var(--lime); clip-path: polygon(0 4%, 100% 0, 98% 100%, 1% 96%); }
+    @media (hover: hover) and (pointer: fine) { .song-tab[aria-selected="false"]:hover { color: var(--lime); } }
+    @media (max-width: 57.99rem) { .song-tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; gap: .4rem; scroll-snap-type: x mandatory; } .song-tab { scroll-snap-align: start; font-size: 1.2rem; } }
+    .cover { position: relative; padding: 8px; border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
+    .cover img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .cover .tape { top: -.6rem; left: 50%; margin-left: -2.2rem; transform: rotate(-4deg); }
+    .cover .sticker { position: absolute; left: -1rem; bottom: -1.2rem; padding: .3rem .9rem; font-size: 1.6rem; transform: rotate(-8deg); clip-path: var(--tag); background: var(--lilac); color: var(--lilac-ink); }
+    .info h3 { font-family: var(--gothic); color: var(--lilac); font-size: clamp(2.8rem, 7vw, 4.8rem); line-height: .95; margin-bottom: .6rem; }
+    .info .meta { color: var(--muted); font-size: 1.05rem; letter-spacing: .08em; margin-bottom: 1.1rem; }
+    .info .story { font: 1.12rem/1.6 var(--serif); letter-spacing: 0; color: #d8d2c4; max-width: 34rem; margin-bottom: 1.3rem; }
+    .info .story.pending { color: var(--muted); font-style: italic; }
+    .listen { display: inline-flex; align-items: center; gap: .7rem; font-size: 1.3rem; margin-bottom: 1.6rem; }
+    .listen .circle { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.6px solid currentColor; }
+    .listen .circle .tri { margin-left: .2rem; }
+    .listen span:last-child { border-bottom: 2px solid var(--lime); }
+    .listen[aria-disabled="true"] { opacity: .5; }
+    @media (hover: hover) and (pointer: fine) { a.listen:hover { color: var(--lime); } }
+    .table-title { font-size: 1.15rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .4rem; }
+    .credits { display: grid; grid-template-columns: minmax(7rem, auto) 1fr; margin: 0; border-top: 1.5px solid #efe8d855; }
+    .credits dt, .credits dd { padding: .5rem 0; border-bottom: 1px solid #efe8d826; }
+    .credits dt { color: var(--lilac); letter-spacing: .06em; }
+    .credits dd { margin: 0; font: 1.05rem/1.4 var(--serif); letter-spacing: 0; }
+    .credits dd a { border-bottom: 1.5px solid var(--lime); }
+    details.lyrics { margin: 0 0 1.5rem; }
+    details.lyrics summary { cursor: pointer; font-size: 1.15rem; letter-spacing: .16em; text-transform: uppercase; list-style: none; }
+    details.lyrics summary::after { content: " +"; color: var(--lime); }
+    details.lyrics[open] summary::after { content: " –"; }
+    details.lyrics p { white-space: pre-line; font: 1.1rem/1.65 var(--serif); letter-spacing: 0; margin-top: .8rem; }
+    .swap { animation: swap .24s var(--ease-out); }
+    @keyframes swap { from { opacity: 0; transform: translateY(6px); } }
+
+    /* ---------- pequeño cine (pasillo) ---------- */
+    .cinema { padding: clamp(3rem, 7vw, 5rem) 0 clamp(2rem, 5vw, 3rem); text-align: center; overflow: hidden; }
+    .cinema-title { font-family: var(--gothic); color: var(--lilac); font-size: clamp(3.2rem, 10vw, 7rem); line-height: .9; position: relative; z-index: 2; margin-bottom: -1.2rem; }
+    .hall { position: relative; width: 100vw; left: 50%; margin-left: -50vw; padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+    .hall::before { content: ""; position: absolute; inset: 0; background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply;
+      clip-path: polygon(0 0, 20% 16%, 80% 16%, 100% 0, 100% 100%, 80% 84%, 20% 84%, 0 100%); }
+    .hall-inner { position: relative; display: grid; grid-template-columns: 1fr minmax(0, 2.3fr) 1fr; align-items: center; max-width: 96rem; margin: 0 auto; perspective: 900px; }
+    .wall { display: flex; gap: clamp(.5rem, 1.5vw, 1rem); padding: 0 clamp(.5rem, 2vw, 1.5rem); }
+    .wall.left { transform: rotateY(38deg); transform-origin: right center; justify-content: flex-end; }
+    .wall.right { transform: rotateY(-38deg); transform-origin: left center; }
+    .wall a { flex: 1; max-width: 10rem; border: 3px solid var(--ink); background: var(--ink); }
+    .wall img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+    @media (hover: hover) and (pointer: fine) { .wall a:hover { border-color: var(--lime); } }
+    .screen { position: relative; background: var(--ink); padding: clamp(6px, 1vw, 10px); border: 2px solid var(--ink); z-index: 1; }
+    .screen iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+    .cinema-cap { margin-top: 1.4rem; font-size: 1.2rem; letter-spacing: .14em; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.5rem; }
+    .cinema-cap a { color: var(--muted); font-size: 1.05rem; }
+    @media (hover: hover) and (pointer: fine) { .cinema-cap a:hover { color: var(--lime); } }
+    @media (max-width: 52rem) {
+      .hall::before { clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%); }
+      .hall-inner { grid-template-columns: 1fr; gap: 1rem; perspective: none; padding: 0 var(--gutter); }
+      .screen { order: -1; }
+      .wall { transform: none !important; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0; scrollbar-width: none; }
+      .wall a { flex: 0 0 31.5%; scroll-snap-align: start; }
+      .wall img { aspect-ratio: 1; }
+    }
+
+    /* ---------- sobre mí ---------- */
+    .about { padding: clamp(3rem, 8vw, 6rem) 0; }
+    .about-grid { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 52rem) { .about-grid { grid-template-columns: .8fr 1.2fr; gap: 4rem; } }
+    .about-portrait { position: relative; width: min(100%, 19rem); justify-self: center; transform: rotate(-2.5deg); }
+    .about-portrait .tape { top: -.5rem; right: 1rem; transform: rotate(12deg); }
+    .rows { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid #efe8d855; }
+    .rows li { display: flex; align-items: baseline; justify-content: center; gap: 1rem; padding: .5rem 0 .3rem; border-bottom: 1.5px solid #efe8d855; }
+    .rows small { font-size: .95rem; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; min-width: 7.5rem; text-align: right; }
+    .rows strong { font-weight: 400; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; min-width: 0; }
+    .rows li:nth-child(2) strong { color: var(--lilac); }
+    .bio { font: 1.15rem/1.6 var(--serif); letter-spacing: 0; color: #d8d2c4; margin-top: 1.5rem; }
+
+    /* ---------- contacto ---------- */
+    .contact { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3rem); }
+    .cta { font-size: clamp(2.8rem, 9vw, 6.4rem); line-height: .95; text-transform: uppercase; margin-bottom: 2rem; }
+    .cta span { display: block; }
+    .cta .c1 { color: var(--lime); margin-left: 10%; } .cta .c2 { margin-left: 0; } .cta .c3 { color: var(--lilac); margin-left: 22%; }
+    .contact-card { position: relative; display: grid; gap: 1.5rem; padding: clamp(1.5rem, 4vw, 2.5rem); background: var(--lime) var(--paper-bg); background-blend-mode: multiply; color: var(--ink); clip-path: polygon(0 2%, 4% 0, 30% 1.5%, 60% 0, 97% 1.2%, 100% 0, 99% 50%, 100% 98%, 70% 100%, 40% 98.5%, 3% 100%, 0 97%, 1% 50%); }
+    @media (min-width: 52rem) { .contact-card { grid-template-columns: 1fr 1.3fr; align-items: center; } }
+    .contact-card .envelope { width: min(100%, 15rem); justify-self: center; }
+    .contact-card h3 { font-size: 2rem; letter-spacing: .1em; margin-bottom: .2rem; }
+    .contact-card .note { font: 1.05rem/1.5 var(--serif); letter-spacing: 0; margin-bottom: 1rem; }
+    .links { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+    .links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem 1rem; background: #0a0a0a14; border: 1.5px solid #0a0a0a55; font-size: 1.3rem; letter-spacing: .08em; }
+    .links a::after { content: "→"; }
+    .links svg { width: 1.4rem; height: 1.4rem; flex: none; }
+    .links a span { display: inline-flex; align-items: center; gap: .7rem; }
+    @media (hover: hover) and (pointer: fine) { .links a:hover { background: var(--ink); color: var(--lime); } }
+
+    footer { margin-top: 2rem; }
+    .footer-band { position: relative; padding: 2.4rem 0 calc(1.8rem + env(safe-area-inset-bottom)); clip-path: polygon(0 16%, 4% 6%, 9% 14%, 15% 3%, 21% 13%, 28% 5%, 35% 15%, 42% 4%, 50% 12%, 57% 2%, 64% 13%, 71% 5%, 78% 14%, 85% 3%, 92% 12%, 100% 6%, 100% 100%, 0 100%); }
+    .footer-band .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; font-size: 1.15rem; letter-spacing: .06em; }
+    .footer-band a { border-bottom: 1.5px solid var(--lilac-ink); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">saltar al contenido</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="chalk" x="-4%" y="-15%" width="108%" height="130%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="11" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.6 0 0 0 2.25" result="holes"/>
+      <feComposite in="rough" in2="holes" operator="in"/>
+    </filter>
+    <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></g></symbol>
+    <symbol id="envelope" viewBox="0 0 200 150"><g stroke="#2a1d3a" stroke-width="2.4" stroke-linejoin="round"><path d="M8 50 L100 8 L192 50 V142 H8 Z" fill="#a688d6"/><path d="M8 142 L82 90 M192 142 L118 90" fill="none"/><path d="M8 52 L100 112 L192 52 V142 H8 Z" fill="#b99ae6"/></g><rect x="52" y="22" width="96" height="58" fill="#e9dcc0" stroke="#2a1d3a" stroke-width="2" transform="rotate(-4 100 51)"/><path d="M70 44 h60 M70 56 h44" stroke="#2a1d3a" stroke-width="2" stroke-linecap="round" transform="rotate(-4 100 51)"/></symbol>
+  </svg>
+
+  <header class="top">
+    <div class="wrap">
+      <nav aria-label="Secciones">
+        <a href="#canciones">canciones</a>
+        <a href="#textos">textos</a>
+        <a href="#visuales">visuales</a>
+        <a href="#sobre-mi">sobre mí</a>
+      </nav>
+      <a class="logo" href="#inicio" translate="no">KAILKOB</a>
+      <a class="pill press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span class="tri"></span>escuchar</a>
+    </div>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- PORTADA -->
+    <section class="hero" id="inicio" aria-labelledby="h-inicio">
+      <div class="wrap">
+        <h1 class="mega chalk" id="h-inicio" translate="no"><span>KAIL</span><span>KOB</span></h1>
+      </div>
+      <div class="stage">
+        <div class="band lilac-paper" aria-hidden="true"><div class="run"><span>canciones · textos · otras criaturas ·</span><span>canciones · textos · otras criaturas ·</span><span>canciones · textos · otras criaturas ·</span><span>canciones · textos · otras criaturas ·</span></div></div>
+        <img class="hero-portrait" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
+      </div>
+      <div class="wrap">
+        <p class="tagline">canciones, textos y otras criaturas</p>
+        <a class="scroll-hint" href="#textos">toca para explorar ↓</a>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
+
+    <!-- TEXTOS (manifiesto) -->
+    <section class="manifesto-wrap" id="textos" aria-labelledby="h-textos">
+      <div class="wrap">
+        <p class="kicker">textos</p>
+        <h2 class="manifesto chalk" id="h-textos">
+          <span class="l1">hay <em>canciones</em></span>
+          <span class="l2">que empiezan</span>
+          <span class="l3">donde <em class="lilac">no llego.</em></span>
+        </h2>
+        <div class="notes">
+          <img class="doodle" src="../img/rata-luna.jpg" alt="" width="205" height="145" loading="lazy">
+          <article class="note">
+            <h3>Herbario nocturno</h3>
+            <h4>cosas que no sé decir</h4>
+            <p>A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
+          </article>
+          <article class="note">
+            <h4>borradores de madrugada</h4>
+            <p>una casa, un ruido,<br>algo que todavía<br>no tiene nombre.</p>
+          </article>
+        </div>
+        <span class="star chalk" aria-hidden="true">✳</span>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
+
+    <!-- CANCIONES -->
+    <section class="songs" id="canciones" aria-labelledby="h-canciones">
+      <div class="wrap">
+        <p class="kicker" id="h-canciones">canciones</p>
+        <div class="songs-grid">
+          <div class="song-tabs" role="tablist" aria-label="Canciones" aria-orientation="vertical" id="song-tabs"></div>
+          <div class="cover" id="cover"><span class="tape"></span><img id="cover-img" src="../img/1408.jpg" alt="" width="216" height="202"><span class="sticker" id="cover-sticker" translate="no">1408</span></div>
+          <div class="info" id="song-panel" role="tabpanel" tabindex="0"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUALES -->
+    <section class="cinema" id="visuales" aria-labelledby="h-visuales">
+      <p class="kicker" id="h-visuales-k">visuales</p>
+      <h2 class="cinema-title" id="h-visuales">Pequeño<br>cine</h2>
+      <div class="hall">
+        <div class="hall-inner">
+          <!-- EDITAR: cada marco puede enlazar a un vídeo concreto -->
+          <div class="wall left">
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/ding-dong-piro.jpg" alt="Ilustración de Ding Dong Piro: rata bajo la luna" loading="lazy" width="229" height="202"></a>
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/film-fragmentos.jpg" alt="Fragmentos: río de noche bajo la luna" loading="lazy" width="160" height="75"></a>
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/rata-roca.jpg" alt="Ilustración: rata sobre una roca aullando a la luna" loading="lazy" width="180" height="285"></a>
+          </div>
+          <div class="screen">
+            <iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="wall right">
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/moto.jpg" alt="Ilustración: moto de noche bajo un cielo lila" loading="lazy" width="330" height="128"></a>
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/film-pruebas.jpg" alt="Pruebas: rata entre la hierba" loading="lazy" width="160" height="75"></a>
+            <a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><img src="../img/que-nos-sofoque-el-rio.jpg" alt="Ilustración de Que nos sofoque el río" loading="lazy" width="232" height="202"></a>
+          </div>
+        </div>
+      </div>
+      <p class="cinema-cap"><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></p>
+    </section>
+
+    <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
+
+    <!-- SOBRE MÍ -->
+    <section class="about" id="sobre-mi" aria-labelledby="h-sobre">
+      <div class="wrap">
+        <p class="kicker">sobre mí</p>
+        <h2 class="sr-only" id="h-sobre">Sobre mí</h2>
+        <div class="about-grid">
+          <div class="about-portrait"><span class="tape"></span><img class="torn" src="../img/retrato.jpg" alt="Retrato dibujado de Kailkob sobre papel rasgado" loading="lazy" width="205" height="360"></div>
+          <div>
+            <ul class="rows">
+              <li><small>lo que suena</small><strong class="chalk">música</strong></li>
+              <li><small>lo que escribo</small><strong class="chalk">palabras</strong></li>
+              <li><small>lo que persigo</small><strong class="chalk">obsesiones</strong></li>
+            </ul>
+            <!-- EDITAR: biografía corta → <p class="bio">…</p> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto" aria-labelledby="h-contacto">
+      <div class="wrap">
+        <h2 class="cta chalk" id="h-contacto"><span class="c1">escucha,</span><span class="c2">lee</span><span class="c3">y escríbeme</span></h2>
+        <div class="contact-card">
+          <svg class="envelope" viewBox="0 0 200 150" aria-hidden="true"><use href="#envelope"/></svg>
+          <div>
+            <h3>escríbeme</h3>
+            <!-- EDITAR: cuando haya email, añade aquí <a href="mailto:EMAIL">EMAIL</a> y borra esta nota -->
+            <p class="note">El email llega pronto. Mientras, aquí está todo lo que suena:</p>
+            <ul class="links">
+              <li><a class="press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</span></a></li>
+              <li><a class="press" href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</span></a></li>
+              <li><a class="press" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span><svg aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</span></a></li>
+              <!-- EDITAR: Instagram -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-band lilac-paper">
+      <div class="wrap">
+        <span>© <span id="y">2026</span> <span translate="no">KAILKOB</span> · canciones, textos y otras criaturas</span>
+        <a href="#inicio">volver arriba ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    /* EDITAR: datos de cada canción. Deja "" lo que aún no tengas.
+       lang: idioma de la letra ("ca" catalán, "es" castellano, "en" inglés). */
+    const SONGS = [
+      { id: 'blv', title: 'BLV W/ME', img: '../img/rata-luna.jpg', meta: 'single · 18 sep 2025',
+        href: 'https://music.apple.com/us/album/blv-w-me-single/1841047244', lang: '', letra: '', historia: '',
+        creditos: [['lanzamiento', 'Single · 18 de septiembre de 2025'], ['género', 'Alternativa'], ['℗', '2025 Kailkob']] },
+      { id: '1408', title: '1408', img: '../img/1408.jpg', meta: 'single · 28 feb 2025 · 3:38',
+        href: 'https://music.apple.com/us/album/1408-single/1798072933', lang: 'ca', letra: '', historia: '',
+        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a href="#visuales">en Pequeño cine</a>']] },
+      { id: 'ddp', title: 'Ding Dong Piro', img: '../img/ding-dong-piro.jpg', meta: 'pronto', href: '', lang: '', letra: '',
+        historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
+        creditos: [] },
+      { id: 'rio', title: 'Que nos sofoque el río', img: '../img/que-nos-sofoque-el-rio.jpg', meta: 'pronto', href: '', lang: '', letra: '', historia: '', creditos: [] },
+    ];
+
+    const $ = id => document.getElementById(id);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let current = SONGS[1];
+
+    $('song-tabs').innerHTML = SONGS.map(s =>
+      `<button class="song-tab press" role="tab" id="t-${s.id}" aria-controls="song-panel" aria-selected="false" tabindex="-1" data-id="${s.id}" translate="no">${s.title}</button>`).join('');
+
+    function render(animate) {
+      const s = current;
+      document.querySelectorAll('.song-tab').forEach(b => { const on = b.dataset.id === s.id; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+      $('song-panel').setAttribute('aria-labelledby', 't-' + s.id);
+      $('cover-img').src = s.img;
+      $('cover-sticker').textContent = s.title;
+      const lang = s.lang ? ` lang="${s.lang}"` : '';
+      const listen = s.href
+        ? `<a class="listen press" href="${s.href}" target="_blank" rel="noopener"><span class="circle"><span class="tri"></span></span><span>escuchar en Apple Music</span><span class="sr-only"> (se abre en otra pestaña)</span></a>`
+        : `<span class="listen" aria-disabled="true"><span class="circle"><span class="tri"></span></span><span>pronto</span></span>`;
+      $('song-panel').innerHTML = `
+        <h3 translate="no">${s.title}</h3>
+        <p class="meta">${s.meta}</p>
+        <p class="story${s.historia ? '' : ' pending'}">${s.historia || 'Esta historia todavía se está escribiendo.'}</p>
+        ${listen}
+        ${s.letra ? `<details class="lyrics"><summary>letra</summary><p${lang}>${s.letra}</p></details>` : `<p class="table-title" style="color:var(--muted)">letra: pronto</p>`}
+        <p class="table-title" style="margin-top:1rem">créditos</p>
+        ${s.creditos.length ? `<dl class="credits">${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '<p class="story pending">Los créditos llegarán pronto.</p>'}`;
+      if (animate) { const el = $('song-panel'); el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); }
+    }
+
+    function select(id, fromUser) {
+      const s = SONGS.find(x => x.id === id); if (!s) return;
+      current = s; render(fromUser);
+      history.replaceState(null, '', '#cancion-' + id);
+    }
+
+    $('song-tabs').addEventListener('click', e => { const b = e.target.closest('.song-tab'); if (b) select(b.dataset.id, true); });
+    $('song-tabs').addEventListener('keydown', e => {
+      const i = SONGS.indexOf(current);
+      const next = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: SONGS.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      const s = SONGS[(next + SONGS.length) % SONGS.length];
+      select(s.id, true); $('t-' + s.id).focus();
+    });
+
+    document.querySelectorAll('a[target=_blank]').forEach(a => {
+      if (a.querySelector('.sr-only')) return;
+      const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (se abre en otra pestaña)'; a.append(sr);
+    });
+
+    const m = location.hash.match(/^#cancion-(.+)$/);
+    if (m && SONGS.some(x => x.id === m[1])) { select(m[1], false); addEventListener('load', () => setTimeout(() => $('canciones').scrollIntoView({ behavior: 'instant' }), 60)); }
+    else render(false);
+  </script>
+</body>
+</html>
