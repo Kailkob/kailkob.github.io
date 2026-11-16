@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kailkob.github.io/sitemap.xml

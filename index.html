@@ -9,8 +9,35 @@
   <meta property="og:description" content="canciones, textos y otras criaturas">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kailkob.github.io/">
-  <meta property="og:image" content="https://kailkob.github.io/img/mapa-retrato.jpg">
+  <meta property="og:image" content="https://kailkob.github.io/img/og.jpg">
   <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://kailkob.github.io/">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Retrato dibujado de Kailkob">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Kailkob",
+    "url": "https://kailkob.github.io/",
+    "image": "https://kailkob.github.io/img/og.jpg",
+    "description": "canciones, textos y otras criaturas",
+    "sameAs": [
+      "https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI",
+      "https://music.apple.com/us/artist/kailkob/1797300511",
+      "https://www.youtube.com/@kailkob"
+    ],
+    "album": [
+      { "@type": "MusicAlbum", "name": "BLV W/ME", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2025-09-18", "url": "https://music.apple.com/us/album/blv-w-me-single/1841047244" },
+      { "@type": "MusicAlbum", "name": "1408", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2025-02-28", "url": "https://music.apple.com/us/album/1408-single/1798072933" }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
@@ -38,8 +65,8 @@
       --paper-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; -webkit-text-size-adjust: 100%; color-scheme: dark; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } .skip { transition: none; } }
     body { margin: 0; background: var(--ink); color: var(--chalk); font: 400 1.15rem/1.5 var(--hand); letter-spacing: .03em; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; overflow-x: clip; }
     body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
     a { color: inherit; text-decoration: none; }
@@ -48,7 +75,17 @@
     img { max-width: 100%; display: block; }
     h1, h2, h3, p { margin: 0; }
     h1, h2, h3 { font-weight: 400; line-height: 1; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px)); }
+    h1, h2, h3, h4 { text-wrap: balance; }
+    a, button { touch-action: manipulation; }
+    button, .tag, .station, .arrow, nav.menu a { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    .skip { position: absolute; left: 1rem; top: -4rem; z-index: 50; padding: .6rem 1rem; background: var(--lime); color: var(--ink); clip-path: var(--tag); transition: top .15s; }
+    .skip:focus { top: .6rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    /* respuesta al pulsar (tacto y ratón) */
+    .sleeve, .tag, .station, .circle-play, .letter, .strip, .back { transition-property: transform, color, background-color, opacity; transition-duration: .16s; transition-timing-function: cubic-bezier(.23, 1, .32, 1); }
+    .sleeve:active, .tag:active, .circle-play:not([aria-disabled="true"]):active, .strip:active .film, .letter:active { transform: scale(.97); }
+    .station:active img, .station:active svg.pic { transform: scale(.97); }
     .screen { mix-blend-mode: screen; }
 
     /* ---------- piezas reutilizables ---------- */
@@ -57,25 +94,25 @@
     .circle-play .tri { margin-left: .18em; font-size: .8em; }
     .arrow { border-bottom: 1.5px solid var(--lime); padding-bottom: .05em; white-space: nowrap; transition: color .15s; }
     .arrow::after { content: " →"; }
-    @media (hover: hover) { .arrow:hover, .tag:hover { color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { .arrow:hover, .tag:hover { color: var(--lime); } }
 
     /* papel (crema) con grano y bordes rotos */
-    .paper { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); box-shadow: inset 0 0 2.5rem #8a6a3e55; }
-    .lilac-paper { background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); box-shadow: inset 0 0 2.5rem #4a2e6b55; }
+    .paper { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); box-shadow: inset 0 0 2.5rem rgb(0 0 0 / .16); }
+    .lilac-paper { background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); box-shadow: inset 0 0 2.5rem rgb(0 0 0 / .16); }
     .torn { clip-path: var(--torn); }
 
     /* etiqueta de papel rasgado con ▷ */
     .tag { display: inline-flex; align-items: center; gap: .55em; padding: .35em 1em .3em .9em; clip-path: var(--tag); font-size: 1.2rem; letter-spacing: .1em; white-space: nowrap; transition: transform .15s, color .15s; }
     .tag .tri { font-size: .75em; border-left-color: transparent; border-left: .55em solid currentColor; }
     .tag.paper { color: var(--paper-ink); }
-    @media (hover: hover) { .tag:hover { transform: rotate(-2deg) scale(1.04); } }
+    @media (hover: hover) and (pointer: fine) { .tag:hover { transform: rotate(-2deg) scale(1.04); } }
 
     /* cinta adhesiva */
     .tape { position: absolute; width: 4.2rem; height: 1.3rem; background: #b99ae6cc; clip-path: polygon(0 10%, 6% 0, 12% 12%, 18% 0, 100% 6%, 94% 100%, 88% 88%, 82% 100%, 0 92%); z-index: 3; pointer-events: none; }
     .tape.lime { background: #c8f03cb3; }
 
     /* ---------- cabecera ---------- */
-    header.top { position: sticky; top: 0; z-index: 20; background: var(--ink); }
+    header.top { position: sticky; top: 0; z-index: 20; background: var(--ink); padding-top: env(safe-area-inset-top, 0px); }
     header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .8rem; padding-bottom: .7rem; }
     .logo { font-size: 1.45rem; letter-spacing: .16em; }
     nav.menu { display: flex; overflow-x: auto; scrollbar-width: none; font-size: 1.1rem; }
@@ -83,11 +120,11 @@
     nav.menu a { padding: .2rem .45rem; white-space: nowrap; opacity: .85; transition: opacity .15s, color .15s; }
     nav.menu a + a::before { content: "/"; margin-right: .6rem; opacity: .45; color: var(--chalk); }
     nav.menu .star { color: var(--lime); }
-    @media (hover: hover) { nav.menu a:hover { opacity: 1; color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { nav.menu a:hover { opacity: 1; color: var(--lime); } }
 
     /* ---------- paneles ---------- */
     .panel-wrap { padding: clamp(1.5rem, 4vw, 2.75rem) 0; scroll-margin-top: 3.5rem; }
-    .label { display: inline-block; font-size: 1.15rem; letter-spacing: .1em; color: var(--chalk); border-bottom: 1.5px solid var(--chalk); padding: 0 .3rem .1rem 0; margin: 0 0 .8rem .2rem; }
+    .label { font-weight: 400; line-height: 1.4; display: inline-block; font-size: 1.15rem; letter-spacing: .1em; color: var(--chalk); border-bottom: 1.5px solid var(--chalk); padding: 0 .3rem .1rem 0; margin: 0 0 .8rem .2rem; }
     .panel { position: relative; border: 1.6px solid #efe8d8cc; border-radius: 14px; padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 4vw, 3.25rem); filter: none; isolation: isolate; }
     .panel::before { content: ""; position: absolute; inset: -1px; border-radius: 14px; border: 1px solid #efe8d833; transform: rotate(-.25deg); pointer-events: none; }
     .panel.sprigs::after {
@@ -98,8 +135,8 @@
                   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform='translate(34 120) scale(-1 -1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right top / auto clamp(60px, 8vw, 95px) no-repeat;
     }
     .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; font-size: 1.3rem; }
-    .back { opacity: .8; transition: opacity .15s, color .15s; }
-    @media (hover: hover) { .back:hover { opacity: 1; color: var(--lime); } }
+    .back { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; margin: -.6rem 0 0 -.6rem; opacity: .8; }
+    @media (hover: hover) and (pointer: fine) { .back:hover { opacity: 1; color: var(--lime); } }
 
     /* marco ornamental lila (filigrana en las esquinas) */
     .ornate { position: relative; border: 2px solid var(--lilac); outline: 1px solid #b99ae6aa; outline-offset: 6px; }
@@ -117,7 +154,7 @@
     .map { display: grid; gap: 1.5rem; }
     @media (min-width: 58rem) { .map { grid-template-columns: .85fr 1.15fr; align-items: center; } }
     .title { display: inline-block; font-size: clamp(4.2rem, 13vw, 8rem); line-height: .85; letter-spacing: .08em; transform: rotate(-7deg); transform-origin: left bottom; margin: 1.2rem 0 1.6rem .2rem; }
-    .tagline { font-size: clamp(1.2rem, 2.6vw, 1.5rem); letter-spacing: .1em; margin-bottom: 1rem; }
+    .tagline { font-size: clamp(1.2rem, 2.6vw, 1.5rem); letter-spacing: .06em; margin-bottom: 1rem; }
     .explore { display: inline-block; font-size: 1.15rem; letter-spacing: .1em; border-bottom: 2px solid var(--lime); transform: rotate(-3deg); }
     .portrait { position: relative; }
     .portrait img { width: 100%; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(70% 75% at 50% 45%, #000 50%, transparent 92%); mask-image: radial-gradient(70% 75% at 50% 45%, #000 50%, transparent 92%); }
@@ -128,7 +165,7 @@
     .station img, .station svg.pic { height: clamp(5rem, 11vw, 7.5rem); width: 100%; max-width: 12rem; object-fit: contain; transition: transform .25s; -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent); mask-image: radial-gradient(closest-side, #000 70%, transparent); }
     .station svg.pic { -webkit-mask-image: none; mask-image: none; max-width: 8.5rem; }
     .station .knot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--lime); }
-    @media (hover: hover) { .station:hover img, .station:hover svg.pic { transform: translateY(-4px) rotate(-2deg); } .station:hover .tag { color: var(--ink); background-color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { .station:hover img, .station:hover svg.pic { transform: translateY(-4px) rotate(-2deg); } .station:hover .tag { color: var(--ink); background-color: var(--lime); } }
 
     /* ---------- 02 canciones ---------- */
     .records { display: grid; gap: 2rem; }
@@ -143,20 +180,20 @@
     }
     .rec:nth-child(odd) .sleeve { transform: rotate(-3deg); } .rec:nth-child(even) .sleeve { transform: rotate(2.5deg); }
     .rec:nth-child(odd) .vinyl { transform: rotate(-3deg); }
-    @media (hover: hover) { .rec:hover .sleeve { transform: rotate(0) translateY(-4px); } .rec:hover .vinyl { transform: translateX(16%) rotate(40deg); } }
+    @media (hover: hover) and (pointer: fine) { .rec:hover .sleeve { transform: rotate(0) translateY(-4px); } .rec:hover .vinyl { transform: translateX(16%) rotate(40deg); } }
     .sleeve .tape { top: -.6rem; left: 50%; margin-left: -2.1rem; transform: rotate(-4deg); }
-    .sleeve h3 { position: relative; z-index: 2; }
+    .sleeve .t { position: relative; z-index: 2; display: block; line-height: 1; }
     .sleeve img { position: absolute; z-index: 1; }
-    .sleeve-1408 h3 { font-family: var(--gothic); font-size: clamp(2.8rem, 8vw, 4.4rem); }
+    .sleeve-1408 .t { font-family: var(--gothic); font-size: clamp(2.8rem, 8vw, 4.4rem); }
     .sleeve-1408 { outline: 1.5px solid var(--lilac-ink); outline-offset: -10px; }
     .sleeve-ddp { background: var(--ink); border: 1.6px solid var(--chalk); color: var(--chalk); align-content: start; }
-    .sleeve-ddp h3 { font-size: clamp(1.3rem, 3.2vw, 1.9rem); letter-spacing: .12em; line-height: 1.05; transform: rotate(-6deg); margin-top: -4%; }
+    .sleeve-ddp .t { font-size: clamp(1.3rem, 3.2vw, 1.9rem); letter-spacing: .12em; line-height: 1.05; transform: rotate(-6deg); margin-top: -4%; }
     .sleeve-ddp img { left: 8%; bottom: 6%; width: 84%; height: 52%; object-fit: cover; object-position: 50% 100%; }
     .sleeve-rio { align-content: start; padding-top: 10%; }
-    .sleeve-rio h3 { font: 1.25rem/1.05 var(--serif); letter-spacing: .06em; text-transform: uppercase; font-size: clamp(1rem, 2.6vw, 1.45rem); }
+    .sleeve-rio .t { font: 1.25rem/1.05 var(--serif); letter-spacing: .06em; text-transform: uppercase; font-size: clamp(1rem, 2.6vw, 1.45rem); }
     .sleeve-rio img { left: 10%; bottom: 8%; width: 80%; height: 50%; object-fit: cover; border: 1px solid var(--paper-ink); }
     .sleeve-blv { background: var(--blue) var(--paper-bg); background-blend-mode: multiply; color: var(--chalk); }
-    .sleeve-blv h3 { font-size: clamp(1.6rem, 4.5vw, 2.6rem); letter-spacing: .14em; transform: rotate(-4deg); }
+    .sleeve-blv .t { font-size: clamp(1.6rem, 4.5vw, 2.6rem); letter-spacing: .14em; transform: rotate(-4deg); }
     .sleeve-blv .moon { position: absolute; top: 12%; right: 14%; width: 18%; aspect-ratio: 1; border-radius: 50%; background: var(--lime); }
     .sleeve-blv .stars { position: absolute; left: 12%; bottom: 14%; font-size: 1.2rem; letter-spacing: .6em; color: var(--chalk); opacity: .9; }
 
@@ -169,7 +206,7 @@
     .track .open { justify-self: start; font-size: 1.05rem; }
     .track[aria-current="true"] .name { color: var(--lime); }
     .circle-play[aria-disabled="true"] { opacity: .45; cursor: default; }
-    @media (hover: hover) { .track .circle-play:not([aria-disabled="true"]):hover { color: var(--ink); background: var(--lime); border-color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { .track .circle-play:not([aria-disabled="true"]):hover { color: var(--ink); background: var(--lime); border-color: var(--lime); } }
     .headphones { width: 5.5rem; margin: 1rem 0 0 auto; }
 
     /* ---------- 03 dentro de una canción ---------- */
@@ -187,6 +224,12 @@
     .tabs [role=tab] { padding: .15rem .8rem; letter-spacing: .08em; opacity: .75; transition: opacity .15s, background .15s, color .15s; }
     .tabs [role=tab] + [role=tab]::before { content: "/"; margin: 0 .9rem 0 -.9rem; opacity: .5; color: var(--chalk); }
     .tabs [role=tab][aria-selected="true"] { opacity: 1; background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); clip-path: var(--tag); }
+    .swap { animation: swap .22s cubic-bezier(.23, 1, .32, 1); }
+    @keyframes swap { from { opacity: 0; transform: translateY(6px); } }
+    @media (prefers-reduced-motion: reduce) { .swap { animation: fade .2s ease-out; } @keyframes fade { from { opacity: 0; } } }
+    .song-title:focus { outline: none; }
+    .song-title:focus-visible { outline: 2px dashed var(--lime); outline-offset: 6px; }
+    .contact-note { color: var(--muted); font-size: 1.05rem; text-align: center; }
     .tab-body p { font: 1.12rem/1.6 var(--serif); letter-spacing: 0; color: var(--chalk); max-width: 36rem; }
     .tab-body p + p { margin-top: .7rem; }
     .tab-body .lead { font-style: italic; font-size: 1.25rem; }
@@ -205,8 +248,8 @@
     .page.left { border-radius: 6px 0 0 10px; }
     .page.right { border-radius: 0 6px 10px 0; }
     @media (min-width: 48rem) {
-      .page.left { box-shadow: inset -2.5rem 0 2.5rem -2rem #6b4f2a88, inset 0 0 2.5rem #8a6a3e55; }
-      .page.right { box-shadow: inset 2.5rem 0 2.5rem -2rem #6b4f2a88, inset 0 0 2.5rem #8a6a3e55; }
+      .page.left { box-shadow: inset -2.5rem 0 2.5rem -2rem rgb(0 0 0 / .3), inset 0 0 2.5rem rgb(0 0 0 / .16); }
+      .page.right { box-shadow: inset 2.5rem 0 2.5rem -2rem rgb(0 0 0 / .3), inset 0 0 2.5rem rgb(0 0 0 / .16); }
       .ribbon { position: absolute; left: 50%; top: -1rem; bottom: -2.5rem; width: 1.3rem; margin-left: -.65rem; background: var(--lilac); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 94%, 0 100%); z-index: 2; opacity: .92; }
     }
     .herbario { position: relative; border: 1.5px solid var(--paper-ink); outline: 1px solid #2b241b88; outline-offset: 4px; padding: 1.1rem .8rem; text-align: center; margin-bottom: 1.5rem; }
@@ -222,7 +265,7 @@
     .borradores { position: absolute; left: 1.5rem; bottom: 1rem; transform: rotate(-4deg); }
     .borradores.tag { background: var(--lilac); color: var(--lilac-ink); }
     .clip { position: absolute; left: .6rem; bottom: 2.3rem; width: .8rem; height: 2rem; border: 2px solid #9a948a; border-radius: .5rem; z-index: 2; }
-    .turn { position: absolute; right: 1.5rem; bottom: 1rem; font-size: 1.1rem; }
+    .turn { position: absolute; right: 3.4rem; bottom: 1rem; font-size: 1.1rem; }
     .page.right::after { content: ""; position: absolute; right: 0; bottom: 0; width: 2.6rem; height: 2.6rem; background: linear-gradient(225deg, var(--ink) 50%, #cdb88f 50%, #e9dcc0 75%); border-bottom-right-radius: 10px; }
     .page-sprig { position: absolute; width: 2rem; height: 5.5rem; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; filter: brightness(.5) saturate(.7); opacity: .8; }
 
@@ -231,7 +274,7 @@
     .cinema iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
     .cinema-cap { margin: 1.4rem 0 0; text-align: center; font-size: 1.25rem; letter-spacing: .16em; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.5rem; }
     .cinema-cap a { font-size: 1.05rem; color: var(--muted); letter-spacing: .08em; }
-    @media (hover: hover) { .cinema-cap a:hover { color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { .cinema-cap a:hover { color: var(--lime); } }
     .strips { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2.25rem; }
     .strip { display: grid; justify-items: center; gap: .6rem; }
     .film { position: relative; padding: 14px 10px; background: #111; border: 1px solid #333; transform: rotate(-1.5deg); transition: transform .2s; }
@@ -239,7 +282,7 @@
     .film::before, .film::after { content: ""; position: absolute; left: 6px; right: 6px; height: 6px; background: repeating-linear-gradient(90deg, var(--chalk) 0 7px, transparent 7px 14px); opacity: .7; border-radius: 1px; }
     .film::before { top: 4px; } .film::after { bottom: 4px; }
     .film img { width: clamp(10rem, 30vw, 14rem); aspect-ratio: 16 / 8; object-fit: cover; }
-    @media (hover: hover) { .strip:hover .film { transform: rotate(0) scale(1.03); } }
+    @media (hover: hover) and (pointer: fine) { .strip:hover .film { transform: rotate(0) scale(1.03); } }
     .strip .tag { margin-top: -.6rem; transform: rotate(-2deg); }
 
     /* ---------- 06 sobre mí y contacto ---------- */
@@ -259,20 +302,21 @@
     .letter .card { position: absolute; top: 18%; left: 16%; right: 16%; padding: .7rem .5rem .6rem; text-align: center; font-size: 1.45rem; letter-spacing: .1em; transform: rotate(-3deg); transition: transform .25s; }
     .letter .card span { border-bottom: 2px solid #9cc22a; }
     .letter .card small { display: block; font-size: 1.2rem; }
-    @media (hover: hover) { .letter:hover .card { transform: rotate(-3deg) translateY(-12px); } }
+    @media (hover: hover) and (pointer: fine) { .letter:hover .card { transform: rotate(-3deg) translateY(-12px); } }
     .platforms { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; font-size: 1.3rem; letter-spacing: .1em; }
     .platforms a { display: inline-flex; align-items: center; gap: .7rem; transition: color .15s; }
     .platforms a span { border-bottom: 1.5px solid var(--lime); }
     .platforms a::after { content: "→"; }
     .platforms svg { width: 1.4rem; height: 1.4rem; flex: none; }
-    @media (hover: hover) { .platforms a:hover { color: var(--lime); } }
+    @media (hover: hover) and (pointer: fine) { .platforms a:hover { color: var(--lime); } }
 
     footer { padding: 1.5rem 0 calc(2rem + env(safe-area-inset-bottom)); }
-    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; font-size: 1.1rem; letter-spacing: .1em; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; font-size: 1.1rem; letter-spacing: .05em; color: var(--muted); }
     footer a:hover { color: var(--lime); }
   </style>
 </head>
 <body>
+  <a class="skip" href="#contenido">saltar al contenido</a>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
@@ -284,7 +328,7 @@
 
   <header class="top">
     <div class="wrap">
-      <a class="logo" href="#inicio">KAILKOB</a>
+      <a class="logo" href="#inicio" translate="no">KAILKOB</a>
       <nav class="menu" aria-label="Secciones">
         <a href="#canciones">canciones</a>
         <a href="#textos">textos</a>
@@ -295,21 +339,21 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap" id="contenido" tabindex="-1">
 
     <!-- 01 / EL MAPA -->
-    <section class="panel-wrap" id="inicio">
+    <section class="panel-wrap" id="inicio" aria-labelledby="h-inicio">
       <p class="label">01 / el mapa</p>
       <div class="panel sprigs">
         <div class="map">
           <div>
-            <h1 class="title" aria-label="Kailkob">KAILKOB</h1>
+            <h1 class="title" id="h-inicio" translate="no">KAILKOB</h1>
             <p class="tagline">canciones, textos y otras criaturas</p>
             <p class="explore">toca para explorar ↓</p>
           </div>
           <div class="portrait">
             <!-- EDITAR: imagen provisional recortada de la maqueta; sustituir por el original (mismo nombre) -->
-            <img src="img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340">
+            <img src="img/mapa-retrato.jpg" fetchpriority="high" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340">
           </div>
         </div>
         <nav class="stations" aria-label="Explorar">
@@ -322,27 +366,27 @@
     </section>
 
     <!-- 02 / CANCIONES -->
-    <section class="panel-wrap" id="canciones">
-      <p class="label">02 / canciones</p>
+    <section class="panel-wrap" id="canciones" aria-labelledby="h-canciones">
+      <h2 class="label" id="h-canciones">02 / canciones</h2>
       <div class="panel sprigs">
         <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
         <div class="records">
           <div class="sleeves">
             <div class="rec"><span class="vinyl" style="--disc: var(--lime)" aria-hidden="true"></span>
-            <button class="sleeve sleeve-blv" type="button" data-open="blv" aria-label="Abrir BLV W/ME">
-              <span class="tape lime"></span><span class="moon"></span><h3>BLV<br>W/ME</h3><span class="stars">✦ ✧ ✦</span>
+            <button class="sleeve sleeve-blv" type="button" data-open="blv" aria-label="Abrir la ficha de BLV W/ME">
+              <span class="tape lime"></span><span class="moon"></span><span class="t" translate="no">BLV<br>W/ME</span><span class="stars">✦ ✧ ✦</span>
             </button></div>
             <div class="rec"><span class="vinyl" style="--disc: var(--lilac)" aria-hidden="true"></span>
-            <button class="sleeve sleeve-1408 lilac-paper" type="button" data-open="1408" aria-label="Abrir 1408">
-              <span class="tape"></span><h3>1408</h3>
+            <button class="sleeve sleeve-1408 lilac-paper" type="button" data-open="1408" aria-label="Abrir la ficha de 1408">
+              <span class="tape"></span><span class="t">1408</span>
             </button></div>
             <div class="rec"><span class="vinyl" style="--disc: var(--lime)" aria-hidden="true"></span>
-            <button class="sleeve sleeve-ddp" type="button" data-open="ddp" aria-label="Abrir Ding Dong Piro">
-              <h3>DING<br>DONG PIRO</h3><img class="screen" src="img/ding-dong-piro.jpg" alt="" width="229" height="202">
+            <button class="sleeve sleeve-ddp" type="button" data-open="ddp" aria-label="Abrir la ficha de Ding Dong Piro">
+              <span class="t" translate="no">DING<br>DONG PIRO</span><img class="screen" src="img/ding-dong-piro.jpg" alt="" width="229" height="202">
             </button></div>
             <div class="rec"><span class="vinyl" style="--disc: var(--orange)" aria-hidden="true"></span>
-            <button class="sleeve sleeve-rio paper" type="button" data-open="rio" aria-label="Abrir Que nos sofoque el río">
-              <span class="tape"></span><h3>Que nos<br>sofoque<br>el río</h3><img src="img/que-nos-sofoque-el-rio.jpg" alt="" width="232" height="202">
+            <button class="sleeve sleeve-rio paper" type="button" data-open="rio" aria-label="Abrir la ficha de Que nos sofoque el río">
+              <span class="tape"></span><span class="t" translate="no">Que nos<br>sofoque<br>el río</span><img src="img/que-nos-sofoque-el-rio.jpg" alt="" width="232" height="202">
             </button></div>
           </div>
           <div>
@@ -354,10 +398,10 @@
     </section>
 
     <!-- 03 / DENTRO DE UNA CANCIÓN -->
-    <section class="panel-wrap" id="cancion">
-      <p class="label">03 / dentro de una canción</p>
+    <section class="panel-wrap" id="cancion" aria-labelledby="h-cancion">
+      <h2 class="label" id="h-cancion">03 / dentro de una canción</h2>
       <div class="panel song-panel ornate" style="border-radius:0">
-        <h2 class="song-title" id="song-title">1408</h2>
+        <h3 class="song-title" id="song-title" tabindex="-1" translate="no">1408</h3>
         <div class="song-body">
           <div class="song-art lilac-paper torn"><img id="song-img" src="img/1408.jpg" alt="" width="216" height="202"></div>
           <div>
@@ -367,19 +411,19 @@
             </div>
             <p style="margin:-.6rem 0 1.4rem 4.2rem"><span class="listen-label" id="song-listen">escuchar</span></p>
             <div class="tabs" role="tablist" aria-label="Sobre la canción">
-              <button role="tab" aria-selected="true" data-tab="letra">letra</button>
-              <button role="tab" aria-selected="false" data-tab="historia">historia</button>
-              <button role="tab" aria-selected="false" data-tab="creditos">créditos</button>
+              <button role="tab" id="tab-letra" aria-controls="tab-body" aria-selected="true" data-tab="letra">letra</button>
+              <button role="tab" id="tab-historia" aria-controls="tab-body" aria-selected="false" tabindex="-1" data-tab="historia">historia</button>
+              <button role="tab" id="tab-creditos" aria-controls="tab-body" aria-selected="false" tabindex="-1" data-tab="creditos">créditos</button>
             </div>
-            <div class="tab-body" id="tab-body" role="tabpanel" aria-live="polite"></div>
+            <div class="tab-body" id="tab-body" role="tabpanel" aria-labelledby="tab-letra" tabindex="0"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 04 / TEXTOS -->
-    <section class="panel-wrap" id="textos">
-      <p class="label">04 / textos</p>
+    <section class="panel-wrap" id="textos" aria-labelledby="h-textos">
+      <h2 class="label" id="h-textos">04 / textos</h2>
       <div class="panel">
         <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
         <div class="book-wrap">
@@ -390,18 +434,16 @@
               <div class="herbario"><h3>Herbario<br>nocturno</h3></div>
               <h4>cosas que no sé decir</h4>
               <p>A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
-              <!-- EDITAR: enlace al texto completo -->
-              <a class="arrow" href="#textos">leer</a>
+              <!-- EDITAR: cuando haya texto completo, añade aquí: <a class="arrow" href="URL">leer</a> -->
               <span class="clip" aria-hidden="true"></span>
               <span class="borradores tag">borradores</span>
             </article>
             <article class="page right paper">
               <p class="scribble"><s>notas</s><br>ideas<br>&nbsp;&nbsp;letras<br>&nbsp;&nbsp;&nbsp;&nbsp;recuerdos</p>
               <p class="big">hay canciones<br>que empiezan<br>donde no llego.</p>
-              <!-- EDITAR: enlace al texto completo -->
-              <a class="arrow" href="#textos">leer</a>
+              <!-- EDITAR: cuando haya texto completo, añade aquí: <a class="arrow" href="URL">leer</a> -->
               <span class="page-sprig" style="right:1.2rem; top:5rem" aria-hidden="true"></span>
-              <span class="turn">pasar página →</span>
+              <a class="turn arrow" href="#visuales">pasar página</a>
             </article>
           </div>
         </div>
@@ -409,47 +451,46 @@
     </section>
 
     <!-- 05 / VISUALES -->
-    <section class="panel-wrap" id="visuales">
-      <p class="label">05 / visuales</p>
+    <section class="panel-wrap" id="visuales" aria-labelledby="h-visuales">
+      <h2 class="label" id="h-visuales">05 / visuales</h2>
       <div class="panel sprigs">
         <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
-        <h2 class="gothic-head">Pequeño cine</h2>
+        <h3 class="gothic-head">Pequeño cine</h3>
         <div class="cinema ornate">
           <iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <p class="cinema-cap"><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></p>
         <div class="strips">
           <!-- EDITAR: cambia cada href por el vídeo concreto -->
-          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-fragmentos.jpg" alt="Fotograma: un río de noche bajo la luna" loading="lazy" width="160" height="75"></span><span class="tag paper">fragmentos <span class="tri"></span></span></a>
-          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-pruebas.jpg" alt="Fotograma: una rata entre la hierba" loading="lazy" width="160" height="75"></span><span class="tag paper">pruebas <span class="tri"></span></span></a>
+          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-fragmentos.jpg" alt="Fotograma: un río de noche bajo la luna" loading="lazy" width="160" height="75"></span><span class="tag paper">fragmentos <span class="tri"></span></span><span class="sr-only">: canal de YouTube</span></a>
+          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-pruebas.jpg" alt="Fotograma: una rata entre la hierba" loading="lazy" width="160" height="75"></span><span class="tag paper">pruebas <span class="tri"></span></span><span class="sr-only">: canal de YouTube</span></a>
         </div>
       </div>
     </section>
 
     <!-- 06 / SOBRE MÍ Y CONTACTO -->
-    <section class="panel-wrap" id="sobre-mi">
-      <p class="label">06 / sobre mí y contacto</p>
+    <section class="panel-wrap" id="sobre-mi" aria-labelledby="h-sobre">
+      <h2 class="label" id="h-sobre">06 / sobre mí y contacto</h2>
       <div class="panel sprigs">
         <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
         <div class="about">
           <div class="about-portrait"><span class="tape"></span><img class="torn" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob sobre papel rasgado" loading="lazy" width="205" height="360"></div>
           <div>
             <ul class="words"><li>música</li><li>palabras</li><li>obsesiones</li></ul>
-            <!-- EDITAR: biografía corta -->
-            <p class="bio">[Biografía corta de Kailkob: de dónde viene, qué hace, qué busca con sus canciones.]</p>
+            <!-- EDITAR: biografía corta → <p class="bio">…</p> -->
           </div>
           <div class="contact">
-            <!-- EDITAR: email de contacto -->
-            <a class="letter" href="mailto:[email]">
+            <!-- EDITAR: cuando haya email, cambia este <div class="letter"> por <a class="letter" href="mailto:EMAIL"> y borra la nota -->
+            <div class="letter">
               <svg viewBox="0 0 200 150" aria-hidden="true"><use href="#envelope"/></svg>
-              <span class="card paper"><small>✉</small><span>escríbeme</span></span>
-            </a>
+              <span class="card paper"><small aria-hidden="true">✉</small><span>escríbeme</span></span>
+            </div>
+            <p class="contact-note">el email llega pronto; mientras, escucha en:</p>
             <ul class="platforms">
               <li><a href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-spotify"/></svg><span>Spotify</span></a></li>
               <li><a href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg><span>Apple Music</span></a></li>
               <li><a href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-youtube"/></svg><span>YouTube</span></a></li>
-              <!-- EDITAR: enlace de Instagram -->
-              <li><a href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span>Instagram</span></a></li>
+              <!-- EDITAR: Instagram → <li><a href="URL" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span>Instagram</span></a></li> -->
             </ul>
           </div>
         </div>
@@ -459,7 +500,7 @@
 
   <footer>
     <div class="wrap">
-      <span>© <span id="y">2026</span> KAILKOB · canciones, textos y otras criaturas</span>
+      <span>© <span id="y">2026</span> <span translate="no">KAILKOB</span> · canciones, textos y otras criaturas</span>
       <a href="#inicio">volver al mapa ↑</a>
     </div>
   </footer>
@@ -467,7 +508,8 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    /* EDITAR: datos de cada canción. Deja "" lo que aún no tengas. */
+    /* EDITAR: datos de cada canción. Deja "" lo que aún no tengas.
+       lang: idioma de la letra ("ca" catalán, "es" castellano, "en" inglés). */
     const SONGS = [
       { id: 'blv', title: 'BLV W/ME', img: 'img/rata-luna.jpg',
         meta: 'single · 18 sep 2025',
@@ -477,8 +519,8 @@
       { id: '1408', title: '1408', img: 'img/1408.jpg',
         meta: 'single · 28 feb 2025 · 3:38',
         href: 'https://music.apple.com/us/album/1408-single/1798072933',
-        letra: '', historia: '',
-        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a class="arrow" href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">YouTube</a>']] },
+        lang: 'ca', letra: '', historia: '',
+        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a class="arrow" href="#visuales">en Pequeño cine</a>']] },
       { id: 'ddp', title: 'Ding Dong Piro', img: 'img/rata-roca.jpg',
         meta: '', href: '',
         letra: '',
@@ -489,14 +531,18 @@
     ];
 
     const $ = id => document.getElementById(id);
-    let current = SONGS[1], tab = 'letra';
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const TABS = ['letra', 'historia', 'creditos'];
+    let current = SONGS[1], tab = 'creditos';
 
     // lista de canciones
     $('tracklist').innerHTML = SONGS.map(s => `
       <li class="track" data-id="${s.id}">
-        <a class="circle-play" ${s.href ? `href="${s.href}" target="_blank" rel="noopener"` : 'aria-disabled="true" role="link"'} aria-label="Escuchar ${s.title}${s.href ? '' : ' (pronto)'}"><span class="tri"></span></a>
-        <span class="name">${s.title}</span>
-        <span>${s.meta ? `<span class="meta">${s.meta}</span> · ` : '<span class="meta">pronto</span> · '}<button class="arrow open" type="button" data-open="${s.id}">abrir</button></span>
+        ${s.href
+          ? `<a class="circle-play" href="${s.href}" target="_blank" rel="noopener" aria-label="Escuchar ${s.title} en Apple Music"><span class="tri"></span></a>`
+          : `<span class="circle-play" aria-disabled="true" role="img" aria-label="${s.title}: pronto"><span class="tri"></span></span>`}
+        <span class="name" translate="no">${s.title}</span>
+        <span><span class="meta">${s.meta || 'pronto'}</span> · <button class="arrow open" type="button" data-open="${s.id}" aria-label="Abrir la ficha de ${s.title}">abrir ficha</button></span>
       </li>`).join('');
 
     // forma de onda decorativa
@@ -505,36 +551,71 @@
       return `<line x1="${i * 4 + 2}" x2="${i * 4 + 2}" y1="${20 - h / 2}" y2="${20 + h / 2}"/>`;
     }).join('');
 
-    function render() {
+    function render(animate) {
       const s = current;
       $('song-title').textContent = s.title;
       $('song-img').src = s.img;
       const play = $('song-play');
-      if (s.href) { play.href = s.href; play.removeAttribute('aria-disabled'); $('song-listen').textContent = 'escuchar'; }
-      else { play.removeAttribute('href'); play.setAttribute('aria-disabled', 'true'); $('song-listen').textContent = 'pronto'; }
-      document.querySelectorAll('.track').forEach(t => t.setAttribute('aria-current', t.dataset.id === s.id));
-      document.querySelectorAll('[role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === tab));
+      if (s.href) { play.href = s.href; play.removeAttribute('aria-disabled'); play.setAttribute('aria-label', `Escuchar ${s.title} en Apple Music`); $('song-listen').textContent = 'escuchar'; }
+      else { play.removeAttribute('href'); play.setAttribute('aria-disabled', 'true'); play.setAttribute('aria-label', `${s.title}: pronto`); $('song-listen').textContent = 'pronto'; }
+      document.querySelectorAll('.track').forEach(t => t.dataset.id === s.id ? t.setAttribute('aria-current', 'true') : t.removeAttribute('aria-current'));
+      document.querySelectorAll('[role=tab]').forEach(b => {
+        const on = b.dataset.tab === tab;
+        b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1;
+      });
+      $('tab-body').setAttribute('aria-labelledby', 'tab-' + tab);
+      const lang = s.lang ? ` lang="${s.lang}"` : '';
       let html;
-      if (tab === 'letra') html = s.letra ? `<p class="lead">Aquí empieza la canción.</p><p class="lyrics">${s.letra}</p>` : '<p class="pending">La letra llegará pronto.</p>';
+      if (tab === 'letra') html = s.letra ? `<p class="lead">Aquí empieza la canción.</p><p class="lyrics"${lang}>${s.letra}</p>` : '<p class="pending">La letra llegará pronto.</p>';
       else if (tab === 'historia') html = s.historia ? `<p class="lead">Aquí empieza la canción.</p><p>${s.historia}</p>` : '<p class="pending">Esta historia todavía se está escribiendo.</p>';
-      else html = s.creditos.length ? `<dl>${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '<p class="pending">Créditos pronto.</p>';
-      $('tab-body').innerHTML = html;
+      else html = s.creditos.length ? `<dl>${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '<p class="pending">Los créditos llegarán pronto.</p>';
+      const body = $('tab-body');
+      body.innerHTML = html;
+      if (animate) { body.classList.remove('swap'); void body.offsetWidth; body.classList.add('swap'); }
+    }
+
+    function openSong(id, fromUser) {
+      const s = SONGS.find(x => x.id === id);
+      if (!s) return;
+      current = s;
+      tab = s.letra ? 'letra' : s.historia ? 'historia' : 'creditos';
+      render(fromUser);
+      history.replaceState(null, '', '#cancion-' + id);   // enlace directo a la ficha
+      if (fromUser) {
+        $('cancion').scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+        $('song-title').focus({ preventScroll: true });
+      }
     }
 
     document.addEventListener('click', e => {
       const o = e.target.closest('[data-open]');
-      if (o) {
-        current = SONGS.find(s => s.id === o.dataset.open);
-        tab = current.letra ? 'letra' : current.historia ? 'historia' : 'creditos';
-        render();
-        $('cancion').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-      }
+      if (o) openSong(o.dataset.open, true);
       const t = e.target.closest('[role=tab]');
-      if (t) { tab = t.dataset.tab; render(); }
-      if (e.target.closest('[aria-disabled="true"]')) e.preventDefault();
+      if (t) { tab = t.dataset.tab; render(true); }
     });
-    tab = 'creditos';
-    render();
+
+    // pestañas con teclado: flechas, Inicio y Fin
+    document.querySelector('[role=tablist]').addEventListener('keydown', e => {
+      const i = TABS.indexOf(tab);
+      const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: TABS.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      tab = TABS[(next + TABS.length) % TABS.length];
+      render(true);
+      $('tab-' + tab).focus();
+    });
+
+    // los enlaces externos avisan de que abren otra pestaña
+    document.querySelectorAll('a[target=_blank]').forEach(a => {
+      const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = ' (se abre en otra pestaña)';
+      a.append(sr);
+      if (a.hasAttribute('aria-label')) a.setAttribute('aria-label', a.getAttribute('aria-label') + ' (se abre en otra pestaña)');
+    });
+
+    // enlace directo: kailkob.github.io/#cancion-1408
+    const m = location.hash.match(/^#cancion-(.+)$/);
+    if (m && SONGS.some(x => x.id === m[1])) { openSong(m[1], false); addEventListener('load', () => setTimeout(() => $('cancion').scrollIntoView({ behavior: 'instant' }), 60)); }
+    else render(false);
   </script>
 </body>
 </html>
