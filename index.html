@@ -260,6 +260,18 @@
     @media (max-width: 64rem) { header nav { gap: .9rem; font-size: 1rem; } }
     .logo { font-size: 1.6rem; letter-spacing: .14em; justify-self: start; }
     .pill { justify-self: end; display: inline-flex; align-items: center; gap: .5rem; padding: .35rem 1rem .3rem; background: var(--lilac) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); clip-path: var(--tag); font-size: 1.1rem; letter-spacing: .08em; }
+    .listen-menu { position: relative; justify-self: end; }
+    .pill[aria-expanded="true"] { background-color: var(--lime); }
+    .listen-pop { position: absolute; right: 0; top: calc(100% + .7rem); z-index: 30; min-width: 13.5rem; background: var(--ink); border: 1.5px solid var(--lime); box-shadow: 4px 4px 0 var(--lime); transform: rotate(1.5deg); transform-origin: top right; animation: pop-in .22s var(--ease-out); }
+    .listen-pop[hidden] { display: none; }
+    .listen-pop .win-bar { font-size: 1rem; letter-spacing: .04em; }
+    .listen-pop ul { list-style: none; margin: 0; padding: .4rem; }
+    .listen-pop a { display: flex; align-items: center; gap: .65rem; padding: .5rem .6rem; font-size: 1.2rem; letter-spacing: .06em; color: var(--chalk); }
+    .listen-pop a::after { content: "→"; margin-left: auto; color: var(--lime); }
+    .listen-pop svg { width: 1.3rem; height: 1.3rem; flex: none; }
+    .listen-pop a:focus-visible { outline: 2px dashed var(--lime); outline-offset: -2px; }
+    @media (hover: hover) and (pointer: fine) { .listen-pop a:hover { background: var(--lime); color: var(--ink); } .listen-pop a:hover::after { color: var(--ink); } }
+    @keyframes pop-in { from { transform: rotate(1.5deg) translateY(-6px) scale(.96); } }
     .pill .tri, .tri { display: inline-block; width: 0; height: 0; border-left: .55em solid currentColor; border-top: .34em solid transparent; border-bottom: .34em solid transparent; }
     @media (max-width: 46rem) { header nav { display: none; } }
     @media (hover: hover) and (pointer: fine) { header nav a:hover { opacity: 1; color: var(--lime); } .pill:hover { background-color: var(--lime); } }
@@ -546,7 +558,17 @@
         <a href="#letras">letras</a>
         <a href="#sobre-mi">sobre mí</a>
       </nav>
-      <a class="pill press" href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><span class="tri"></span>escuchar</a>
+      <div class="listen-menu">
+        <button class="pill press" type="button" id="listen-btn" aria-expanded="false" aria-controls="listen-pop"><span class="tri"></span>escuchar</button>
+        <div class="listen-pop" id="listen-pop" hidden>
+          <div class="win-bar"><span>¿dónde escuchas?</span><span aria-hidden="true">✕</span></div>
+          <ul aria-label="Escuchar a Kailkob en">
+            <li><a href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</a></li>
+            <li><a href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-apple"/></svg>Apple Music</a></li>
+            <li><a href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -732,6 +754,17 @@
     ];
 
     const $ = id => document.getElementById(id);
+
+    /* botón «escuchar»: ventanita para elegir reproductor */
+    (() => {
+      const btn = $('listen-btn'), pop = $('listen-pop');
+      const open = on => { pop.hidden = !on; btn.setAttribute('aria-expanded', on); };
+      btn.addEventListener('click', () => open(pop.hidden));
+      pop.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
+      document.addEventListener('click', e => { if (!pop.hidden && !e.target.closest('.listen-menu')) open(false); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pop.hidden) { open(false); btn.focus(); } });
+      document.addEventListener('focusin', e => { if (!pop.hidden && !e.target.closest('.listen-menu')) open(false); });
+    })();
 
     /* Portadas dibujadas a línea (símbolos #d-*) */
     function art(id) {
