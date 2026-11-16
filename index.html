@@ -126,12 +126,16 @@
     .num { font-size: 1rem; color: var(--muted); letter-spacing: .12em; }
 
     /* canciones */
-    .songs { display: grid; gap: 2.5rem 2rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+    .songs { display: grid; gap: 2.5rem clamp(1rem, 3vw, 2rem); grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 60rem) { .songs { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 34rem) { .song h3 { font-size: 1.1rem; letter-spacing: .14em; } }
     .song { text-align: center; }
     .frame { position: relative; padding: 6px; }
     .frame::before { content: ""; position: absolute; inset: 0; border: 2px solid var(--chalk); filter: url(#rough); pointer-events: none; z-index: 1; }
     .frame img { width: 100%; aspect-ratio: 8 / 7; object-fit: cover; mix-blend-mode: screen; }
     .song h3 { font-size: 1.35rem; letter-spacing: .22em; text-transform: uppercase; margin: 1rem 0 .55rem; }
+    .song .meta { font-size: .95rem; color: var(--muted); letter-spacing: .08em; margin: -.25rem 0 .6rem; }
+    .cover-draw { width: 100%; aspect-ratio: 8 / 7; display: block; background: #000; }
     .song-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.4rem; font-size: 1.15rem; }
     .play-link { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
     .play-link span:last-child { border-bottom: 1.5px solid currentColor; }
@@ -166,6 +170,12 @@
     .sprig.flip { transform: scaleX(-1); }
 
     /* visuales */
+    .feature { margin: 0 0 2.5rem; }
+    .feature .frame { padding: 8px; }
+    .feature iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+    .feature figcaption { margin-top: .7rem; font-size: 1.3rem; letter-spacing: .14em; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; }
+    .feature figcaption a { font-size: 1.1rem; color: var(--muted); }
+    @media (hover: hover) { .feature figcaption a:hover { color: var(--lime); } }
     .films { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
     .film { display: block; }
     .film .frame img { aspect-ratio: 16 / 7; }
@@ -276,6 +286,27 @@
         -->
         <div class="songs">
           <article class="song">
+            <!-- EDITAR: portada provisional dibujada; sustitúyela por <img src="img/blv-w-me.jpg" ...> -->
+            <div class="frame"><svg class="cover-draw" viewBox="0 0 160 140" role="img" aria-label="Portada provisional de BLV W/ME: dos figuras bajo una luna lila">
+              <g filter="url(#rough)">
+                <circle cx="112" cy="38" r="18" fill="var(--lilac)"/>
+                <g fill="var(--chalk)"><circle cx="30" cy="22" r="1"/><circle cx="58" cy="14" r="1.2"/><circle cx="78" cy="34" r=".9"/><circle cx="140" cy="76" r="1"/><circle cx="18" cy="60" r=".9"/></g>
+                <path d="M0 112 C30 104 55 108 80 104 S130 100 160 108" fill="none" stroke="var(--chalk)" stroke-width="1.4"/>
+                <g fill="none" stroke="var(--chalk)" stroke-width="1.6" stroke-linecap="round">
+                  <circle cx="66" cy="70" r="6"/><path d="M66 76 v20 M66 96 l-6 12 M66 96 l6 12 M66 82 l9 6"/>
+                  <circle cx="90" cy="70" r="6"/><path d="M90 76 v20 M90 96 l-6 12 M90 96 l6 12 M90 82 l-9 6"/>
+                </g>
+                <path d="M74 88 h8" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round"/>
+                <g stroke="var(--chalk)" stroke-width="1" fill="none" opacity=".8"><path d="M12 140 l4-22 M20 140 l-2-18 M140 140 l3-20 M150 140 l-3-16 M30 140 l5-14"/></g>
+              </g>
+            </svg></div>
+            <h3>BLV W/ME</h3>
+            <p class="meta">single · 18 sep 2025</p>
+            <div class="song-actions">
+              <button class="play-link" type="button" data-song="BLV W/ME" data-audio="" data-href="https://music.apple.com/us/album/blv-w-me-single/1841047244"><span class="tri"></span><span>escuchar</span></button>
+            </div>
+          </article>
+          <article class="song">
             <div class="frame"><img src="img/ding-dong-piro.jpg" alt="Ilustración: una rata mira una luna verde entre la hierba" loading="lazy" width="229" height="202"></div>
             <h3>Ding Dong Piro</h3>
             <div class="song-actions">
@@ -289,8 +320,9 @@
           <article class="song">
             <div class="frame"><img src="img/1408.jpg" alt="Ilustración: un gato dormido entre lirios lilas" loading="lazy" width="216" height="202"></div>
             <h3>1408</h3>
+            <p class="meta">single · 28 feb 2025 · 3:38</p>
             <div class="song-actions">
-              <button class="play-link" type="button" data-song="1408" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
+              <button class="play-link" type="button" data-song="1408" data-audio="" data-href="https://music.apple.com/us/album/1408-single/1798072933"><span class="tri"></span><span>escuchar</span></button>
             </div>
           </article>
           <article class="song">
@@ -334,6 +366,10 @@
       <div class="wrap">
         <div class="sec-head"><h2>visuales</h2><div class="line"></div><span class="num">03</span></div>
         <p class="gothic-title"><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>Pequeño cine<svg class="sprig flip" aria-hidden="true"><use href="#sprig"/></svg></p>
+        <figure class="feature">
+          <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          <figcaption><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></figcaption>
+        </figure>
         <div class="films">
           <!-- EDITAR: ahora enlazan al canal; cambia cada href por el enlace del vídeo concreto -->
           <a class="film" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener">
