@@ -191,9 +191,9 @@
     .song-tab[aria-selected="true"] { background: var(--lime); color: var(--ink); border-color: var(--lime); clip-path: polygon(0 4%, 100% 0, 98% 100%, 1% 96%); }
     @media (hover: hover) and (pointer: fine) { .song-tab[aria-selected="false"]:hover { color: var(--lime); } }
     @media (max-width: 57.99rem) { .song-tabs { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; scrollbar-width: none; gap: .4rem; scroll-snap-type: x mandatory; } .song-tab { scroll-snap-align: start; font-size: 1.2rem; } }
-    .cover-wrap { position: relative; margin-right: 2.5rem; margin-bottom: 1.5rem; }
-    .cover { position: relative; z-index: 1; padding: 8px; background: var(--ink); border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
-    .vinyl { position: absolute; z-index: 0; width: 88%; aspect-ratio: 1; top: 6%; right: -30%; color: var(--chalk); animation: spin 14s linear infinite; }
+    .cover-wrap { position: relative; padding-top: 22%; margin-bottom: 2.4rem; max-width: 30rem; }
+    .cover { position: relative; z-index: 1; width: 80%; padding: 8px; background: var(--ink); border: 1.6px solid var(--lime); transform: rotate(-1.5deg); }
+    .vinyl { position: absolute; z-index: 0; width: 64%; aspect-ratio: 1; top: 0; right: 0; color: var(--chalk); animation: spin 14s linear infinite; }
     .vinyl svg { width: 100%; height: 100%; display: block; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .cover img, .cover svg.art { width: 100%; aspect-ratio: 1; display: block; }
@@ -402,7 +402,7 @@
           <div class="cover-wrap">
             <span class="vinyl ink" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#d-vinyl"/></svg></span>
             <div class="cover" id="cover"><span class="tape"></span><div id="cover-art"></div></div>
-            <div class="win" aria-hidden="true" style="right:-1rem; bottom:-1.6rem; transform: rotate(3deg)"><div class="win-bar"><span id="win-name" translate="no">1408.wav</span><span>✕</span></div><p id="win-meta">single · 28 feb 2025</p></div>
+            <div class="win" aria-hidden="true" style="right: 0; bottom: -1.6rem; transform: rotate(3deg)"><div class="win-bar"><span id="win-name" translate="no">1408.wav</span><span>✕</span></div><p id="win-meta">single · 28 feb 2025</p></div>
           </div>
           <div class="info" id="song-panel" role="tabpanel" tabindex="0"></div>
         </div>
