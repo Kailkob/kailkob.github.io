@@ -100,7 +100,7 @@
 
     /* ---------- títulos de letras recortadas ---------- */
     .sec-title { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.2rem; }
-    .ransom { display: inline-flex; flex-wrap: wrap; gap: .1em; font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: 1; }
+    .ransom { display: inline-flex; flex-wrap: nowrap; gap: .1em; font-size: min(clamp(2.4rem, 7vw, 4.4rem), 8.4vw); line-height: 1; white-space: nowrap; }
     .ransom span { display: inline-block; padding: .08em .16em .02em; transform: translateY(var(--y)) rotate(var(--r)); clip-path: polygon(3% 6%, 30% 0, 62% 5%, 97% 0, 100% 45%, 96% 100%, 60% 95%, 25% 100%, 0 96%, 4% 50%); }
     .ransom .r1 { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); font-family: var(--gothic); }
     .ransom .r2 { background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); font-family: var(--serif); text-transform: uppercase; }
@@ -279,7 +279,7 @@
     .nb-tab { padding: .35rem .9rem 1.6rem; font-size: 1.05rem; letter-spacing: .06em; clip-path: polygon(4% 0, 96% 3%, 100% 100%, 0 100%); transform: translateY(.5rem); transition: transform .2s var(--ease-out); }
     .nb-tab[data-cat="indice"] { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); }
     .nb-tab[data-cat="letras"] { background: var(--lilac); color: var(--lilac-ink); }
-    .nb-tab[data-cat="ideas"] { background: var(--lime); color: var(--ink); }
+    .nb-tab[data-cat="pensamientos"] { background: var(--lime); color: var(--ink); }
     .nb-tab[data-cat="borradores"] { background: #3b2a52; color: var(--chalk); }
     .nb-tab[aria-current="true"] { transform: translateY(0); }
     @media (hover: hover) and (pointer: fine) { .nb-tab:hover { transform: translateY(-.15rem); } }
@@ -298,7 +298,7 @@
     .slot.left .page { border-radius: 8px 0 0 8px; box-shadow: inset -2.4rem 0 2.2rem -2rem rgb(0 0 0 / .32); }
     .slot.right .page { border-radius: 0 8px 8px 0; box-shadow: inset 2.4rem 0 2.2rem -2rem rgb(0 0 0 / .32); }
     .page .chip { align-self: flex-start; padding: .1rem .7rem; font-size: .95rem; letter-spacing: .08em; clip-path: var(--tag); margin-bottom: .6rem; }
-    .chip.letras { background: var(--lilac); color: var(--lilac-ink); } .chip.ideas { background: var(--lime); color: var(--ink); } .chip.borradores { background: #3b2a52; color: var(--chalk); }
+    .chip.letras { background: var(--lilac); color: var(--lilac-ink); } .chip.pensamientos { background: var(--lime); color: var(--ink); } .chip.borradores { background: #3b2a52; color: var(--chalk); }
     .page h3 { font-family: var(--gothic); font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.1; color: #4b3477; margin-bottom: .2rem; }
     .page .meta { font-size: .95rem; color: #6f6658; letter-spacing: .05em; }
     .page .body { flex: 1; min-height: 0; overflow: auto; margin-top: .9rem; font-size: clamp(1.1rem, 1.9vw, 1.3rem); line-height: var(--lh); white-space: pre-line; scrollbar-width: thin; }
@@ -535,7 +535,7 @@
       <nav aria-label="Secciones">
         <a href="#canciones">canciones</a>
         <a href="#videoclips">videoclips</a>
-        <a href="#ideas">ideas</a>
+        <a href="#pensamientos">pensamientos</a>
         <a href="#redes">redes</a>
         <a href="#sobre-mi">sobre mí</a>
       </nav>
@@ -622,20 +622,20 @@
 
     <div class="wrap"><div class="vine-rule" aria-hidden="true"></div></div>
 
-    <!-- IDEAS (libreta) -->
-    <section class="manifesto-wrap" id="ideas" aria-labelledby="h-ideas">
+    <!-- PENSAMIENTOS (libreta) -->
+    <section class="manifesto-wrap" id="pensamientos" aria-labelledby="h-pensamientos">
       <div class="wrap">
-        <h2 class="sec-title" id="h-ideas"><span class="sr-only">Ideas</span><span class="ransom" aria-hidden="true"><span class="r3" style="--r:3deg;--y:0px">i</span><span class="r2" style="--r:-3deg;--y:-5px">d</span><span class="r4" style="--r:-3deg;--y:0px">e</span><span class="r3" style="--r:5deg;--y:0px">a</span><span class="r2" style="--r:-3deg;--y:0px">s</span></span></h2>
+        <h2 class="sec-title" id="h-pensamientos"><span class="sr-only">Pensamientos</span><span class="ransom" aria-hidden="true"><span class="r3" style="--r:-3deg;--y:-5px">p</span><span class="r2" style="--r:8deg;--y:4px">e</span><span class="r4" style="--r:8deg;--y:-5px">n</span><span class="r2" style="--r:-8deg;--y:-2px">s</span><span class="r5" style="--r:5deg;--y:2px">a</span><span class="r2" style="--r:3deg;--y:4px">m</span><span class="r1" style="--r:-8deg;--y:4px">i</span><span class="r2" style="--r:-8deg;--y:2px">e</span><span class="r4" style="--r:-8deg;--y:-5px">n</span><span class="r2" style="--r:5deg;--y:2px">t</span><span class="r3" style="--r:5deg;--y:2px">o</span><span class="r4" style="--r:8deg;--y:2px">s</span></span></h2>
         <p class="manifesto chalk">
           <span class="l1">hay <em>canciones</em></span>
           <span class="l2">que empiezan</span>
           <span class="l3">donde <em class="lilac scribbled">no llego.</em></span>
         </p>
-        <div class="nb-wrap" role="region" aria-roledescription="libreta" aria-label="Grimorio nocturno: letras, ideas y borradores">
+        <div class="nb-wrap" role="region" aria-roledescription="libreta" aria-label="Grimorio: letras, pensamientos y borradores">
           <div class="nb-tabs" role="toolbar" aria-label="Categorías de la libreta">
             <button type="button" class="nb-tab" data-cat="indice">índice</button>
             <button type="button" class="nb-tab" data-cat="letras">letras</button>
-            <button type="button" class="nb-tab" data-cat="ideas">ideas</button>
+            <button type="button" class="nb-tab" data-cat="pensamientos">pensamientos</button>
             <button type="button" class="nb-tab" data-cat="borradores">borradores</button>
           </div>
           <div class="nb" id="nb" tabindex="0">
@@ -997,15 +997,15 @@
     fitPhones(); addEventListener('resize', fitPhones);
 
     /* ---------- libreta: letras, textos y borradores ---------- */
-    /* EDITAR: ideas y borradores (cat: 'ideas' o 'borradores'). Las letras salen de SONGS (campo "letra"). */
+    /* EDITAR: pensamientos y borradores (cat: 'pensamientos' o 'borradores'). Las letras salen de SONGS (campo "letra"). */
     const TEXTOS = [
-      { cat: 'ideas', title: 'cosas que no sé decir', body: 'A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.', serif: true },
-      { cat: 'ideas', title: 'hay canciones', body: 'hay canciones\nque empiezan\ndonde no llego.' },
+      { cat: 'pensamientos', title: 'cosas que no sé decir', body: 'A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.', serif: true },
+      { cat: 'pensamientos', title: 'hay canciones', body: 'hay canciones\nque empiezan\ndonde no llego.' },
       { cat: 'borradores', title: 'borradores de madrugada', body: 'una casa, un ruido,\nalgo que todavía\nno tiene nombre.' },
     ];
     (() => {
       const nb = $('nb'); if (!nb) return;
-      const CATS = { letras: 'letras', ideas: 'ideas', borradores: 'borradores' };
+      const CATS = { letras: 'letras', pensamientos: 'pensamientos', borradores: 'borradores' };
       const pages = [{ type: 'cover' }, { type: 'toc' }];
       SONGS.forEach(s => pages.push({ type: 'entry', cat: 'letras', title: s.title, meta: s.meta && s.meta !== 'pronto' ? s.meta : '', lang: s.lang, body: s.letra, pending: 'La letra llegará pronto.' }));
       TEXTOS.forEach(t => pages.push({ type: 'entry', pending: '', ...t }));
@@ -1017,7 +1017,7 @@
       function pageHTML(i) {
         const p = pages[i]; if (!p) return '<div class="page"></div>';
         const num = `<span class="num">${i}</span>`;
-        if (p.type === 'cover') return `<div class="page pg-cover"><h3>Grimorio nocturno</h3><p>letras, ideas y borradores</p>${art}</div>`;
+        if (p.type === 'cover') return `<div class="page pg-cover"><h3>Grimorio</h3><p>letras, pensamientos y borradores</p>${art}</div>`;
         if (p.type === 'end') return `<div class="page"><p class="body pending" style="margin-top:auto;text-align:center">— continuará —</p>${num}</div>`;
         if (p.type === 'toc') {
           const items = Object.keys(CATS).map(c => {
@@ -1028,7 +1028,7 @@
         }
         const lang = p.lang ? ` lang="${p.lang}"` : '';
         const body = p.body ? `<div class="body${p.serif ? ' serif' : ''}"${lang}>${esc(p.body)}</div>` : `<div class="body pending">${p.pending || ''}</div>`;
-        return `<div class="page"><span class="chip ${p.cat}">${p.cat === 'letras' ? 'letra' : p.cat === 'ideas' ? 'idea' : 'borrador'}</span><h3 translate="no">${esc(p.title)}</h3>${p.meta ? `<p class="meta">${esc(p.meta)}${p.lang === 'ca' ? ' · en catalán' : ''}</p>` : ''}${body}${num}</div>`;
+        return `<div class="page"><span class="chip ${p.cat}">${p.cat === 'letras' ? 'letra' : p.cat === 'pensamientos' ? 'pensamiento' : 'borrador'}</span><h3 translate="no">${esc(p.title)}</h3>${p.meta ? `<p class="meta">${esc(p.meta)}${p.lang === 'ca' ? ' · en catalán' : ''}</p>` : ''}${body}${num}</div>`;
       }
 
       const single = matchMedia('(max-width: 52rem)');
