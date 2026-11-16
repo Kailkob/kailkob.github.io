@@ -157,6 +157,12 @@
     .critter .eyes { transform-box: fill-box; transform-origin: center; animation: blink 5.5s infinite; }
     .critter .nose { transform-box: fill-box; transform-origin: left center; animation: sniff .9s ease-in-out infinite alternate; }
     .critter .ears { transform-box: fill-box; transform-origin: center bottom; animation: twitch 7s infinite; }
+    .hero-rat { left: 0; top: 0; width: clamp(4.5rem, 9vw, 7rem); z-index: 5; will-change: transform; }
+    .critter.walking .legs-a { animation: stepA .44s steps(1) infinite; }
+    .critter.walking .legs-b { animation: stepB .44s steps(1) infinite; }
+    .critter.walking .bob { animation: bob .22s ease-in-out infinite alternate; }
+    .critter.walking .tail { animation: swish 1s ease-in-out infinite alternate; }
+    .critter.airborne .tail { transform: rotate(-14deg); }
     .walk-track .critter .legs-a { animation: stepA .44s steps(1) infinite; }
     .walk-track .critter .legs-b { animation: stepB .44s steps(1) infinite; }
     .walk-track .critter .bob { animation: bob .22s ease-in-out infinite alternate; }
@@ -233,9 +239,9 @@
     .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
-    .stage { padding-top: clamp(1rem, 3vw, 2rem); }
+    .stage { position: relative; padding-top: clamp(5.5rem, 10vw, 8.5rem); }
     .band { top: auto !important; bottom: clamp(3.5rem, 9vw, 6.5rem); }
-    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 72%, transparent 100%); mask-image: linear-gradient(#000 72%, transparent 100%); }
+    .cutout { position: relative; z-index: 2; display: block; width: min(86vw, 34rem); margin: 0 auto; -webkit-mask-image: linear-gradient(#000 84%, transparent 100%); mask-image: linear-gradient(#000 84%, transparent 100%); }
     .cutout.inked { filter: grayscale(1) contrast(2.1) brightness(1.12) sepia(.18) drop-shadow(0 .8rem 1.2rem rgb(0 0 0 / .55)); }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
@@ -456,9 +462,9 @@
       </div>
       <div class="stage">
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
-        <div class="walk-track" style="bottom: calc(clamp(3.5rem, 9vw, 6.5rem) + clamp(7rem, 17vw, 12rem) - 1.2rem); --dur: 24s" aria-hidden="true"><div class="mover"><span class="critter" data-c="ratWalk" style="width: clamp(4.5rem, 9vw, 7rem)"></span></div></div>
+        <span class="critter hero-rat" data-c="ratWalk" aria-hidden="true"></span>
         <!-- EDITAR: foto provisional recortada (PNG transparente); sustituye img/kailkob-recorte.png por la definitiva con el mismo nombre -->
-        <img class="cutout inked" src="img/kailkob-recorte.png" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="500" height="395" fetchpriority="high">
+        <img class="cutout inked" src="img/kailkob-recorte.png?v=2" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="500" height="395" fetchpriority="high">
       </div>
       <div class="wrap">
         <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
@@ -808,6 +814,50 @@
     // solo se mueven cuando están a la vista
     const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('paused', !e.isIntersecting)), { rootMargin: '80px' });
     document.querySelectorAll('.critter, .walk-track').forEach(el => io.observe(el));
+
+    /* rata de la portada: camina por el borde de la tira y salta por encima de la cabeza */
+    (() => {
+      const rat = document.querySelector('.hero-rat'), stage = document.querySelector('.stage');
+      const band = stage && stage.querySelector('.band'), fig = stage && stage.querySelector('.cutout');
+      if (!rat || !band || !fig) return;
+      const TILT = Math.tan(3 * Math.PI / 180);
+      let x = -200, last = 0, visible = true;
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(stage);
+      function geo() {
+        const W = stage.clientWidth, rw = rat.offsetWidth, rh = rat.offsetHeight;
+        const bandTop = band.offsetTop + band.offsetHeight * .1, cx = W / 2;
+        const ground = px => bandTop - (px - cx) * TILT;            // borde superior de la tira (inclinada)
+        const fl = fig.offsetLeft, fw = fig.offsetWidth, ft = fig.offsetTop, fh = fig.offsetHeight;
+        const j0 = fl + fw * .02 - rw * .55, j1 = fl + fw * .9 - rw * .35;   // tramo ocupado por la figura
+        const peak = ft + fh * .11 - rh * .8;                          // holgado por encima de la cabeza
+        return { W, rw, rh, ground, j0, j1, peak };
+      }
+      function place(g, t) {
+        const c = x + g.rw / 2;
+        let y = g.ground(c) - g.rh * .92, rot = -3, air = false;
+        if (c > g.j0 && c < g.j1) {
+          const u = (c - g.j0) / (g.j1 - g.j0), base = y, top = g.peak - g.rh;
+          y = base + (top - base) * Math.pow(Math.sin(Math.PI * u), .6);
+          rot = -Math.cos(Math.PI * u) * 24 - 3; air = true;
+        }
+        rat.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+        rat.classList.toggle('airborne', air); rat.classList.toggle('walking', !air);
+      }
+      function frame(t) {
+        const dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+        const g = geo();
+        if (visible && !rat.classList.contains('hop')) {
+          const inJump = x + g.rw / 2 > g.j0 && x + g.rw / 2 < g.j1;
+          x += dt * g.W / (inJump ? 14 : 22);
+          if (x > g.W + 40) x = -g.rw - 40;
+        }
+        place(g, t);
+        requestAnimationFrame(frame);
+      }
+      if (reduce.matches) { const g = geo(); x = g.W * .06; place(g); rat.classList.remove('walking'); return; }
+      place(geo());
+      requestAnimationFrame(frame);
+    })();
 
     const m = location.hash.match(/^#cancion-(.+)$/);
     if (m && SONGS.some(x => x.id === m[1])) { select(m[1], false); addEventListener('load', () => setTimeout(() => $('canciones').scrollIntoView({ behavior: 'instant' }), 60)); }
