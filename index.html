@@ -401,6 +401,9 @@
     .listen .circle .tri { margin-left: .2rem; }
     .listen span:last-child { border-bottom: 2px solid var(--lime); }
     .listen[aria-disabled="true"] { opacity: .5; }
+    .song-listen { display: inline-block; justify-self: auto; margin-bottom: 1.6rem; } .song-listen .listen { margin-bottom: 0; }
+    .song-listen .listen-pop { left: 0; right: auto; top: calc(100% + .5rem); transform: rotate(-1.5deg); transform-origin: top left; }
+    .song-listen .listen[aria-expanded="true"] .circle { background: var(--lime); color: var(--ink); border-color: var(--lime); }
     @media (hover: hover) and (pointer: fine) { a.listen:hover { color: var(--lime); } }
     .table-title { font-size: 1.15rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .4rem; }
     .credits-title { margin-top: 1.8rem; font-size: .85rem; color: var(--muted); }
@@ -747,32 +750,41 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     /* EDITAR: datos de cada canción. Deja "" lo que aún no tengas.
+       links: enlace de la canción en cada plataforma (spotify, apple, youtube); las que falten no salen.
        portada: ruta de la portada real (cuadrada); si no hay, sale el dibujo.
        lang: idioma de la letra ("ca" catalán, "es" castellano, "en" inglés). */
     const SONGS = [
       { id: 'blv', title: 'BLV W/ME', meta: 'single · 18 sep 2025',
-        href: 'https://music.apple.com/us/album/blv-w-me-single/1841047244', lang: '', letra: '', historia: '',
+        links: { spotify: 'https://open.spotify.com/track/4Hy7cy7MOtjH6xSABTpq3F', apple: 'https://music.apple.com/us/album/blv-w-me-single/1841047244', youtube: 'https://www.youtube.com/watch?v=ZtL3SEQkP40' }, lang: '', letra: '', historia: '',
         creditos: [['lanzamiento', 'Single · 18 de septiembre de 2025'], ['género', 'Alternativa'], ['℗', '2025 Kailkob']] },
       { id: '1408', title: '1408', meta: 'single · 28 feb 2025 · 3:38',
-        href: 'https://music.apple.com/us/album/1408-single/1798072933', portada: 'img/portada-1408.jpg', lang: 'ca', letra: '', historia: '',
+        links: { spotify: 'https://open.spotify.com/track/111741v2R9zW5s7deueKdn', apple: 'https://music.apple.com/us/album/1408-single/1798072933', youtube: 'https://www.youtube.com/watch?v=hDjKMobCheo' }, portada: 'img/portada-1408.jpg', lang: 'ca', letra: '', historia: '',
         creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a href="#videoclips">ver videoclip</a>']] },
-      { id: 'ddp', title: 'Ding Dong Piro', meta: 'pronto', href: '', lang: '', letra: '',
+      { id: 'ddp', title: 'Ding Dong Piro', meta: 'pronto', links: {}, lang: '', letra: '',
         historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
         creditos: [] },
-      { id: 'rio', title: 'Que nos sofoque el río', meta: 'pronto', href: '', lang: '', letra: '', historia: '', creditos: [] },
+      { id: 'rio', title: 'Que nos sofoque el río', meta: 'pronto', links: {}, lang: '', letra: '', historia: '', creditos: [] },
     ];
 
     const $ = id => document.getElementById(id);
 
     /* botón «escuchar»: ventanita para elegir reproductor */
     (() => {
-      const btn = $('listen-btn'), pop = $('listen-pop');
-      const open = on => { pop.hidden = !on; btn.setAttribute('aria-expanded', on); };
-      btn.addEventListener('click', () => open(pop.hidden));
-      pop.addEventListener('click', e => { if (e.target.closest('a')) open(false); });
-      document.addEventListener('click', e => { if (!pop.hidden && !e.target.closest('.listen-menu')) open(false); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pop.hidden) { open(false); btn.focus(); } });
-      document.addEventListener('focusin', e => { if (!pop.hidden && !e.target.closest('.listen-menu')) open(false); });
+      const set = (menu, on) => { const b = menu.querySelector('[aria-controls]'), p = menu.querySelector('.listen-pop'); if (!b || !p) return; p.hidden = !on; b.setAttribute('aria-expanded', on); };
+      const closeAll = except => document.querySelectorAll('.listen-menu').forEach(m => { if (m !== except) set(m, false); });
+      document.addEventListener('click', e => {
+        const menu = e.target.closest('.listen-menu');
+        const b = e.target.closest('.listen-menu [aria-controls]');
+        if (b) { const p = menu.querySelector('.listen-pop'); closeAll(menu); set(menu, p.hidden); return; }
+        if (e.target.closest('.listen-pop a')) { set(menu, false); return; }
+        if (!menu) closeAll();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        const open = [...document.querySelectorAll('.listen-menu')].find(m => !m.querySelector('.listen-pop').hidden);
+        if (open) { set(open, false); open.querySelector('[aria-controls]').focus(); }
+      });
+      document.addEventListener('focusin', e => { closeAll(e.target.closest('.listen-menu')); });
     })();
 
     /* Portadas dibujadas a línea (símbolos #d-*) */
@@ -821,8 +833,11 @@
       $('win-name').textContent = s.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.wav';
       $('win-meta').textContent = s.meta;
       const lang = s.lang ? ` lang="${s.lang}"` : '';
-      const listen = s.href
-        ? `<a class="listen press" href="${s.href}" target="_blank" rel="noopener"><span class="circle"><span class="tri"></span></span><span>escuchar en Apple Music</span><span class="sr-only"> (se abre en otra pestaña)</span></a>`
+      const plats = [['spotify', 'Spotify'], ['apple', 'Apple Music'], ['youtube', 'YouTube']].filter(([k]) => s.links && s.links[k]);
+      const listen = plats.length
+        ? `<div class="listen-menu song-listen"><button class="listen press" type="button" aria-expanded="false" aria-controls="song-pop"><span class="circle"><span class="tri"></span></span><span>escuchar</span></button>
+            <div class="listen-pop" id="song-pop" hidden><div class="win-bar"><span translate="no">${s.title.toLowerCase()}.wav</span><span aria-hidden="true">✕</span></div>
+            <ul aria-label="Escuchar ${s.title} en">${plats.map(([k, n]) => `<li><a href="${s.links[k]}" target="_blank" rel="noopener"><svg class="ink" aria-hidden="true"><use href="#i-${k}"/></svg>${n}<span class="sr-only"> (se abre en otra pestaña)</span></a></li>`).join('')}</ul></div></div>`
         : `<span class="listen" aria-disabled="true"><span class="circle"><span class="tri"></span></span><span>pronto</span></span>`;
       $('song-panel').innerHTML = `
         <h3 translate="no">${s.title}</h3>
