@@ -163,7 +163,10 @@
     .band .run { display: flex; gap: 2.5rem; white-space: nowrap; font-family: "Pirata One", var(--gothic); font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: .04em; color: #2a1d3ae6; animation: run 40s linear infinite; }
     @keyframes run { to { transform: translateX(-50%); } }
     .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 0 46%, #2a1d3a22 46% 48%, transparent 48%); pointer-events: none; }
-    .hero-portrait { position: relative; z-index: 2; width: min(92vw, 40rem); margin: 0 auto; mix-blend-mode: normal; -webkit-mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 52%, #000 70%, transparent 100%); }
+    .hero-card { position: relative; z-index: 2; width: min(72vw, 23rem); margin: 0 auto; padding: 10px 10px 12px; background: var(--chalk) var(--paper-bg); background-blend-mode: multiply; clip-path: var(--torn); transform: rotate(-2deg); }
+    .hero-card img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .hero-card-wrap { position: relative; z-index: 2; width: min(72vw, 23rem); margin: 0 auto; filter: drop-shadow(0 1rem 1.6rem rgb(0 0 0 / .55)); }
+    .hero-card-wrap .tape { top: .2rem; left: -.6rem; width: 9.5rem; height: 1.7rem; transform: rotate(-7deg); z-index: 5; }
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
 
@@ -384,7 +387,8 @@
       <div class="stage">
         <div class="band lilac-paper" aria-hidden="true"><div class="run" translate="no"><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span><span>kailkob · kailkob · kailkob · kailkob ·</span></div></div>
         <svg class="band-rat ink" viewBox="-4 0 134 72" aria-hidden="true"><use href="#d-rat"/></svg>
-        <img class="hero-portrait inked" src="../img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340" fetchpriority="high">
+        <!-- EDITAR: foto provisional; cuando haya la definitiva, sustituye img/portada-vertical.jpg (vertical, 4:5) -->
+        <div class="hero-card-wrap"><span class="tape"></span><div class="hero-card"><img class="inked" src="../img/portada-vertical.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados" width="320" height="400" fetchpriority="high"></div></div>
       </div>
       <div class="wrap">
         <a class="scroll-hint" href="#canciones">toca para explorar ↓</a>
