@@ -2,35 +2,485 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kailkob</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kailkob — canciones, textos y otras criaturas</title>
+  <meta name="description" content="Kailkob: canciones, textos y otras criaturas. Música, letras, visuales, conciertos y contacto.">
+  <meta property="og:title" content="Kailkob">
+  <meta property="og:description" content="canciones, textos y otras criaturas">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kailkob.github.io/">
+  <meta property="og:image" content="https://kailkob.github.io/img/portada.jpg">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --ink: #0a0a0a;
+      --chalk: #efe8d8;
+      --paper: #e6d8bd;
+      --paper-ink: #2a241c;
+      --muted: #a39d90;
+      --lime: #c8f03c;
+      --lilac: #b99ae6;
+      --blue: #3346d9;
+      --orange: #f0913a;
+      --maxw: 70rem;
+      --gutter: clamp(1rem, 4vw, 2.75rem);
+      --hand: "Shadows Into Light Two", "Comic Sans MS", cursive;
+      --gothic: "UnifrakturMaguntia", serif;
+      --serif: "IM Fell English", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: system-ui, sans-serif;
-      background: #111;
-      color: #f5f5f5;
-      text-align: center;
-      padding: 2rem;
+      background: var(--ink);
+      color: var(--chalk);
+      font: 400 1.15rem/1.55 var(--hand);
+      letter-spacing: .03em;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: clip;
     }
-    h1 { font-size: 3rem; margin: 0 0 1rem; letter-spacing: 0.05em; }
-    p { max-width: 36rem; line-height: 1.6; color: #bbb; }
-    nav a { color: #f5f5f5; margin: 0 0.75rem; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
+    /* grano de papel / tiza */
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px dashed var(--lime); outline-offset: 4px; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { font-weight: 400; margin: 0; line-height: 1; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* trazo a mano: el borde tiembla con el filtro SVG #rough */
+    .rough { filter: url(#rough); }
+    .line { height: 0; border-top: 1.5px solid var(--chalk); filter: url(#rough); opacity: .85; }
+
+    /* ---------- cabecera ---------- */
+    header.top { position: sticky; top: 0; z-index: 20; background: var(--ink); padding-bottom: .4rem; }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .9rem; padding-bottom: .6rem; }
+    .logo { font-size: 1.5rem; letter-spacing: .14em; }
+    nav.menu { display: flex; gap: .2rem; overflow-x: auto; scrollbar-width: none; font-size: 1.15rem; }
+    nav.menu::-webkit-scrollbar { display: none; }
+    nav.menu a { padding: .2rem .45rem; white-space: nowrap; color: var(--chalk); opacity: .8; transition: opacity .15s, color .15s; }
+    nav.menu a + a::before { content: "/"; margin-right: .65rem; opacity: .5; color: var(--chalk); }
+    nav.menu .star { color: var(--lime); }
+    @media (hover: hover) { nav.menu a:hover { opacity: 1; color: var(--lime); } }
+    header.top .line { margin: 0 var(--gutter); max-width: calc(var(--maxw) - 2 * var(--gutter)); }
+    @media (min-width: 70rem) { header.top .line { margin: 0 auto; } }
+
+    /* ---------- portada ---------- */
+    .hero { padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
+    .hero .wrap { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 56rem) { .hero .wrap { grid-template-columns: 1fr 1.15fr; } }
+    .title {
+      font-size: clamp(5.5rem, 21vw, 11rem); line-height: .82; letter-spacing: .02em;
+      filter: url(#chalk); position: relative; display: inline-block; padding: 0 .35em 0 .25em;
+    }
+    .title span { display: block; }
+    .title span:last-child { padding-left: .28em; }
+    .title::before, .title::after {
+      content: ""; position: absolute; width: .32em; height: .3em; top: .35em;
+      background: linear-gradient(var(--chalk), var(--chalk)) 0 0 / 100% 2px no-repeat,
+                  linear-gradient(var(--chalk), var(--chalk)) 0 50% / 100% 2px no-repeat,
+                  linear-gradient(var(--chalk), var(--chalk)) 0 100% / 100% 2px no-repeat;
+    }
+    .title::before { left: -.2em; transform: rotate(-12deg); }
+    .title::after { right: -.15em; top: 1.25em; transform: rotate(14deg); }
+    .tagline { font-size: clamp(1.25rem, 2.8vw, 1.6rem); letter-spacing: .1em; margin: 1.2rem 0 1.8rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: .7rem; padding: .55rem 1.6rem .5rem 1.25rem;
+      font: inherit; font-size: 1.5rem; letter-spacing: .12em; color: var(--chalk); background: none; border: 0; cursor: pointer;
+      position: relative; transition: color .15s, transform .12s;
+    }
+    .pill::before { content: ""; position: absolute; inset: 0; border: 2px solid currentColor; border-radius: 50% / 50%; filter: url(#rough); }
+    .pill:active { transform: scale(.97); }
+    @media (hover: hover) { .pill:hover { color: var(--lime); } }
+    .tri { width: 0; height: 0; border-left: .62em solid currentColor; border-top: .38em solid transparent; border-bottom: .38em solid transparent; filter: url(#rough); }
+    .arrow-link { font-size: 1.25rem; letter-spacing: .1em; border-bottom: 1.5px solid var(--chalk); padding-bottom: .1rem; transition: color .15s, border-color .15s; }
+    .arrow-link::after { content: " →"; }
+    @media (hover: hover) { .arrow-link:hover { color: var(--lime); border-color: var(--lime); } }
+
+    .hero-art { position: relative; justify-self: center; width: min(100%, 34rem); }
+    .torn {
+      clip-path: polygon(0% 2%, 4% 0%, 9% 1.5%, 15% .2%, 22% 1.8%, 30% .4%, 37% 2%, 45% .3%, 52% 1.6%, 60% 0%, 67% 1.9%, 74% .5%, 81% 2%, 88% .2%, 94% 1.5%, 100% .4%,
+        98.6% 7%, 100% 14%, 98.4% 22%, 99.8% 31%, 98.2% 40%, 100% 49%, 98.5% 58%, 99.7% 67%, 98.3% 76%, 100% 85%, 98.6% 93%, 99.5% 100%,
+        93% 98.4%, 86% 100%, 78% 98.2%, 70% 99.8%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 99.7%, 30% 98.2%, 22% 100%, 14% 98.4%, 7% 99.8%, 0% 98.6%,
+        1.4% 91%, 0% 83%, 1.6% 74%, .2% 65%, 1.8% 56%, .3% 47%, 1.5% 38%, 0% 29%, 1.7% 20%, .2% 11%);
+    }
+    .hero-art .torn { transform: rotate(1.2deg); box-shadow: 0 0 0 1px #0000; }
+    .hero-art .scribble { position: absolute; right: -4%; top: -6%; width: 34%; color: var(--blue); pointer-events: none; }
+    .hero-art .moon { position: absolute; left: -5%; bottom: 10%; width: 13%; }
+
+    /* ---------- secciones ---------- */
+    section.block { padding: clamp(2.5rem, 6vw, 4.5rem) 0; scroll-margin-top: 4rem; }
+    .sec-head { display: flex; align-items: center; gap: 1.2rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+    .sec-head h2 { font-size: clamp(2.3rem, 5vw, 3.2rem); letter-spacing: .12em; white-space: nowrap; }
+    .sec-head .line { flex: 1; }
+    .num { font-size: 1rem; color: var(--muted); letter-spacing: .12em; }
+
+    /* canciones */
+    .songs { display: grid; gap: 2.5rem 2rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+    .song { text-align: center; }
+    .frame { position: relative; padding: 6px; }
+    .frame::before { content: ""; position: absolute; inset: 0; border: 2px solid var(--chalk); filter: url(#rough); pointer-events: none; z-index: 1; }
+    .frame img { width: 100%; aspect-ratio: 8 / 7; object-fit: cover; mix-blend-mode: screen; }
+    .song h3 { font-size: 1.35rem; letter-spacing: .22em; text-transform: uppercase; margin: 1rem 0 .55rem; }
+    .song-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.4rem; font-size: 1.15rem; }
+    .play-link { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
+    .play-link span:last-child { border-bottom: 1.5px solid currentColor; }
+    .play-link[aria-disabled="true"] { opacity: .5; cursor: default; }
+    @media (hover: hover) { .play-link:not([aria-disabled="true"]):hover, .song summary:hover { color: var(--lime); } }
+    .song details { margin-top: .4rem; }
+    .song summary { list-style: none; cursor: pointer; display: inline-block; border-bottom: 1.5px solid var(--lilac); color: var(--lilac); }
+    .song summary::-webkit-details-marker { display: none; }
+    .song details[open] summary { color: var(--lime); border-color: var(--lime); }
+    .song details p { font: italic 1.08rem/1.55 var(--serif); letter-spacing: 0; text-align: left; color: var(--chalk); margin: 1rem 0 0; padding-left: 1rem; border-left: 2px solid var(--lilac); }
+
+    /* textos */
+    .texts { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 52rem) { .texts { grid-template-columns: 1fr auto 1fr; gap: 3rem; } }
+    .vline { display: none; }
+    @media (min-width: 52rem) { .vline { display: block; width: 0; align-self: stretch; border-left: 1.5px solid var(--chalk); filter: url(#rough); opacity: .7; } }
+    .note { background: var(--paper); color: var(--paper-ink); padding: 2.25rem 2.25rem 2rem; transform: rotate(-1.4deg); position: relative; }
+    .note::after {
+      content: ""; position: absolute; right: 6%; bottom: -2px; width: 3.4rem; height: 2.6rem; background: var(--lilac);
+      clip-path: polygon(0 40%, 30% 0, 100% 15%, 85% 100%, 10% 90%); opacity: .95;
+    }
+    .note h3, .side h3 { font-size: 1.6rem; letter-spacing: .1em; padding-bottom: .4rem; margin-bottom: 1rem; display: inline-block; }
+    .note h3 { border-bottom: 2px solid var(--paper-ink); }
+    .side h3 { border-bottom: 2px solid var(--lilac); }
+    .note p, .side p { font: 1.2rem/1.5 var(--serif); letter-spacing: 0; margin: 0 0 1rem; }
+    .note p.small { font-size: 1rem; opacity: .85; }
+    .note .arrow-link { border-color: var(--paper-ink); }
+    .side { position: relative; padding-bottom: 3.5rem; }
+    .side .cat { position: absolute; right: 0; bottom: 0; width: 11rem; mix-blend-mode: screen; }
+    .gothic-title { font-family: var(--gothic); color: var(--lilac); font-size: clamp(2.4rem, 6vw, 3.6rem); letter-spacing: 0; text-align: center; margin: 0 0 2rem; display: flex; align-items: center; justify-content: center; gap: .8rem; }
+    .sprig { width: 2.4rem; height: 2.4rem; color: var(--lilac); flex: none; }
+    .sprig.flip { transform: scaleX(-1); }
+
+    /* visuales */
+    .films { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+    .film { display: block; }
+    .film .frame img { aspect-ratio: 16 / 7; }
+    .film .playbadge {
+      position: absolute; inset: 0; margin: auto; width: 3.6rem; height: 3.6rem; border-radius: 50%; z-index: 2;
+      display: grid; place-items: center; background: #0a0a0acc; border: 2px solid var(--chalk); transition: transform .2s, border-color .2s;
+    }
+    .film .playbadge .tri { margin-left: .25rem; font-size: 1.3rem; }
+    .film figcaption { margin-top: .7rem; font-size: 1.2rem; letter-spacing: .14em; }
+    @media (hover: hover) { .film:hover .playbadge { transform: scale(1.08); border-color: var(--lime); color: var(--lime); } }
+
+    /* conciertos */
+    .shows { list-style: none; margin: 0; padding: 0; }
+    .shows li { display: grid; grid-template-columns: 6rem 1fr auto; gap: 1rem 1.5rem; align-items: center; padding: 1.1rem 0; position: relative; }
+    .shows li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; border-top: 1.5px solid var(--chalk); filter: url(#rough); opacity: .6; }
+    .shows .date { font-size: 1.9rem; line-height: 1; color: var(--lime); }
+    .shows .date small { display: block; font-size: .95rem; color: var(--muted); letter-spacing: .14em; }
+    .shows h3 { font-size: 1.5rem; letter-spacing: .1em; }
+    .shows p { margin: .2rem 0 0; color: var(--muted); }
+    @media (max-width: 34rem) { .shows li { grid-template-columns: 4.5rem 1fr; } .shows li .pill { grid-column: 2; justify-self: start; font-size: 1.2rem; } }
+    .empty { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 1.35rem; letter-spacing: .06em; }
+    .empty img { width: 10rem; mix-blend-mode: screen; }
+    .empty p { margin: 0; max-width: 30rem; }
+    .empty .zz { color: var(--lilac); }
+
+    /* sobre mí y contacto */
+    .about { display: grid; gap: 3rem; align-items: center; }
+    @media (min-width: 56rem) { .about { grid-template-columns: .8fr 1fr .8fr; gap: 2.5rem; } }
+    .about .torn { transform: rotate(-2deg); width: min(100%, 17rem); margin: 0 auto; aspect-ratio: 205 / 300; object-fit: cover; object-position: 50% 100%; }
+    .about .words { list-style: none; padding: 0; margin: 0 0 1.5rem; font-size: 1.5rem; letter-spacing: .1em; }
+    .about .words li { display: flex; align-items: center; gap: .8rem; }
+    .about .words li::before { content: "↗"; color: var(--lime); }
+    .about .bio { font: 1.2rem/1.6 var(--serif); letter-spacing: 0; margin: 0; color: var(--chalk); }
+    .letter { display: grid; justify-items: center; gap: 1rem; text-align: center; }
+    .envelope { width: 9.5rem; color: var(--lilac); transition: transform .2s; }
+    @media (hover: hover) { .letter:hover .envelope { transform: rotate(-4deg) translateY(-3px); } .letter:hover .write { color: var(--lime); } }
+    .write { font-size: 1.7rem; letter-spacing: .12em; border-bottom: 2px solid var(--lime); }
+    .letter small { color: var(--muted); font-size: 1rem; }
+    .platforms { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-wrap: wrap; gap: .8rem 2rem; justify-content: center; font-size: 1.35rem; letter-spacing: .1em; }
+    .platforms a { display: inline-flex; align-items: center; gap: .55rem; transition: color .15s; }
+    .platforms a::after { content: "→"; opacity: .7; }
+    .platforms svg { width: 1.3rem; height: 1.3rem; }
+    @media (hover: hover) { .platforms a:hover { color: var(--lime); } }
+
+    /* pie y reproductor */
+    footer { padding: 1rem 0 calc(2rem + env(safe-area-inset-bottom)); }
+    footer .row { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.5rem; font-size: 1.15rem; letter-spacing: .1em; padding-top: 1.2rem; }
+    footer .row .grow { flex: 1; }
+    footer .row a { opacity: .85; } footer .row a:hover { opacity: 1; color: var(--lime); }
+    footer .critter { width: 8rem; opacity: .9; }
+
+    .player {
+      position: fixed; left: 50%; bottom: calc(.8rem + env(safe-area-inset-bottom)); transform: translate(-50%, 150%); z-index: 30;
+      width: min(calc(100% - 2 * var(--gutter)), 64rem); display: flex; align-items: center; gap: 1rem; padding: .6rem 1rem;
+      background: var(--ink); transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+    .player.on { transform: translate(-50%, 0); }
+    .player::before { content: ""; position: absolute; inset: 0; border: 1.5px solid var(--chalk); filter: url(#rough); pointer-events: none; }
+    .player button { background: none; border: 0; color: var(--chalk); cursor: pointer; padding: .3rem; display: grid; place-items: center; font: inherit; }
+    .player .pp { width: 2.4rem; height: 2.4rem; font-size: 1.4rem; }
+    .player .pause { display: none; gap: .25em; } .player .pause i { width: .22em; height: .8em; background: currentColor; display: block; }
+    .player.playing .pause { display: flex; } .player.playing .tri { display: none; }
+    .player .name { letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
+    .player input[type=range] { flex: 1; min-width: 4rem; accent-color: var(--lime); }
+    .player .time { color: var(--muted); font-size: 1rem; white-space: nowrap; }
+    @media (max-width: 34rem) { .player .time { display: none; } }
   </style>
 </head>
 <body>
-  <h1>Kailkob</h1>
-  <p>[Biografía corta y frase de presentación]</p>
-  <nav>
-    <a href="#">Spotify</a>
-    <a href="#">YouTube</a>
-    <a href="#">Instagram</a>
-  </nav>
+
+  <!-- Filtros SVG: dan el trazo tembloroso de tiza / tinta -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3.2"/></filter>
+    <filter id="chalk"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4" result="d"/><feComposite in="d" in2="d" operator="over"/></filter>
+    <symbol id="sprig" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 36 C14 26 20 16 34 5"/><path d="M12 28 c-4-1-6-4-6-7 M17 22 c-3-2-4-5-3-8 M22 16 c-2-3-2-6 0-8 M16 26 c3 0 6-2 8-4 M22 19 c3 0 6-2 7-4"/></g><g fill="currentColor"><circle cx="6" cy="20" r="1.7"/><circle cx="14" cy="13" r="1.7"/><circle cx="22" cy="7" r="1.7"/><circle cx="25" cy="21" r="1.7"/><circle cx="30" cy="14" r="1.7"/><circle cx="34" cy="5" r="2"/></g></symbol>
+  </svg>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="logo rough" href="#inicio">KAILKOB</a>
+      <nav class="menu" aria-label="Secciones">
+        <a href="#canciones">música</a>
+        <a href="#textos">textos</a>
+        <a href="#visuales">visuales</a>
+        <a href="#conciertos">conciertos</a>
+        <a href="#sobre-mi">sobre mí</a>
+        <a href="#sobre-mi" class="star" aria-label="Contacto">✳</a>
+      </nav>
+    </div>
+    <div class="line"></div>
+  </header>
+
+  <main>
+    <!-- PORTADA -->
+    <section class="hero" id="inicio">
+      <div class="wrap">
+        <div>
+          <h1 class="title" aria-label="Kailkob"><span>KAIL</span><span>KOB</span></h1>
+          <p class="tagline">canciones, textos y otras criaturas</p>
+          <div class="hero-actions">
+            <button class="pill" type="button" data-play="0"><span class="tri"></span>escuchar</button>
+            <a class="arrow-link" href="#textos">entrar al cuaderno</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <!-- EDITAR: sustituye por la imagen original en alta resolución (mismo nombre: img/portada.jpg) -->
+          <img class="torn" src="img/portada.jpg" alt="Retrato collage de Kailkob con los ojos cerrados" width="495" height="453">
+          <svg class="moon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="var(--lime)" filter="url(#rough)"/><g fill="#9cc22a"><circle cx="14" cy="15" r="3"/><circle cx="25" cy="24" r="4"/><circle cx="24" cy="12" r="1.8"/></g></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CANCIONES -->
+    <section class="block" id="canciones">
+      <div class="wrap">
+        <div class="sec-head"><h2>canciones</h2><div class="line"></div><span class="num">01</span></div>
+        <!--
+          EDITAR cada canción:
+          - data-audio: ruta a un mp3 subido al repo (p. ej. "audio/1408.mp3") → suena en el reproductor de abajo.
+          - data-href: enlace a Spotify / YouTube si no hay mp3.
+          Si los dos están vacíos, el botón aparece como "pronto".
+        -->
+        <div class="songs">
+          <article class="song">
+            <div class="frame"><img src="img/ding-dong-piro.jpg" alt="Ilustración: una rata mira una luna verde entre la hierba" loading="lazy" width="229" height="202"></div>
+            <h3>Ding Dong Piro</h3>
+            <div class="song-actions">
+              <button class="play-link" type="button" data-song="Ding Dong Piro" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
+            </div>
+            <details>
+              <summary>la historia →</summary>
+              <p>Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.</p>
+            </details>
+          </article>
+          <article class="song">
+            <div class="frame"><img src="img/1408.jpg" alt="Ilustración: un gato dormido entre lirios lilas" loading="lazy" width="216" height="202"></div>
+            <h3>1408</h3>
+            <div class="song-actions">
+              <button class="play-link" type="button" data-song="1408" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
+            </div>
+          </article>
+          <article class="song">
+            <div class="frame"><img src="img/que-nos-sofoque-el-rio.jpg" alt="Ilustración: un río serpentea bajo una luna naranja" loading="lazy" width="232" height="202"></div>
+            <h3>Que nos sofoque el río</h3>
+            <div class="song-actions">
+              <button class="play-link" type="button" data-song="Que nos sofoque el río" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTOS -->
+    <section class="block" id="textos">
+      <div class="wrap">
+        <div class="sec-head"><h2>textos</h2><div class="line"></div><span class="num">02</span></div>
+        <p class="gothic-title"><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>Herbario nocturno<svg class="sprig flip" aria-hidden="true"><use href="#sprig"/></svg></p>
+        <div class="texts">
+          <article class="note torn">
+            <h3>cosas que no sé decir</h3>
+            <p>hay canciones<br>que empiezan<br>donde no llego.</p>
+            <p class="small">A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
+            <!-- EDITAR: enlace al texto completo -->
+            <a class="arrow-link" href="#textos">leer</a>
+          </article>
+          <div class="vline"></div>
+          <article class="side">
+            <h3>borradores de madrugada</h3>
+            <p>una casa, un ruido,<br>algo que todavía<br>no tiene nombre.</p>
+            <!-- EDITAR: enlace al texto completo -->
+            <a class="arrow-link" href="#textos">leer</a>
+            <img class="cat" src="img/gato-dormido.jpg" alt="" loading="lazy" width="196" height="72">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUALES -->
+    <section class="block" id="visuales">
+      <div class="wrap">
+        <div class="sec-head"><h2>visuales</h2><div class="line"></div><span class="num">03</span></div>
+        <p class="gothic-title"><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>Pequeño cine<svg class="sprig flip" aria-hidden="true"><use href="#sprig"/></svg></p>
+        <div class="films">
+          <!-- EDITAR: cambia href="#visuales" por el enlace de YouTube de cada vídeo -->
+          <a class="film" href="#visuales">
+            <figure style="margin:0">
+              <div class="frame"><img src="img/visual-ding-dong-piro.jpg" alt="Fotograma: una moto con el faro verde avanza de noche hacia una casa" loading="lazy" width="434" height="190"><span class="playbadge"><span class="tri"></span></span></div>
+              <figcaption>DING DONG PIRO — visual</figcaption>
+            </figure>
+          </a>
+          <a class="film" href="#visuales">
+            <figure style="margin:0">
+              <div class="frame"><img src="img/visual-fragmentos.jpg" alt="Fotograma: un lago de noche con la luna naranja reflejada" loading="lazy" width="436" height="190"><span class="playbadge"><span class="tri"></span></span></div>
+              <figcaption>fragmentos</figcaption>
+            </figure>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCIERTOS -->
+    <section class="block" id="conciertos">
+      <div class="wrap">
+        <div class="sec-head"><h2>próximos conciertos</h2><div class="line"></div><span class="num">04</span></div>
+        <!--
+          EDITAR: cuando haya fechas, borra el bloque .empty y descomenta la lista (un <li> por concierto):
+          <ul class="shows">
+            <li>
+              <div class="date">12<small>DIC 2026</small></div>
+              <div><h3>Ciudad</h3><p>Sala</p></div>
+              <a class="pill" href="https://enlace-entradas" target="_blank" rel="noopener">entradas</a>
+            </li>
+          </ul>
+        -->
+        <div class="empty">
+          <img src="img/gato-dormido.jpg" alt="" loading="lazy" width="196" height="72">
+          <p>todavía no hay fechas. el gato duerme <span class="zz">z z z</span><br>vuelve pronto o escríbeme para tocar en tu ciudad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ Y CONTACTO -->
+    <section class="block" id="sobre-mi">
+      <div class="wrap">
+        <div class="sec-head"><h2>sobre mí</h2><div class="line"></div><span class="num">05</span></div>
+        <div class="about">
+          <img class="torn" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob con chaqueta azul" loading="lazy" width="205" height="360">
+          <div>
+            <ul class="words"><li>música</li><li>palabras</li><li>obsesiones</li></ul>
+            <!-- EDITAR: biografía corta -->
+            <p class="bio">[Biografía corta de Kailkob: de dónde viene, qué hace, qué busca con sus canciones.]</p>
+          </div>
+          <!-- EDITAR: email de contacto -->
+          <a class="letter" href="mailto:[email]">
+            <svg class="envelope" viewBox="0 0 120 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" filter="url(#rough)"><rect x="6" y="18" width="108" height="66" rx="3" fill="#b99ae633"/><path d="M6 20 L60 58 L114 20"/><path d="M6 84 L46 48 M114 84 L74 48"/></g><g stroke="var(--lime)" stroke-width="2" stroke-linecap="round" filter="url(#rough)"><path d="M48 8 l4 6 M60 3 v8 M72 8 l-4 6"/></g></svg>
+            <span class="write">escríbeme</span>
+            <small>booking, prensa o lo que sea</small>
+          </a>
+        </div>
+        <!-- EDITAR: sustituye cada href="#" por el enlace real -->
+        <ul class="platforms">
+          <li><a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></svg>Spotify</a></li>
+          <li><a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>YouTube</a></li>
+          <li><a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>Instagram</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="line"></div>
+      <div class="row">
+        <span class="rough">KAILKOB</span>
+        <span class="grow">© <span id="y">2026</span> · canciones, textos y otras criaturas</span>
+        <a href="#inicio">volver arriba ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reproductor: aparece solo cuando una canción tiene data-audio -->
+  <div class="player" id="player" role="region" aria-label="Reproductor">
+    <button class="pp" type="button" aria-label="Reproducir o pausar"><span class="tri"></span><span class="pause"><i></i><i></i></span></button>
+    <span class="name">—</span>
+    <input type="range" min="0" max="1000" value="0" aria-label="Posición">
+    <span class="time">0:00 / 0:00</span>
+  </div>
+  <audio id="audio" preload="none"></audio>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const songs = [...document.querySelectorAll('[data-song]')];
+    const player = document.getElementById('player');
+    const audio = document.getElementById('audio');
+    const pp = player.querySelector('.pp');
+    const nameEl = player.querySelector('.name');
+    const seek = player.querySelector('input');
+    const timeEl = player.querySelector('.time');
+    const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
+
+    songs.forEach(btn => {
+      if (!btn.dataset.audio && !btn.dataset.href) {
+        btn.setAttribute('aria-disabled', 'true');
+        btn.lastElementChild.textContent = 'pronto';
+      }
+      btn.addEventListener('click', () => play(btn));
+    });
+
+    // Botón "escuchar" de la portada: primera canción disponible
+    document.querySelector('[data-play]').addEventListener('click', () => {
+      const first = songs.find(b => b.dataset.audio || b.dataset.href);
+      if (first) play(first); else document.getElementById('canciones').scrollIntoView();
+    });
+
+    function play(btn) {
+      if (btn.dataset.audio) {
+        if (audio.dataset.current !== btn.dataset.audio) {
+          audio.src = btn.dataset.audio; audio.dataset.current = btn.dataset.audio;
+          nameEl.textContent = btn.dataset.song;
+        }
+        player.classList.add('on');
+        audio.play();
+      } else if (btn.dataset.href) {
+        window.open(btn.dataset.href, '_blank', 'noopener');
+      }
+    }
+    pp.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
+    audio.addEventListener('play', () => player.classList.add('playing'));
+    audio.addEventListener('pause', () => player.classList.remove('playing'));
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) seek.value = audio.currentTime / audio.duration * 1000;
+      timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    });
+    seek.addEventListener('input', () => { if (audio.duration) audio.currentTime = seek.value / 1000 * audio.duration; });
+  </script>
 </body>
 </html>
