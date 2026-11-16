@@ -9,7 +9,7 @@
   <meta property="og:description" content="canciones, textos y otras criaturas">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kailkob.github.io/">
-  <meta property="og:image" content="https://kailkob.github.io/img/portada.jpg">
+  <meta property="og:image" content="https://kailkob.github.io/img/mapa-retrato.jpg">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,472 +18,523 @@
     :root {
       --ink: #0a0a0a;
       --chalk: #efe8d8;
-      --paper: #e6d8bd;
-      --paper-ink: #2a241c;
+      --paper: #e9dcc0;
+      --paper-dark: #d9c7a3;
+      --paper-ink: #2b241b;
       --muted: #a39d90;
       --lime: #c8f03c;
       --lilac: #b99ae6;
+      --lilac-paper: #c7a8e8;
+      --lilac-ink: #2a1d3a;
       --blue: #3346d9;
       --orange: #f0913a;
-      --maxw: 70rem;
-      --gutter: clamp(1rem, 4vw, 2.75rem);
+      --maxw: 74rem;
+      --gutter: clamp(.75rem, 3.5vw, 2.5rem);
       --hand: "Shadows Into Light Two", "Comic Sans MS", cursive;
       --gothic: "UnifrakturMaguntia", serif;
       --serif: "IM Fell English", Georgia, serif;
+      --torn: polygon(0% 2%, 4% 0%, 9% 1.5%, 15% .2%, 22% 1.8%, 30% .4%, 37% 2%, 45% .3%, 52% 1.6%, 60% 0%, 67% 1.9%, 74% .5%, 81% 2%, 88% .2%, 94% 1.5%, 100% .4%, 98.6% 7%, 100% 14%, 98.4% 22%, 99.8% 31%, 98.2% 40%, 100% 49%, 98.5% 58%, 99.7% 67%, 98.3% 76%, 100% 85%, 98.6% 93%, 99.5% 100%, 93% 98.4%, 86% 100%, 78% 98.2%, 70% 99.8%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 99.7%, 30% 98.2%, 22% 100%, 14% 98.4%, 7% 99.8%, 0% 98.6%, 1.4% 91%, 0% 83%, 1.6% 74%, .2% 65%, 1.8% 56%, .3% 47%, 1.5% 38%, 0% 29%, 1.7% 20%, .2% 11%);
+      --tag: polygon(2% 8%, 10% 0, 30% 6%, 55% 0, 80% 7%, 98% 0, 100% 40%, 97% 70%, 100% 100%, 75% 94%, 50% 100%, 25% 93%, 4% 100%, 0 60%);
+      --paper-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
-    body {
-      margin: 0;
-      background: var(--ink);
-      color: var(--chalk);
-      font: 400 1.15rem/1.55 var(--hand);
-      letter-spacing: .03em;
-      -webkit-font-smoothing: antialiased;
-      -webkit-tap-highlight-color: transparent;
-      overflow-x: clip;
-    }
-    /* grano de papel / tiza */
-    body::after {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+    body { margin: 0; background: var(--ink); color: var(--chalk); font: 400 1.15rem/1.5 var(--hand); letter-spacing: .03em; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; overflow-x: clip; }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
     a { color: inherit; text-decoration: none; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px dashed var(--lime); outline-offset: 4px; }
+    button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; letter-spacing: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px dashed var(--lime); outline-offset: 4px; }
     img { max-width: 100%; display: block; }
-    h1, h2, h3 { font-weight: 400; margin: 0; line-height: 1; }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { font-weight: 400; line-height: 1; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .screen { mix-blend-mode: screen; }
 
-    /* trazo a mano: el borde tiembla con el filtro SVG #rough */
-    .rough { filter: url(#rough); }
-    .line { height: 0; border-top: 1.5px solid var(--chalk); filter: url(#rough); opacity: .85; }
+    /* ---------- piezas reutilizables ---------- */
+    .tri { display: inline-block; width: 0; height: 0; border-left: .6em solid currentColor; border-top: .36em solid transparent; border-bottom: .36em solid transparent; }
+    .circle-play { display: inline-grid; place-items: center; width: 2.2em; height: 2.2em; border: 1.6px solid currentColor; border-radius: 50%; flex: none; }
+    .circle-play .tri { margin-left: .18em; font-size: .8em; }
+    .arrow { border-bottom: 1.5px solid var(--lime); padding-bottom: .05em; white-space: nowrap; transition: color .15s; }
+    .arrow::after { content: " →"; }
+    @media (hover: hover) { .arrow:hover, .tag:hover { color: var(--lime); } }
+
+    /* papel (crema) con grano y bordes rotos */
+    .paper { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); box-shadow: inset 0 0 2.5rem #8a6a3e55; }
+    .lilac-paper { background: var(--lilac-paper) var(--paper-bg); background-blend-mode: multiply; color: var(--lilac-ink); box-shadow: inset 0 0 2.5rem #4a2e6b55; }
+    .torn { clip-path: var(--torn); }
+
+    /* etiqueta de papel rasgado con ▷ */
+    .tag { display: inline-flex; align-items: center; gap: .55em; padding: .35em 1em .3em .9em; clip-path: var(--tag); font-size: 1.2rem; letter-spacing: .1em; white-space: nowrap; transition: transform .15s, color .15s; }
+    .tag .tri { font-size: .75em; border-left-color: transparent; border-left: .55em solid currentColor; }
+    .tag.paper { color: var(--paper-ink); }
+    @media (hover: hover) { .tag:hover { transform: rotate(-2deg) scale(1.04); } }
+
+    /* cinta adhesiva */
+    .tape { position: absolute; width: 4.2rem; height: 1.3rem; background: #b99ae6cc; clip-path: polygon(0 10%, 6% 0, 12% 12%, 18% 0, 100% 6%, 94% 100%, 88% 88%, 82% 100%, 0 92%); z-index: 3; pointer-events: none; }
+    .tape.lime { background: #c8f03cb3; }
 
     /* ---------- cabecera ---------- */
-    header.top { position: sticky; top: 0; z-index: 20; background: var(--ink); padding-bottom: .4rem; }
-    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .9rem; padding-bottom: .6rem; }
-    .logo { font-size: 1.5rem; letter-spacing: .14em; }
-    nav.menu { display: flex; gap: .2rem; overflow-x: auto; scrollbar-width: none; font-size: 1.15rem; }
+    header.top { position: sticky; top: 0; z-index: 20; background: var(--ink); }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .8rem; padding-bottom: .7rem; }
+    .logo { font-size: 1.45rem; letter-spacing: .16em; }
+    nav.menu { display: flex; overflow-x: auto; scrollbar-width: none; font-size: 1.1rem; }
     nav.menu::-webkit-scrollbar { display: none; }
-    nav.menu a { padding: .2rem .45rem; white-space: nowrap; color: var(--chalk); opacity: .8; transition: opacity .15s, color .15s; }
-    nav.menu a + a::before { content: "/"; margin-right: .65rem; opacity: .5; color: var(--chalk); }
+    nav.menu a { padding: .2rem .45rem; white-space: nowrap; opacity: .85; transition: opacity .15s, color .15s; }
+    nav.menu a + a::before { content: "/"; margin-right: .6rem; opacity: .45; color: var(--chalk); }
     nav.menu .star { color: var(--lime); }
     @media (hover: hover) { nav.menu a:hover { opacity: 1; color: var(--lime); } }
-    header.top .line { margin: 0 var(--gutter); max-width: calc(var(--maxw) - 2 * var(--gutter)); }
-    @media (min-width: 70rem) { header.top .line { margin: 0 auto; } }
 
-    /* ---------- portada ---------- */
-    .hero { padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
-    .hero .wrap { display: grid; gap: 2.5rem; align-items: center; }
-    @media (min-width: 56rem) { .hero .wrap { grid-template-columns: 1fr 1.15fr; } }
-    .title {
-      font-size: clamp(5.5rem, 21vw, 11rem); line-height: .82; letter-spacing: .02em;
-      filter: url(#chalk); position: relative; display: inline-block; padding: 0 .35em 0 .25em;
+    /* ---------- paneles ---------- */
+    .panel-wrap { padding: clamp(1.5rem, 4vw, 2.75rem) 0; scroll-margin-top: 3.5rem; }
+    .label { display: inline-block; font-size: 1.15rem; letter-spacing: .1em; color: var(--chalk); border-bottom: 1.5px solid var(--chalk); padding: 0 .3rem .1rem 0; margin: 0 0 .8rem .2rem; }
+    .panel { position: relative; border: 1.6px solid #efe8d8cc; border-radius: 14px; padding: clamp(1.25rem, 4vw, 3rem) clamp(1rem, 4vw, 3.25rem); filter: none; isolation: isolate; }
+    .panel::before { content: ""; position: absolute; inset: -1px; border-radius: 14px; border: 1px solid #efe8d833; transform: rotate(-.25deg); pointer-events: none; }
+    .panel.sprigs::after {
+      content: ""; position: absolute; inset: 10px; pointer-events: none; z-index: -1; opacity: .95;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") left bottom / auto clamp(90px, 13vw, 150px) no-repeat,
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform='translate(34 0) scale(-1 1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right bottom / auto clamp(90px, 13vw, 150px) no-repeat,
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform='translate(0 120) scale(1 -1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") left top / auto clamp(60px, 8vw, 95px) no-repeat,
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform='translate(34 120) scale(-1 -1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right top / auto clamp(60px, 8vw, 95px) no-repeat;
     }
-    .title span { display: block; }
-    .title span:last-child { padding-left: .28em; }
-    .title::before, .title::after {
-      content: ""; position: absolute; width: .32em; height: .3em; top: .35em;
-      background: linear-gradient(var(--chalk), var(--chalk)) 0 0 / 100% 2px no-repeat,
-                  linear-gradient(var(--chalk), var(--chalk)) 0 50% / 100% 2px no-repeat,
-                  linear-gradient(var(--chalk), var(--chalk)) 0 100% / 100% 2px no-repeat;
+    .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; font-size: 1.3rem; }
+    .back { opacity: .8; transition: opacity .15s, color .15s; }
+    @media (hover: hover) { .back:hover { opacity: 1; color: var(--lime); } }
+
+    /* marco ornamental lila (filigrana en las esquinas) */
+    .ornate { position: relative; border: 2px solid var(--lilac); outline: 1px solid #b99ae6aa; outline-offset: 6px; }
+    .ornate::before {
+      content: ""; position: absolute; inset: -14px; pointer-events: none; z-index: 2;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.6' stroke-linecap='round'%3E%0A%3Cpath d='M3 58 V20 Q3 3 20 3 H58'/%3E%3Cpath d='M10 58 V24 Q10 10 24 10 H58'/%3E%0A%3Cpath d='M17 30 q0-13 13-13 q-2 9-13 13z'/%3E%3Cpath d='M30 17 q7-6 14-3'/%3E%3Cpath d='M17 30 q-6 7-3 14'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='10' cy='10' r='2.6'/%3E%3Ccircle cx='46' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='46' r='1.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") left top / 56px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg transform='translate(60 0) scale(-1 1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.6' stroke-linecap='round'%3E%0A%3Cpath d='M3 58 V20 Q3 3 20 3 H58'/%3E%3Cpath d='M10 58 V24 Q10 10 24 10 H58'/%3E%0A%3Cpath d='M17 30 q0-13 13-13 q-2 9-13 13z'/%3E%3Cpath d='M30 17 q7-6 14-3'/%3E%3Cpath d='M17 30 q-6 7-3 14'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='10' cy='10' r='2.6'/%3E%3Ccircle cx='46' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='46' r='1.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right top / 56px no-repeat,
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg transform='translate(0 60) scale(1 -1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.6' stroke-linecap='round'%3E%0A%3Cpath d='M3 58 V20 Q3 3 20 3 H58'/%3E%3Cpath d='M10 58 V24 Q10 10 24 10 H58'/%3E%0A%3Cpath d='M17 30 q0-13 13-13 q-2 9-13 13z'/%3E%3Cpath d='M30 17 q7-6 14-3'/%3E%3Cpath d='M17 30 q-6 7-3 14'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='10' cy='10' r='2.6'/%3E%3Ccircle cx='46' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='46' r='1.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") left bottom / 56px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg transform='translate(60 60) scale(-1 -1)'%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.6' stroke-linecap='round'%3E%0A%3Cpath d='M3 58 V20 Q3 3 20 3 H58'/%3E%3Cpath d='M10 58 V24 Q10 10 24 10 H58'/%3E%0A%3Cpath d='M17 30 q0-13 13-13 q-2 9-13 13z'/%3E%3Cpath d='M30 17 q7-6 14-3'/%3E%3Cpath d='M17 30 q-6 7-3 14'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='10' cy='10' r='2.6'/%3E%3Ccircle cx='46' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='46' r='1.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") right bottom / 56px no-repeat;
     }
-    .title::before { left: -.2em; transform: rotate(-12deg); }
-    .title::after { right: -.15em; top: 1.25em; transform: rotate(14deg); }
-    .tagline { font-size: clamp(1.25rem, 2.8vw, 1.6rem); letter-spacing: .1em; margin: 1.2rem 0 1.8rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; }
+    .gothic { font-family: var(--gothic); letter-spacing: 0; }
+    .gothic-head { display: flex; align-items: center; justify-content: center; gap: .9rem; color: var(--lilac); font-family: var(--gothic); font-size: clamp(2.3rem, 6vw, 3.6rem); text-align: center; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+    .gothic-head::before, .gothic-head::after { content: ""; width: 3.4rem; height: 1.6rem; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.6' stroke-linecap='round'%3E%0A%3Cpath d='M3 58 V20 Q3 3 20 3 H58'/%3E%3Cpath d='M10 58 V24 Q10 10 24 10 H58'/%3E%0A%3Cpath d='M17 30 q0-13 13-13 q-2 9-13 13z'/%3E%3Cpath d='M30 17 q7-6 14-3'/%3E%3Cpath d='M17 30 q-6 7-3 14'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='10' cy='10' r='2.6'/%3E%3Ccircle cx='46' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='46' r='1.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; transform: rotate(-45deg); opacity: .9; }
+    .gothic-head::after { transform: rotate(135deg) scaleY(-1); }
 
-    .pill {
-      display: inline-flex; align-items: center; gap: .7rem; padding: .55rem 1.6rem .5rem 1.25rem;
-      font: inherit; font-size: 1.5rem; letter-spacing: .12em; color: var(--chalk); background: none; border: 0; cursor: pointer;
-      position: relative; transition: color .15s, transform .12s;
+    /* ---------- 01 el mapa ---------- */
+    .map { display: grid; gap: 1.5rem; }
+    @media (min-width: 58rem) { .map { grid-template-columns: .85fr 1.15fr; align-items: center; } }
+    .title { display: inline-block; font-size: clamp(4.2rem, 13vw, 8rem); line-height: .85; letter-spacing: .08em; transform: rotate(-7deg); transform-origin: left bottom; margin: 1.2rem 0 1.6rem .2rem; }
+    .tagline { font-size: clamp(1.2rem, 2.6vw, 1.5rem); letter-spacing: .1em; margin-bottom: 1rem; }
+    .explore { display: inline-block; font-size: 1.15rem; letter-spacing: .1em; border-bottom: 2px solid var(--lime); transform: rotate(-3deg); }
+    .portrait { position: relative; }
+    .portrait img { width: 100%; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(70% 75% at 50% 45%, #000 50%, transparent 92%); mask-image: radial-gradient(70% 75% at 50% 45%, #000 50%, transparent 92%); }
+    .stations { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; margin-top: 1.5rem; }
+    @media (min-width: 46rem) { .stations { grid-template-columns: repeat(4, 1fr); } }
+    .stations::before { content: ""; position: absolute; left: 6%; right: 6%; top: 42%; border-top: 1.5px dashed #efe8d899; z-index: -1; }
+    .station { display: grid; justify-items: center; gap: .55rem; text-align: center; }
+    .station img, .station svg.pic { height: clamp(5rem, 11vw, 7.5rem); width: 100%; max-width: 12rem; object-fit: contain; transition: transform .25s; -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent); mask-image: radial-gradient(closest-side, #000 70%, transparent); }
+    .station svg.pic { -webkit-mask-image: none; mask-image: none; max-width: 8.5rem; }
+    .station .knot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--lime); }
+    @media (hover: hover) { .station:hover img, .station:hover svg.pic { transform: translateY(-4px) rotate(-2deg); } .station:hover .tag { color: var(--ink); background-color: var(--lime); } }
+
+    /* ---------- 02 canciones ---------- */
+    .records { display: grid; gap: 2rem; }
+    @media (min-width: 58rem) { .records { grid-template-columns: 1.35fr 1fr; align-items: center; } }
+    .sleeves { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.25rem, 4vw, 2.5rem) clamp(2.5rem, 8vw, 5rem); padding: 1rem clamp(2rem, 6vw, 4rem) 1rem .5rem; }
+    .rec { position: relative; }
+    .sleeve { position: relative; width: 100%; aspect-ratio: 1; display: grid; place-items: center; text-align: center; padding: 12%; transition: transform .25s; z-index: 1; }
+    .vinyl { /* vinilo asomando */
+      position: absolute; z-index: 0; width: 86%; aspect-ratio: 1; top: 7%; right: -34%; border-radius: 50%;
+      background: radial-gradient(circle, var(--disc, var(--lilac)) 0 16%, #111 16.5% 18%, transparent 18.5%), repeating-radial-gradient(circle, #1c1c1c 0 2px, #2e2e2e 2px 3px), #111;
+      box-shadow: 0 0 0 1.5px #efe8d855; transition: transform .35s;
     }
-    .pill::before { content: ""; position: absolute; inset: 0; border: 2px solid currentColor; border-radius: 50% / 50%; filter: url(#rough); }
-    .pill:active { transform: scale(.97); }
-    @media (hover: hover) { .pill:hover { color: var(--lime); } }
-    .tri { width: 0; height: 0; border-left: .62em solid currentColor; border-top: .38em solid transparent; border-bottom: .38em solid transparent; filter: url(#rough); }
-    .arrow-link { font-size: 1.25rem; letter-spacing: .1em; border-bottom: 1.5px solid var(--chalk); padding-bottom: .1rem; transition: color .15s, border-color .15s; }
-    .arrow-link::after { content: " →"; }
-    @media (hover: hover) { .arrow-link:hover { color: var(--lime); border-color: var(--lime); } }
+    .rec:nth-child(odd) .sleeve { transform: rotate(-3deg); } .rec:nth-child(even) .sleeve { transform: rotate(2.5deg); }
+    .rec:nth-child(odd) .vinyl { transform: rotate(-3deg); }
+    @media (hover: hover) { .rec:hover .sleeve { transform: rotate(0) translateY(-4px); } .rec:hover .vinyl { transform: translateX(16%) rotate(40deg); } }
+    .sleeve .tape { top: -.6rem; left: 50%; margin-left: -2.1rem; transform: rotate(-4deg); }
+    .sleeve h3 { position: relative; z-index: 2; }
+    .sleeve img { position: absolute; z-index: 1; }
+    .sleeve-1408 h3 { font-family: var(--gothic); font-size: clamp(2.8rem, 8vw, 4.4rem); }
+    .sleeve-1408 { outline: 1.5px solid var(--lilac-ink); outline-offset: -10px; }
+    .sleeve-ddp { background: var(--ink); border: 1.6px solid var(--chalk); color: var(--chalk); align-content: start; }
+    .sleeve-ddp h3 { font-size: clamp(1.3rem, 3.2vw, 1.9rem); letter-spacing: .12em; line-height: 1.05; transform: rotate(-6deg); margin-top: -4%; }
+    .sleeve-ddp img { left: 8%; bottom: 6%; width: 84%; height: 52%; object-fit: cover; object-position: 50% 100%; }
+    .sleeve-rio { align-content: start; padding-top: 10%; }
+    .sleeve-rio h3 { font: 1.25rem/1.05 var(--serif); letter-spacing: .06em; text-transform: uppercase; font-size: clamp(1rem, 2.6vw, 1.45rem); }
+    .sleeve-rio img { left: 10%; bottom: 8%; width: 80%; height: 50%; object-fit: cover; border: 1px solid var(--paper-ink); }
+    .sleeve-blv { background: var(--blue) var(--paper-bg); background-blend-mode: multiply; color: var(--chalk); }
+    .sleeve-blv h3 { font-size: clamp(1.6rem, 4.5vw, 2.6rem); letter-spacing: .14em; transform: rotate(-4deg); }
+    .sleeve-blv .moon { position: absolute; top: 12%; right: 14%; width: 18%; aspect-ratio: 1; border-radius: 50%; background: var(--lime); }
+    .sleeve-blv .stars { position: absolute; left: 12%; bottom: 14%; font-size: 1.2rem; letter-spacing: .6em; color: var(--chalk); opacity: .9; }
 
-    .hero-art { position: relative; justify-self: center; width: min(100%, 34rem); }
-    .torn {
-      clip-path: polygon(0% 2%, 4% 0%, 9% 1.5%, 15% .2%, 22% 1.8%, 30% .4%, 37% 2%, 45% .3%, 52% 1.6%, 60% 0%, 67% 1.9%, 74% .5%, 81% 2%, 88% .2%, 94% 1.5%, 100% .4%,
-        98.6% 7%, 100% 14%, 98.4% 22%, 99.8% 31%, 98.2% 40%, 100% 49%, 98.5% 58%, 99.7% 67%, 98.3% 76%, 100% 85%, 98.6% 93%, 99.5% 100%,
-        93% 98.4%, 86% 100%, 78% 98.2%, 70% 99.8%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 99.7%, 30% 98.2%, 22% 100%, 14% 98.4%, 7% 99.8%, 0% 98.6%,
-        1.4% 91%, 0% 83%, 1.6% 74%, .2% 65%, 1.8% 56%, .3% 47%, 1.5% 38%, 0% 29%, 1.7% 20%, .2% 11%);
+    .tracklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+    .track { display: grid; grid-template-columns: auto 1fr; gap: .2rem 1rem; align-items: center; }
+    .track .circle-play { grid-row: span 2; font-size: 1.2rem; transition: color .15s, background .15s; }
+    .track .name { font-size: 1.3rem; letter-spacing: .16em; text-transform: uppercase; display: flex; align-items: center; gap: .8rem; }
+    .track .name::after { content: ""; flex: 1; height: 1.5px; background: linear-gradient(90deg, var(--chalk) 0 55%, transparent 55%); opacity: .5; }
+    .track .meta { font-size: .95rem; color: var(--muted); letter-spacing: .06em; }
+    .track .open { justify-self: start; font-size: 1.05rem; }
+    .track[aria-current="true"] .name { color: var(--lime); }
+    .circle-play[aria-disabled="true"] { opacity: .45; cursor: default; }
+    @media (hover: hover) { .track .circle-play:not([aria-disabled="true"]):hover { color: var(--ink); background: var(--lime); border-color: var(--lime); } }
+    .headphones { width: 5.5rem; margin: 1rem 0 0 auto; }
+
+    /* ---------- 03 dentro de una canción ---------- */
+    .song-panel { padding: clamp(1.25rem, 4vw, 2.75rem); }
+    .song-title { font-family: var(--gothic); color: var(--lilac); text-align: center; font-size: clamp(3rem, 10vw, 6rem); line-height: 1; margin: .2rem 0 clamp(1.25rem, 4vw, 2rem); }
+    .song-body { display: grid; gap: 1.75rem; }
+    @media (min-width: 52rem) { .song-body { grid-template-columns: minmax(12rem, .7fr) 1.3fr; gap: 2.5rem; align-items: start; } }
+    .song-art { padding: 10px; transform: rotate(-1.2deg); }
+    .song-art img { width: 100%; aspect-ratio: 5 / 7; object-fit: cover; }
+    .listen { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+    .listen .circle-play { font-size: 1.5rem; }
+    .wave { flex: 1; height: 2.6rem; color: var(--lilac); }
+    .listen-label { font-size: 1.35rem; border-bottom: 2px solid var(--lime); }
+    .tabs { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .9rem; font-size: 1.25rem; margin-bottom: 1.1rem; }
+    .tabs [role=tab] { padding: .15rem .8rem; letter-spacing: .08em; opacity: .75; transition: opacity .15s, background .15s, color .15s; }
+    .tabs [role=tab] + [role=tab]::before { content: "/"; margin: 0 .9rem 0 -.9rem; opacity: .5; color: var(--chalk); }
+    .tabs [role=tab][aria-selected="true"] { opacity: 1; background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); clip-path: var(--tag); }
+    .tab-body p { font: 1.12rem/1.6 var(--serif); letter-spacing: 0; color: var(--chalk); max-width: 36rem; }
+    .tab-body p + p { margin-top: .7rem; }
+    .tab-body .lead { font-style: italic; font-size: 1.25rem; }
+    .tab-body .pending { color: var(--muted); font-style: italic; }
+    .tab-body dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1.2rem; font: 1.08rem/1.4 var(--serif); letter-spacing: 0; margin: 0; }
+    .tab-body dt { color: var(--lilac); font-family: var(--hand); letter-spacing: .08em; }
+    .tab-body dd { margin: 0; }
+    .tab-body .lyrics { white-space: pre-line; }
+
+    /* ---------- 04 textos: libro abierto ---------- */
+    .book-wrap { position: relative; padding-top: 3.5rem; }
+    .book-cat { position: absolute; top: -.2rem; right: 12%; width: clamp(7rem, 16vw, 10rem); z-index: 3; -webkit-mask-image: radial-gradient(70% 90% at 45% 70%, #000 60%, transparent); mask-image: radial-gradient(70% 90% at 45% 70%, #000 60%, transparent); }
+    .book { position: relative; display: grid; border-radius: 6px 6px 10px 10px; box-shadow: 0 1.2rem 2rem #000a, 0 0 0 1px #00000040; }
+    @media (min-width: 48rem) { .book { grid-template-columns: 1fr 1fr; } }
+    .page { position: relative; padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 2.75rem) 5rem; min-height: 24rem; }
+    .page.left { border-radius: 6px 0 0 10px; }
+    .page.right { border-radius: 0 6px 10px 0; }
+    @media (min-width: 48rem) {
+      .page.left { box-shadow: inset -2.5rem 0 2.5rem -2rem #6b4f2a88, inset 0 0 2.5rem #8a6a3e55; }
+      .page.right { box-shadow: inset 2.5rem 0 2.5rem -2rem #6b4f2a88, inset 0 0 2.5rem #8a6a3e55; }
+      .ribbon { position: absolute; left: 50%; top: -1rem; bottom: -2.5rem; width: 1.3rem; margin-left: -.65rem; background: var(--lilac); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 94%, 0 100%); z-index: 2; opacity: .92; }
     }
-    .hero-art .torn { transform: rotate(1.2deg); box-shadow: 0 0 0 1px #0000; }
-    .hero-art .scribble { position: absolute; right: -4%; top: -6%; width: 34%; color: var(--blue); pointer-events: none; }
-    .hero-art .moon { position: absolute; left: -5%; bottom: 10%; width: 13%; }
+    .herbario { position: relative; border: 1.5px solid var(--paper-ink); outline: 1px solid #2b241b88; outline-offset: 4px; padding: 1.1rem .8rem; text-align: center; margin-bottom: 1.5rem; }
+    .herbario h3 { font-family: var(--gothic); font-size: clamp(2.3rem, 6vw, 3.3rem); line-height: .95; color: var(--paper-ink); }
+    .herbario::before, .herbario::after { content: ""; position: absolute; top: 50%; width: 1.8rem; height: 4.5rem; transform: translateY(-50%); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; filter: brightness(.45) saturate(.6); }
+    .herbario::before { left: .3rem; } .herbario::after { right: .3rem; transform: translateY(-50%) scaleX(-1); }
+    .page h4 { margin: 0 0 .8rem; font-weight: 400; font-size: 1.45rem; letter-spacing: .08em; display: inline-block; border-bottom: 2px solid #9cc22a; }
+    .page p { font: 1.12rem/1.55 var(--serif); letter-spacing: 0; margin-bottom: 1rem; }
+    .page .arrow { border-color: #7fa01f; }
+    .page .big { font: 1.7rem/1.35 var(--hand); letter-spacing: .06em; margin: 1.5rem 0 1rem; }
+    .page .scribble { font-family: var(--hand); font-size: 1.05rem; line-height: 1.25; letter-spacing: .08em; margin-left: 40%; transform: rotate(-4deg); color: #4a3f31; }
+    .scribble s { text-decoration-color: var(--lilac); text-decoration-thickness: 2px; }
+    .borradores { position: absolute; left: 1.5rem; bottom: 1rem; transform: rotate(-4deg); }
+    .borradores.tag { background: var(--lilac); color: var(--lilac-ink); }
+    .clip { position: absolute; left: .6rem; bottom: 2.3rem; width: .8rem; height: 2rem; border: 2px solid #9a948a; border-radius: .5rem; z-index: 2; }
+    .turn { position: absolute; right: 1.5rem; bottom: 1rem; font-size: 1.1rem; }
+    .page.right::after { content: ""; position: absolute; right: 0; bottom: 0; width: 2.6rem; height: 2.6rem; background: linear-gradient(225deg, var(--ink) 50%, #cdb88f 50%, #e9dcc0 75%); border-bottom-right-radius: 10px; }
+    .page-sprig { position: absolute; width: 2rem; height: 5.5rem; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 120'%3E%3Cg transform=''%3E%3Cg fill='none' stroke='%23b99ae6' stroke-width='1.3' stroke-linecap='round'%3E%0A%3Cpath d='M14 118 C12 96 18 74 14 52 C11 36 16 20 22 4'/%3E%0A%3Cpath d='M14 92 C22 86 28 78 30 66'/%3E%3Cpath d='M13 70 C6 64 3 56 4 46'/%3E%3Cpath d='M15 48 C22 42 26 34 26 24'/%3E%0A%3Cpath d='M14 104 q-7-3-9-10'/%3E%3Cpath d='M15 82 q7-2 9-8'/%3E%3Cpath d='M13 60 q-6-1-8-7'/%3E%3C/g%3E%0A%3Cg fill='%23b99ae6'%3E%3Ccircle cx='22' cy='4' r='2.4'/%3E%3Ccircle cx='19' cy='10' r='2'/%3E%3Ccircle cx='24' cy='13' r='1.8'/%3E%3Ccircle cx='20' cy='17' r='1.6'/%3E%0A%3Ccircle cx='30' cy='66' r='2.2'/%3E%3Ccircle cx='31' cy='71' r='1.6'/%3E%3Ccircle cx='27' cy='62' r='1.7'/%3E%0A%3Ccircle cx='4' cy='46' r='2.2'/%3E%3Ccircle cx='7' cy='42' r='1.6'/%3E%3Ccircle cx='2' cy='51' r='1.4'/%3E%0A%3Ccircle cx='26' cy='24' r='2.1'/%3E%3Ccircle cx='29' cy='28' r='1.5'/%3E%3Ccircle cx='23' cy='20' r='1.5'/%3E%0A%3Cellipse cx='5' cy='94' rx='1.6' ry='3.2' transform='rotate(-40 5 94)'/%3E%3Cellipse cx='24' cy='74' rx='1.6' ry='3.2' transform='rotate(40 24 74)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; filter: brightness(.5) saturate(.7); opacity: .8; }
 
-    /* ---------- secciones ---------- */
-    section.block { padding: clamp(2.5rem, 6vw, 4.5rem) 0; scroll-margin-top: 4rem; }
-    .sec-head { display: flex; align-items: center; gap: 1.2rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
-    .sec-head h2 { font-size: clamp(2.3rem, 5vw, 3.2rem); letter-spacing: .12em; white-space: nowrap; }
-    .sec-head .line { flex: 1; }
-    .num { font-size: 1rem; color: var(--muted); letter-spacing: .12em; }
+    /* ---------- 05 visuales ---------- */
+    .cinema { padding: clamp(8px, 1.5vw, 14px); }
+    .cinema iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+    .cinema-cap { margin: 1.4rem 0 0; text-align: center; font-size: 1.25rem; letter-spacing: .16em; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.5rem; }
+    .cinema-cap a { font-size: 1.05rem; color: var(--muted); letter-spacing: .08em; }
+    @media (hover: hover) { .cinema-cap a:hover { color: var(--lime); } }
+    .strips { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2.25rem; }
+    .strip { display: grid; justify-items: center; gap: .6rem; }
+    .film { position: relative; padding: 14px 10px; background: #111; border: 1px solid #333; transform: rotate(-1.5deg); transition: transform .2s; }
+    .strip:nth-child(even) .film { transform: rotate(1.5deg); }
+    .film::before, .film::after { content: ""; position: absolute; left: 6px; right: 6px; height: 6px; background: repeating-linear-gradient(90deg, var(--chalk) 0 7px, transparent 7px 14px); opacity: .7; border-radius: 1px; }
+    .film::before { top: 4px; } .film::after { bottom: 4px; }
+    .film img { width: clamp(10rem, 30vw, 14rem); aspect-ratio: 16 / 8; object-fit: cover; }
+    @media (hover: hover) { .strip:hover .film { transform: rotate(0) scale(1.03); } }
+    .strip .tag { margin-top: -.6rem; transform: rotate(-2deg); }
 
-    /* canciones */
-    .songs { display: grid; gap: 2.5rem clamp(1rem, 3vw, 2rem); grid-template-columns: repeat(2, 1fr); }
-    @media (min-width: 60rem) { .songs { grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width: 34rem) { .song h3 { font-size: 1.1rem; letter-spacing: .14em; } }
-    .song { text-align: center; }
-    .frame { position: relative; padding: 6px; }
-    .frame::before { content: ""; position: absolute; inset: 0; border: 2px solid var(--chalk); filter: url(#rough); pointer-events: none; z-index: 1; }
-    .frame img { width: 100%; aspect-ratio: 8 / 7; object-fit: cover; mix-blend-mode: screen; }
-    .song h3 { font-size: 1.35rem; letter-spacing: .22em; text-transform: uppercase; margin: 1rem 0 .55rem; }
-    .song .meta { font-size: .95rem; color: var(--muted); letter-spacing: .08em; margin: -.25rem 0 .6rem; }
-    .cover-draw { width: 100%; aspect-ratio: 8 / 7; display: block; background: #000; }
-    .song-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.4rem; font-size: 1.15rem; }
-    .play-link { display: inline-flex; align-items: center; gap: .5rem; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
-    .play-link span:last-child { border-bottom: 1.5px solid currentColor; }
-    .play-link[aria-disabled="true"] { opacity: .5; cursor: default; }
-    @media (hover: hover) { .play-link:not([aria-disabled="true"]):hover, .song summary:hover { color: var(--lime); } }
-    .song details { margin-top: .4rem; }
-    .song summary { list-style: none; cursor: pointer; display: inline-block; border-bottom: 1.5px solid var(--lilac); color: var(--lilac); }
-    .song summary::-webkit-details-marker { display: none; }
-    .song details[open] summary { color: var(--lime); border-color: var(--lime); }
-    .song details p { font: italic 1.08rem/1.55 var(--serif); letter-spacing: 0; text-align: left; color: var(--chalk); margin: 1rem 0 0; padding-left: 1rem; border-left: 2px solid var(--lilac); }
-
-    /* textos */
-    .texts { display: grid; gap: 2.5rem; align-items: center; }
-    @media (min-width: 52rem) { .texts { grid-template-columns: 1fr auto 1fr; gap: 3rem; } }
-    .vline { display: none; }
-    @media (min-width: 52rem) { .vline { display: block; width: 0; align-self: stretch; border-left: 1.5px solid var(--chalk); filter: url(#rough); opacity: .7; } }
-    .note { background: var(--paper); color: var(--paper-ink); padding: 2.25rem 2.25rem 2rem; transform: rotate(-1.4deg); position: relative; }
-    .note::after {
-      content: ""; position: absolute; right: 6%; bottom: -2px; width: 3.4rem; height: 2.6rem; background: var(--lilac);
-      clip-path: polygon(0 40%, 30% 0, 100% 15%, 85% 100%, 10% 90%); opacity: .95;
-    }
-    .note h3, .side h3 { font-size: 1.6rem; letter-spacing: .1em; padding-bottom: .4rem; margin-bottom: 1rem; display: inline-block; }
-    .note h3 { border-bottom: 2px solid var(--paper-ink); }
-    .side h3 { border-bottom: 2px solid var(--lilac); }
-    .note p, .side p { font: 1.2rem/1.5 var(--serif); letter-spacing: 0; margin: 0 0 1rem; }
-    .note p.small { font-size: 1rem; opacity: .85; }
-    .note .arrow-link { border-color: var(--paper-ink); }
-    .side { position: relative; padding-bottom: 3.5rem; }
-    .side .cat { position: absolute; right: 0; bottom: 0; width: 11rem; mix-blend-mode: screen; }
-    .gothic-title { font-family: var(--gothic); color: var(--lilac); font-size: clamp(2.4rem, 6vw, 3.6rem); letter-spacing: 0; text-align: center; margin: 0 0 2rem; display: flex; align-items: center; justify-content: center; gap: .8rem; }
-    .sprig { width: 2.4rem; height: 2.4rem; color: var(--lilac); flex: none; }
-    .sprig.flip { transform: scaleX(-1); }
-
-    /* visuales */
-    .feature { margin: 0 0 2.5rem; }
-    .feature .frame { padding: 8px; }
-    .feature iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
-    .feature figcaption { margin-top: .7rem; font-size: 1.3rem; letter-spacing: .14em; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; }
-    .feature figcaption a { font-size: 1.1rem; color: var(--muted); }
-    @media (hover: hover) { .feature figcaption a:hover { color: var(--lime); } }
-    .films { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
-    .film { display: block; }
-    .film .frame img { aspect-ratio: 16 / 7; }
-    .film .playbadge {
-      position: absolute; inset: 0; margin: auto; width: 3.6rem; height: 3.6rem; border-radius: 50%; z-index: 2;
-      display: grid; place-items: center; background: #0a0a0acc; border: 2px solid var(--chalk); transition: transform .2s, border-color .2s;
-    }
-    .film .playbadge .tri { margin-left: .25rem; font-size: 1.3rem; }
-    .film figcaption { margin-top: .7rem; font-size: 1.2rem; letter-spacing: .14em; }
-    @media (hover: hover) { .film:hover .playbadge { transform: scale(1.08); border-color: var(--lime); color: var(--lime); } }
-
-
-    /* sobre mí y contacto */
-    .about { display: grid; gap: 3rem; align-items: center; }
-    @media (min-width: 56rem) { .about { grid-template-columns: .8fr 1fr .8fr; gap: 2.5rem; } }
-    .about .torn { transform: rotate(-2deg); width: min(100%, 17rem); margin: 0 auto; aspect-ratio: 205 / 300; object-fit: cover; object-position: 50% 100%; }
-    .about .words { list-style: none; padding: 0; margin: 0 0 1.5rem; font-size: 1.5rem; letter-spacing: .1em; }
-    .about .words li { display: flex; align-items: center; gap: .8rem; }
-    .about .words li::before { content: "↗"; color: var(--lime); }
-    .about .bio { font: 1.2rem/1.6 var(--serif); letter-spacing: 0; margin: 0; color: var(--chalk); }
-    .letter { display: grid; justify-items: center; gap: 1rem; text-align: center; }
-    .envelope { width: 9.5rem; color: var(--lilac); transition: transform .2s; }
-    @media (hover: hover) { .letter:hover .envelope { transform: rotate(-4deg) translateY(-3px); } .letter:hover .write { color: var(--lime); } }
-    .write { font-size: 1.7rem; letter-spacing: .12em; border-bottom: 2px solid var(--lime); }
-    .letter small { color: var(--muted); font-size: 1rem; }
-    .platforms { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-wrap: wrap; gap: .8rem 2rem; justify-content: center; font-size: 1.35rem; letter-spacing: .1em; }
-    .platforms a { display: inline-flex; align-items: center; gap: .55rem; transition: color .15s; }
-    .platforms a::after { content: "→"; opacity: .7; }
-    .platforms svg { width: 1.3rem; height: 1.3rem; }
+    /* ---------- 06 sobre mí y contacto ---------- */
+    .about { display: grid; gap: 2.5rem; align-items: center; }
+    @media (min-width: 58rem) { .about { grid-template-columns: .9fr 1fr .9fr; gap: 2rem; } }
+    .about-portrait { position: relative; justify-self: center; width: min(100%, 17rem); transform: rotate(-2.5deg); }
+    .about-portrait img { width: 100%; }
+    .about-portrait .tape { top: -.5rem; right: 1rem; transform: rotate(12deg); }
+    .words { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .4rem; font-size: 1.5rem; letter-spacing: .1em; }
+    .words li { display: flex; align-items: center; gap: .7rem; }
+    .words li::before { content: "↗"; color: var(--lime); font-size: 1.3rem; }
+    .words li:nth-child(2) { margin-left: 1.2rem; } .words li:nth-child(3) { margin-left: 2.4rem; }
+    .bio { font: 1.15rem/1.6 var(--serif); letter-spacing: 0; color: var(--chalk); }
+    .contact { display: grid; justify-items: center; gap: 1.5rem; }
+    .letter { position: relative; display: grid; justify-items: center; width: 13rem; transition: transform .2s; }
+    .letter svg { width: 100%; }
+    .letter .card { position: absolute; top: 18%; left: 16%; right: 16%; padding: .7rem .5rem .6rem; text-align: center; font-size: 1.45rem; letter-spacing: .1em; transform: rotate(-3deg); transition: transform .25s; }
+    .letter .card span { border-bottom: 2px solid #9cc22a; }
+    .letter .card small { display: block; font-size: 1.2rem; }
+    @media (hover: hover) { .letter:hover .card { transform: rotate(-3deg) translateY(-12px); } }
+    .platforms { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; font-size: 1.3rem; letter-spacing: .1em; }
+    .platforms a { display: inline-flex; align-items: center; gap: .7rem; transition: color .15s; }
+    .platforms a span { border-bottom: 1.5px solid var(--lime); }
+    .platforms a::after { content: "→"; }
+    .platforms svg { width: 1.4rem; height: 1.4rem; flex: none; }
     @media (hover: hover) { .platforms a:hover { color: var(--lime); } }
 
-    /* pie y reproductor */
-    footer { padding: 1rem 0 calc(2rem + env(safe-area-inset-bottom)); }
-    footer .row { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.5rem; font-size: 1.15rem; letter-spacing: .1em; padding-top: 1.2rem; }
-    footer .row .grow { flex: 1; }
-    footer .row a { opacity: .85; } footer .row a:hover { opacity: 1; color: var(--lime); }
-    footer .critter { width: 8rem; opacity: .9; }
-
-    .player {
-      position: fixed; left: 50%; bottom: calc(.8rem + env(safe-area-inset-bottom)); transform: translate(-50%, 150%); z-index: 30;
-      width: min(calc(100% - 2 * var(--gutter)), 64rem); display: flex; align-items: center; gap: 1rem; padding: .6rem 1rem;
-      background: var(--ink); transition: transform .35s cubic-bezier(.2,.8,.2,1);
-    }
-    .player.on { transform: translate(-50%, 0); }
-    .player::before { content: ""; position: absolute; inset: 0; border: 1.5px solid var(--chalk); filter: url(#rough); pointer-events: none; }
-    .player button { background: none; border: 0; color: var(--chalk); cursor: pointer; padding: .3rem; display: grid; place-items: center; font: inherit; }
-    .player .pp { width: 2.4rem; height: 2.4rem; font-size: 1.4rem; }
-    .player .pause { display: none; gap: .25em; } .player .pause i { width: .22em; height: .8em; background: currentColor; display: block; }
-    .player.playing .pause { display: flex; } .player.playing .tri { display: none; }
-    .player .name { letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto; }
-    .player input[type=range] { flex: 1; min-width: 4rem; accent-color: var(--lime); }
-    .player .time { color: var(--muted); font-size: 1rem; white-space: nowrap; }
-    @media (max-width: 34rem) { .player .time { display: none; } }
+    footer { padding: 1.5rem 0 calc(2rem + env(safe-area-inset-bottom)); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; font-size: 1.1rem; letter-spacing: .1em; color: var(--muted); }
+    footer a:hover { color: var(--lime); }
   </style>
 </head>
 <body>
 
-  <!-- Filtros SVG: dan el trazo tembloroso de tiza / tinta -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3.2"/></filter>
-    <filter id="chalk"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4" result="d"/><feComposite in="d" in2="d" operator="over"/></filter>
-    <symbol id="sprig" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 36 C14 26 20 16 34 5"/><path d="M12 28 c-4-1-6-4-6-7 M17 22 c-3-2-4-5-3-8 M22 16 c-2-3-2-6 0-8 M16 26 c3 0 6-2 8-4 M22 19 c3 0 6-2 7-4"/></g><g fill="currentColor"><circle cx="6" cy="20" r="1.7"/><circle cx="14" cy="13" r="1.7"/><circle cx="22" cy="7" r="1.7"/><circle cx="25" cy="21" r="1.7"/><circle cx="30" cy="14" r="1.7"/><circle cx="34" cy="5" r="2"/></g></symbol>
+    <symbol id="i-spotify" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></g></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></g></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></g></symbol>
+    <symbol id="envelope" viewBox="0 0 200 150"><g stroke="#2a1d3a" stroke-width="2" stroke-linejoin="round"><path d="M8 50 L100 8 L192 50 V142 H8 Z" fill="#a688d6"/><path d="M8 142 L82 90 M192 142 L118 90" fill="none"/><path d="M8 52 L100 112 L192 52 V142 H8 Z" fill="#b99ae6"/></g></symbol>
   </svg>
 
   <header class="top">
     <div class="wrap">
-      <a class="logo rough" href="#inicio">KAILKOB</a>
+      <a class="logo" href="#inicio">KAILKOB</a>
       <nav class="menu" aria-label="Secciones">
-        <a href="#canciones">música</a>
+        <a href="#canciones">canciones</a>
         <a href="#textos">textos</a>
         <a href="#visuales">visuales</a>
         <a href="#sobre-mi">sobre mí</a>
         <a href="#sobre-mi" class="star" aria-label="Contacto">✳</a>
       </nav>
     </div>
-    <div class="line"></div>
   </header>
 
-  <main>
-    <!-- PORTADA -->
-    <section class="hero" id="inicio">
-      <div class="wrap">
-        <div>
-          <h1 class="title" aria-label="Kailkob"><span>KAIL</span><span>KOB</span></h1>
-          <p class="tagline">canciones, textos y otras criaturas</p>
-          <div class="hero-actions">
-            <button class="pill" type="button" data-play="0"><span class="tri"></span>escuchar</button>
-            <a class="arrow-link" href="#textos">entrar al cuaderno</a>
+  <main class="wrap">
+
+    <!-- 01 / EL MAPA -->
+    <section class="panel-wrap" id="inicio">
+      <p class="label">01 / el mapa</p>
+      <div class="panel sprigs">
+        <div class="map">
+          <div>
+            <h1 class="title" aria-label="Kailkob">KAILKOB</h1>
+            <p class="tagline">canciones, textos y otras criaturas</p>
+            <p class="explore">toca para explorar ↓</p>
+          </div>
+          <div class="portrait">
+            <!-- EDITAR: imagen provisional recortada de la maqueta; sustituir por el original (mismo nombre) -->
+            <img src="img/mapa-retrato.jpg" alt="Retrato dibujado de Kailkob con los ojos cerrados, chaqueta azul y una luna verde" width="470" height="340">
           </div>
         </div>
-        <div class="hero-art">
-          <!-- EDITAR: sustituye por la imagen original en alta resolución (mismo nombre: img/portada.jpg) -->
-          <img class="torn" src="img/portada.jpg" alt="Retrato collage de Kailkob con los ojos cerrados" width="495" height="453">
-          <svg class="moon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="var(--lime)" filter="url(#rough)"/><g fill="#9cc22a"><circle cx="14" cy="15" r="3"/><circle cx="25" cy="24" r="4"/><circle cx="24" cy="12" r="1.8"/></g></svg>
+        <nav class="stations" aria-label="Explorar">
+          <a class="station" href="#canciones"><img class="screen" src="img/rata-luna.jpg" alt="" width="205" height="145"><span class="knot"></span><span class="tag paper">canciones <span class="tri"></span></span></a>
+          <a class="station" href="#textos"><img src="img/libro-gato.jpg" alt="" width="180" height="100" style="border-radius:4px"><span class="knot"></span><span class="tag paper">textos <span class="tri"></span></span></a>
+          <a class="station" href="#visuales"><img class="screen" src="img/moto.jpg" alt="" width="330" height="128"><span class="knot"></span><span class="tag paper">visuales <span class="tri"></span></span></a>
+          <a class="station" href="#sobre-mi"><svg class="pic" viewBox="0 0 200 150" aria-hidden="true"><use href="#envelope"/></svg><span class="knot"></span><span class="tag paper">contacto <span class="tri"></span></span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 02 / CANCIONES -->
+    <section class="panel-wrap" id="canciones">
+      <p class="label">02 / canciones</p>
+      <div class="panel sprigs">
+        <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
+        <div class="records">
+          <div class="sleeves">
+            <div class="rec"><span class="vinyl" style="--disc: var(--lime)" aria-hidden="true"></span>
+            <button class="sleeve sleeve-blv" type="button" data-open="blv" aria-label="Abrir BLV W/ME">
+              <span class="tape lime"></span><span class="moon"></span><h3>BLV<br>W/ME</h3><span class="stars">✦ ✧ ✦</span>
+            </button></div>
+            <div class="rec"><span class="vinyl" style="--disc: var(--lilac)" aria-hidden="true"></span>
+            <button class="sleeve sleeve-1408 lilac-paper" type="button" data-open="1408" aria-label="Abrir 1408">
+              <span class="tape"></span><h3>1408</h3>
+            </button></div>
+            <div class="rec"><span class="vinyl" style="--disc: var(--lime)" aria-hidden="true"></span>
+            <button class="sleeve sleeve-ddp" type="button" data-open="ddp" aria-label="Abrir Ding Dong Piro">
+              <h3>DING<br>DONG PIRO</h3><img class="screen" src="img/ding-dong-piro.jpg" alt="" width="229" height="202">
+            </button></div>
+            <div class="rec"><span class="vinyl" style="--disc: var(--orange)" aria-hidden="true"></span>
+            <button class="sleeve sleeve-rio paper" type="button" data-open="rio" aria-label="Abrir Que nos sofoque el río">
+              <span class="tape"></span><h3>Que nos<br>sofoque<br>el río</h3><img src="img/que-nos-sofoque-el-rio.jpg" alt="" width="232" height="202">
+            </button></div>
+          </div>
+          <div>
+            <ul class="tracklist" id="tracklist"></ul>
+            <img class="headphones screen" src="img/rata-cascos.jpg" alt="" width="100" height="75">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CANCIONES -->
-    <section class="block" id="canciones">
-      <div class="wrap">
-        <div class="sec-head"><h2>canciones</h2><div class="line"></div><span class="num">01</span></div>
-        <!--
-          EDITAR cada canción:
-          - data-audio: ruta a un mp3 subido al repo (p. ej. "audio/1408.mp3") → suena en el reproductor de abajo.
-          - data-href: enlace a Spotify / YouTube si no hay mp3.
-          Si los dos están vacíos, el botón aparece como "pronto".
-        -->
-        <div class="songs">
-          <article class="song">
-            <!-- EDITAR: portada provisional dibujada; sustitúyela por <img src="img/blv-w-me.jpg" ...> -->
-            <div class="frame"><svg class="cover-draw" viewBox="0 0 160 140" role="img" aria-label="Portada provisional de BLV W/ME: dos figuras bajo una luna lila">
-              <g filter="url(#rough)">
-                <circle cx="112" cy="38" r="18" fill="var(--lilac)"/>
-                <g fill="var(--chalk)"><circle cx="30" cy="22" r="1"/><circle cx="58" cy="14" r="1.2"/><circle cx="78" cy="34" r=".9"/><circle cx="140" cy="76" r="1"/><circle cx="18" cy="60" r=".9"/></g>
-                <path d="M0 112 C30 104 55 108 80 104 S130 100 160 108" fill="none" stroke="var(--chalk)" stroke-width="1.4"/>
-                <g fill="none" stroke="var(--chalk)" stroke-width="1.6" stroke-linecap="round">
-                  <circle cx="66" cy="70" r="6"/><path d="M66 76 v20 M66 96 l-6 12 M66 96 l6 12 M66 82 l9 6"/>
-                  <circle cx="90" cy="70" r="6"/><path d="M90 76 v20 M90 96 l-6 12 M90 96 l6 12 M90 82 l-9 6"/>
-                </g>
-                <path d="M74 88 h8" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round"/>
-                <g stroke="var(--chalk)" stroke-width="1" fill="none" opacity=".8"><path d="M12 140 l4-22 M20 140 l-2-18 M140 140 l3-20 M150 140 l-3-16 M30 140 l5-14"/></g>
-              </g>
-            </svg></div>
-            <h3>BLV W/ME</h3>
-            <p class="meta">single · 18 sep 2025</p>
-            <div class="song-actions">
-              <button class="play-link" type="button" data-song="BLV W/ME" data-audio="" data-href="https://music.apple.com/us/album/blv-w-me-single/1841047244"><span class="tri"></span><span>escuchar</span></button>
+    <!-- 03 / DENTRO DE UNA CANCIÓN -->
+    <section class="panel-wrap" id="cancion">
+      <p class="label">03 / dentro de una canción</p>
+      <div class="panel song-panel ornate" style="border-radius:0">
+        <h2 class="song-title" id="song-title">1408</h2>
+        <div class="song-body">
+          <div class="song-art lilac-paper torn"><img id="song-img" src="img/1408.jpg" alt="" width="216" height="202"></div>
+          <div>
+            <div class="listen">
+              <a class="circle-play" id="song-play" href="#" target="_blank" rel="noopener" aria-label="Escuchar"><span class="tri"></span></a>
+              <svg class="wave" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" id="wave"></g></svg>
             </div>
-          </article>
-          <article class="song">
-            <div class="frame"><img src="img/ding-dong-piro.jpg" alt="Ilustración: una rata mira una luna verde entre la hierba" loading="lazy" width="229" height="202"></div>
-            <h3>Ding Dong Piro</h3>
-            <div class="song-actions">
-              <button class="play-link" type="button" data-song="Ding Dong Piro" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
+            <p style="margin:-.6rem 0 1.4rem 4.2rem"><span class="listen-label" id="song-listen">escuchar</span></p>
+            <div class="tabs" role="tablist" aria-label="Sobre la canción">
+              <button role="tab" aria-selected="true" data-tab="letra">letra</button>
+              <button role="tab" aria-selected="false" data-tab="historia">historia</button>
+              <button role="tab" aria-selected="false" data-tab="creditos">créditos</button>
             </div>
-            <details>
-              <summary>la historia →</summary>
-              <p>Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.</p>
-            </details>
-          </article>
-          <article class="song">
-            <div class="frame"><img src="img/1408.jpg" alt="Ilustración: un gato dormido entre lirios lilas" loading="lazy" width="216" height="202"></div>
-            <h3>1408</h3>
-            <p class="meta">single · 28 feb 2025 · 3:38</p>
-            <div class="song-actions">
-              <button class="play-link" type="button" data-song="1408" data-audio="" data-href="https://music.apple.com/us/album/1408-single/1798072933"><span class="tri"></span><span>escuchar</span></button>
-            </div>
-          </article>
-          <article class="song">
-            <div class="frame"><img src="img/que-nos-sofoque-el-rio.jpg" alt="Ilustración: un río serpentea bajo una luna naranja" loading="lazy" width="232" height="202"></div>
-            <h3>Que nos sofoque el río</h3>
-            <div class="song-actions">
-              <button class="play-link" type="button" data-song="Que nos sofoque el río" data-audio="" data-href=""><span class="tri"></span><span>escuchar</span></button>
-            </div>
-          </article>
+            <div class="tab-body" id="tab-body" role="tabpanel" aria-live="polite"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TEXTOS -->
-    <section class="block" id="textos">
-      <div class="wrap">
-        <div class="sec-head"><h2>textos</h2><div class="line"></div><span class="num">02</span></div>
-        <p class="gothic-title"><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>Herbario nocturno<svg class="sprig flip" aria-hidden="true"><use href="#sprig"/></svg></p>
-        <div class="texts">
-          <article class="note torn">
-            <h3>cosas que no sé decir</h3>
-            <p>hay canciones<br>que empiezan<br>donde no llego.</p>
-            <p class="small">A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
-            <!-- EDITAR: enlace al texto completo -->
-            <a class="arrow-link" href="#textos">leer</a>
-          </article>
-          <div class="vline"></div>
-          <article class="side">
-            <h3>borradores de madrugada</h3>
-            <p>una casa, un ruido,<br>algo que todavía<br>no tiene nombre.</p>
-            <!-- EDITAR: enlace al texto completo -->
-            <a class="arrow-link" href="#textos">leer</a>
-            <img class="cat" src="img/gato-dormido.jpg" alt="" loading="lazy" width="196" height="72">
-          </article>
+    <!-- 04 / TEXTOS -->
+    <section class="panel-wrap" id="textos">
+      <p class="label">04 / textos</p>
+      <div class="panel">
+        <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
+        <div class="book-wrap">
+          <img class="book-cat" src="img/libro-gato.jpg" alt="" width="180" height="100" style="clip-path: inset(0 0 22% 0)">
+          <div class="book">
+            <span class="ribbon" aria-hidden="true"></span>
+            <article class="page left paper">
+              <div class="herbario"><h3>Herbario<br>nocturno</h3></div>
+              <h4>cosas que no sé decir</h4>
+              <p>A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
+              <!-- EDITAR: enlace al texto completo -->
+              <a class="arrow" href="#textos">leer</a>
+              <span class="clip" aria-hidden="true"></span>
+              <span class="borradores tag">borradores</span>
+            </article>
+            <article class="page right paper">
+              <p class="scribble"><s>notas</s><br>ideas<br>&nbsp;&nbsp;letras<br>&nbsp;&nbsp;&nbsp;&nbsp;recuerdos</p>
+              <p class="big">hay canciones<br>que empiezan<br>donde no llego.</p>
+              <!-- EDITAR: enlace al texto completo -->
+              <a class="arrow" href="#textos">leer</a>
+              <span class="page-sprig" style="right:1.2rem; top:5rem" aria-hidden="true"></span>
+              <span class="turn">pasar página →</span>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- VISUALES -->
-    <section class="block" id="visuales">
-      <div class="wrap">
-        <div class="sec-head"><h2>visuales</h2><div class="line"></div><span class="num">03</span></div>
-        <p class="gothic-title"><svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>Pequeño cine<svg class="sprig flip" aria-hidden="true"><use href="#sprig"/></svg></p>
-        <figure class="feature">
-          <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-          <figcaption><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></figcaption>
-        </figure>
-        <div class="films">
-          <!-- EDITAR: ahora enlazan al canal; cambia cada href por el enlace del vídeo concreto -->
-          <a class="film" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener">
-            <figure style="margin:0">
-              <div class="frame"><img src="img/visual-ding-dong-piro.jpg" alt="Fotograma: una moto con el faro verde avanza de noche hacia una casa" loading="lazy" width="434" height="190"><span class="playbadge"><span class="tri"></span></span></div>
-              <figcaption>DING DONG PIRO — visual</figcaption>
-            </figure>
-          </a>
-          <a class="film" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener">
-            <figure style="margin:0">
-              <div class="frame"><img src="img/visual-fragmentos.jpg" alt="Fotograma: un lago de noche con la luna naranja reflejada" loading="lazy" width="436" height="190"><span class="playbadge"><span class="tri"></span></span></div>
-              <figcaption>fragmentos</figcaption>
-            </figure>
-          </a>
+    <!-- 05 / VISUALES -->
+    <section class="panel-wrap" id="visuales">
+      <p class="label">05 / visuales</p>
+      <div class="panel sprigs">
+        <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
+        <h2 class="gothic-head">Pequeño cine</h2>
+        <div class="cinema ornate">
+          <iframe src="https://www.youtube-nocookie.com/embed/HCXq8Izwtno" title="Kailkob — 1408 (videoclip)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <p class="cinema-cap"><span>1408 — videoclip</span><a href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">verlo en YouTube →</a></p>
+        <div class="strips">
+          <!-- EDITAR: cambia cada href por el vídeo concreto -->
+          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-fragmentos.jpg" alt="Fotograma: un río de noche bajo la luna" loading="lazy" width="160" height="75"></span><span class="tag paper">fragmentos <span class="tri"></span></span></a>
+          <a class="strip" href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><span class="film"><img src="img/film-pruebas.jpg" alt="Fotograma: una rata entre la hierba" loading="lazy" width="160" height="75"></span><span class="tag paper">pruebas <span class="tri"></span></span></a>
         </div>
       </div>
     </section>
 
-
-    <!-- SOBRE MÍ Y CONTACTO -->
-    <section class="block" id="sobre-mi">
-      <div class="wrap">
-        <div class="sec-head"><h2>sobre mí</h2><div class="line"></div><span class="num">04</span></div>
+    <!-- 06 / SOBRE MÍ Y CONTACTO -->
+    <section class="panel-wrap" id="sobre-mi">
+      <p class="label">06 / sobre mí y contacto</p>
+      <div class="panel sprigs">
+        <div class="panel-top"><a class="back" href="#inicio" aria-label="Volver al mapa">←</a></div>
         <div class="about">
-          <img class="torn" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob con chaqueta azul" loading="lazy" width="205" height="360">
+          <div class="about-portrait"><span class="tape"></span><img class="torn" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob sobre papel rasgado" loading="lazy" width="205" height="360"></div>
           <div>
             <ul class="words"><li>música</li><li>palabras</li><li>obsesiones</li></ul>
             <!-- EDITAR: biografía corta -->
             <p class="bio">[Biografía corta de Kailkob: de dónde viene, qué hace, qué busca con sus canciones.]</p>
           </div>
-          <!-- EDITAR: email de contacto -->
-          <a class="letter" href="mailto:[email]">
-            <svg class="envelope" viewBox="0 0 120 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" filter="url(#rough)"><rect x="6" y="18" width="108" height="66" rx="3" fill="#b99ae633"/><path d="M6 20 L60 58 L114 20"/><path d="M6 84 L46 48 M114 84 L74 48"/></g><g stroke="var(--lime)" stroke-width="2" stroke-linecap="round" filter="url(#rough)"><path d="M48 8 l4 6 M60 3 v8 M72 8 l-4 6"/></g></svg>
-            <span class="write">escríbeme</span>
-            <small>prensa, colaboraciones o lo que sea</small>
-          </a>
+          <div class="contact">
+            <!-- EDITAR: email de contacto -->
+            <a class="letter" href="mailto:[email]">
+              <svg viewBox="0 0 200 150" aria-hidden="true"><use href="#envelope"/></svg>
+              <span class="card paper"><small>✉</small><span>escríbeme</span></span>
+            </a>
+            <ul class="platforms">
+              <li><a href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-spotify"/></svg><span>Spotify</span></a></li>
+              <li><a href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg><span>Apple Music</span></a></li>
+              <li><a href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-youtube"/></svg><span>YouTube</span></a></li>
+              <!-- EDITAR: enlace de Instagram -->
+              <li><a href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span>Instagram</span></a></li>
+            </ul>
+          </div>
         </div>
-        <!-- EDITAR: sustituye cada href="#" por el enlace real -->
-        <ul class="platforms">
-          <li><a href="https://open.spotify.com/artist/3jYSHWbpXuVlIcGAhi24lI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.5-1 7-.6 10 1M7.6 12.7c2.8-.7 5.6-.4 8 .9M8.3 15.6c2.2-.5 4.3-.2 6.1.7"/></svg>Spotify</a></li>
-          <li><a href="https://music.apple.com/us/artist/kailkob/1797300511" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>Apple Music</a></li>
-          <li><a href="https://www.youtube.com/@kailkob" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>YouTube</a></li>
-          <li><a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>Instagram</a></li>
-        </ul>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <div class="line"></div>
-      <div class="row">
-        <span class="rough">KAILKOB</span>
-        <span class="grow">© <span id="y">2026</span> · canciones, textos y otras criaturas</span>
-        <a href="#inicio">volver arriba ↑</a>
-      </div>
+      <span>© <span id="y">2026</span> KAILKOB · canciones, textos y otras criaturas</span>
+      <a href="#inicio">volver al mapa ↑</a>
     </div>
   </footer>
-
-  <!-- Reproductor: aparece solo cuando una canción tiene data-audio -->
-  <div class="player" id="player" role="region" aria-label="Reproductor">
-    <button class="pp" type="button" aria-label="Reproducir o pausar"><span class="tri"></span><span class="pause"><i></i><i></i></span></button>
-    <span class="name">—</span>
-    <input type="range" min="0" max="1000" value="0" aria-label="Posición">
-    <span class="time">0:00 / 0:00</span>
-  </div>
-  <audio id="audio" preload="none"></audio>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    const songs = [...document.querySelectorAll('[data-song]')];
-    const player = document.getElementById('player');
-    const audio = document.getElementById('audio');
-    const pp = player.querySelector('.pp');
-    const nameEl = player.querySelector('.name');
-    const seek = player.querySelector('input');
-    const timeEl = player.querySelector('.time');
-    const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
+    /* EDITAR: datos de cada canción. Deja "" lo que aún no tengas. */
+    const SONGS = [
+      { id: 'blv', title: 'BLV W/ME', img: 'img/rata-luna.jpg',
+        meta: 'single · 18 sep 2025',
+        href: 'https://music.apple.com/us/album/blv-w-me-single/1841047244',
+        letra: '', historia: '',
+        creditos: [['lanzamiento', 'Single · 18 de septiembre de 2025'], ['género', 'Alternativa'], ['℗', '2025 Kailkob']] },
+      { id: '1408', title: '1408', img: 'img/1408.jpg',
+        meta: 'single · 28 feb 2025 · 3:38',
+        href: 'https://music.apple.com/us/album/1408-single/1798072933',
+        letra: '', historia: '',
+        creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a class="arrow" href="https://youtu.be/HCXq8Izwtno" target="_blank" rel="noopener">YouTube</a>']] },
+      { id: 'ddp', title: 'Ding Dong Piro', img: 'img/rata-roca.jpg',
+        meta: '', href: '',
+        letra: '',
+        historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
+        creditos: [] },
+      { id: 'rio', title: 'Que nos sofoque el río', img: 'img/que-nos-sofoque-el-rio.jpg',
+        meta: '', href: '', letra: '', historia: '', creditos: [] },
+    ];
 
-    songs.forEach(btn => {
-      if (!btn.dataset.audio && !btn.dataset.href) {
-        btn.setAttribute('aria-disabled', 'true');
-        btn.lastElementChild.textContent = 'pronto';
-      }
-      btn.addEventListener('click', () => play(btn));
-    });
+    const $ = id => document.getElementById(id);
+    let current = SONGS[1], tab = 'letra';
 
-    // Botón "escuchar" de la portada: primera canción disponible
-    document.querySelector('[data-play]').addEventListener('click', () => {
-      const first = songs.find(b => b.dataset.audio || b.dataset.href);
-      if (first) play(first); else document.getElementById('canciones').scrollIntoView();
-    });
+    // lista de canciones
+    $('tracklist').innerHTML = SONGS.map(s => `
+      <li class="track" data-id="${s.id}">
+        <a class="circle-play" ${s.href ? `href="${s.href}" target="_blank" rel="noopener"` : 'aria-disabled="true" role="link"'} aria-label="Escuchar ${s.title}${s.href ? '' : ' (pronto)'}"><span class="tri"></span></a>
+        <span class="name">${s.title}</span>
+        <span>${s.meta ? `<span class="meta">${s.meta}</span> · ` : '<span class="meta">pronto</span> · '}<button class="arrow open" type="button" data-open="${s.id}">abrir</button></span>
+      </li>`).join('');
 
-    function play(btn) {
-      if (btn.dataset.audio) {
-        if (audio.dataset.current !== btn.dataset.audio) {
-          audio.src = btn.dataset.audio; audio.dataset.current = btn.dataset.audio;
-          nameEl.textContent = btn.dataset.song;
-        }
-        player.classList.add('on');
-        audio.play();
-      } else if (btn.dataset.href) {
-        window.open(btn.dataset.href, '_blank', 'noopener');
-      }
+    // forma de onda decorativa
+    $('wave').innerHTML = Array.from({ length: 50 }, (_, i) => {
+      const h = 6 + Math.abs(Math.sin(i * 1.7) * 14 + Math.sin(i * .45) * 12);
+      return `<line x1="${i * 4 + 2}" x2="${i * 4 + 2}" y1="${20 - h / 2}" y2="${20 + h / 2}"/>`;
+    }).join('');
+
+    function render() {
+      const s = current;
+      $('song-title').textContent = s.title;
+      $('song-img').src = s.img;
+      const play = $('song-play');
+      if (s.href) { play.href = s.href; play.removeAttribute('aria-disabled'); $('song-listen').textContent = 'escuchar'; }
+      else { play.removeAttribute('href'); play.setAttribute('aria-disabled', 'true'); $('song-listen').textContent = 'pronto'; }
+      document.querySelectorAll('.track').forEach(t => t.setAttribute('aria-current', t.dataset.id === s.id));
+      document.querySelectorAll('[role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === tab));
+      let html;
+      if (tab === 'letra') html = s.letra ? `<p class="lead">Aquí empieza la canción.</p><p class="lyrics">${s.letra}</p>` : '<p class="pending">La letra llegará pronto.</p>';
+      else if (tab === 'historia') html = s.historia ? `<p class="lead">Aquí empieza la canción.</p><p>${s.historia}</p>` : '<p class="pending">Esta historia todavía se está escribiendo.</p>';
+      else html = s.creditos.length ? `<dl>${s.creditos.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>` : '<p class="pending">Créditos pronto.</p>';
+      $('tab-body').innerHTML = html;
     }
-    pp.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
-    audio.addEventListener('play', () => player.classList.add('playing'));
-    audio.addEventListener('pause', () => player.classList.remove('playing'));
-    audio.addEventListener('timeupdate', () => {
-      if (audio.duration) seek.value = audio.currentTime / audio.duration * 1000;
-      timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+
+    document.addEventListener('click', e => {
+      const o = e.target.closest('[data-open]');
+      if (o) {
+        current = SONGS.find(s => s.id === o.dataset.open);
+        tab = current.letra ? 'letra' : current.historia ? 'historia' : 'creditos';
+        render();
+        $('cancion').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+      const t = e.target.closest('[role=tab]');
+      if (t) { tab = t.dataset.tab; render(); }
+      if (e.target.closest('[aria-disabled="true"]')) e.preventDefault();
     });
-    seek.addEventListener('input', () => { if (audio.duration) audio.currentTime = seek.value / 1000 * audio.duration; });
+    tab = 'creditos';
+    render();
   </script>
 </body>
 </html>
