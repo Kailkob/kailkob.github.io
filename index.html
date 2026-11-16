@@ -74,7 +74,10 @@
     /* nada se sale de lado: en el móvil, lo que sobresale ensancha la página y al alejar el zoom todo se ve pequeño */
     html, main > section, footer { overflow-x: clip; }
     @supports not (overflow: clip) { html, body { overflow-x: hidden; } main > section, footer { overflow-x: hidden; } }
-    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .045; mix-blend-mode: screen; background-image: var(--grain); }
+    :root { --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    /* móvil: sin fusión a pantalla completa (obliga a recomponer toda la pantalla en cada fotograma) */
+    @media (hover: none) { body::after { mix-blend-mode: normal; opacity: .03; } }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; letter-spacing: inherit; }
     a, button { touch-action: manipulation; }
@@ -335,6 +338,7 @@
     @media (hover: hover) and (pointer: fine) { .page .toc button:hover { color: #6d4fa0; } }
     .page .toc .sub { padding-left: 1.2rem; font-size: .92em; color: #5c5446; }
     .leaf { position: absolute; top: 0; bottom: 0; width: 50%; z-index: 5; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.45, .05, .25, 1); }
+    .leaf { will-change: transform; contain: layout paint; }
     .leaf .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
     .leaf .face.back { transform: rotateY(180deg); }
     .leaf.fwd { left: 50%; transform-origin: left center; } .leaf.back-turn { left: 0; transform-origin: right center; }
@@ -351,7 +355,9 @@
       .slot.left .page { border-radius: 4px 8px 8px 4px; box-shadow: inset 2rem 0 2rem -1.8rem rgb(0 0 0 / .3); }
       .leaf { width: 100%; } .leaf.fwd { left: 0; } .leaf.back-turn { left: 0; transform-origin: left center; }
       .nb-tabs { right: 2%; } .nb-tab { padding: .4rem .6rem 1.3rem; font-size: .92rem; }
+      .leaf { transition-duration: .6s; } .leaf .face::after { transition-duration: .6s; }
     }
+    @media (hover: none) { .nb::after, .leaf .ink { filter: none; } .leaf .page { box-shadow: none; } }
     /* ---------- manifiesto (textos) ---------- */
     .manifesto-wrap { padding: clamp(3rem, 8vw, 6rem) 0 clamp(6rem, 12vw, 9rem); position: relative; overflow: hidden; }
     .manifesto { font-size: clamp(1.7rem, 4.8vw, 3.6rem); line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
@@ -782,6 +788,23 @@
       return `<svg class="art ink" viewBox="0 0 200 200" role="img" aria-label="Ilustración de la canción" style="color:var(--chalk)">${scenes[id] || ''}</svg>`;
     }
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+    /* texturas (papel y grano): el SVG con feTurbulence se pasa una vez a PNG; pintar un bitmap es mucho más barato */
+    (() => {
+      const root = document.documentElement, cs = getComputedStyle(root);
+      ['--paper-bg', '--grain'].forEach(v => {
+        const m = cs.getPropertyValue(v).match(/url\("(data:image\/svg\+xml,[^"]+)"\)/); if (!m) return;
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const c = document.createElement('canvas'); c.width = img.naturalWidth || 240; c.height = img.naturalHeight || 240;
+            c.getContext('2d').drawImage(img, 0, 0);
+            c.toBlob(b => { if (b) root.style.setProperty(v, `url(${URL.createObjectURL(b)})`); });
+          } catch (e) { /* si no se puede, se queda el SVG */ }
+        };
+        img.src = m[1];
+      });
+    })();
     let current = SONGS[1];
 
     $('song-tabs').innerHTML = SONGS.map(s =>
