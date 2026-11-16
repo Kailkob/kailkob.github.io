@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Kailkob — canciones, textos y otras criaturas</title>
-  <meta name="description" content="Kailkob: canciones, textos y otras criaturas. Música, letras, visuales, conciertos y contacto.">
+  <meta name="description" content="Kailkob: canciones, textos y otras criaturas. Música, letras, visuales y contacto.">
   <meta property="og:title" content="Kailkob">
   <meta property="og:description" content="canciones, textos y otras criaturas">
   <meta property="og:type" content="website">
@@ -177,19 +177,6 @@
     .film figcaption { margin-top: .7rem; font-size: 1.2rem; letter-spacing: .14em; }
     @media (hover: hover) { .film:hover .playbadge { transform: scale(1.08); border-color: var(--lime); color: var(--lime); } }
 
-    /* conciertos */
-    .shows { list-style: none; margin: 0; padding: 0; }
-    .shows li { display: grid; grid-template-columns: 6rem 1fr auto; gap: 1rem 1.5rem; align-items: center; padding: 1.1rem 0; position: relative; }
-    .shows li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; border-top: 1.5px solid var(--chalk); filter: url(#rough); opacity: .6; }
-    .shows .date { font-size: 1.9rem; line-height: 1; color: var(--lime); }
-    .shows .date small { display: block; font-size: .95rem; color: var(--muted); letter-spacing: .14em; }
-    .shows h3 { font-size: 1.5rem; letter-spacing: .1em; }
-    .shows p { margin: .2rem 0 0; color: var(--muted); }
-    @media (max-width: 34rem) { .shows li { grid-template-columns: 4.5rem 1fr; } .shows li .pill { grid-column: 2; justify-self: start; font-size: 1.2rem; } }
-    .empty { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: 1.35rem; letter-spacing: .06em; }
-    .empty img { width: 10rem; mix-blend-mode: screen; }
-    .empty p { margin: 0; max-width: 30rem; }
-    .empty .zz { color: var(--lilac); }
 
     /* sobre mí y contacto */
     .about { display: grid; gap: 3rem; align-items: center; }
@@ -250,7 +237,6 @@
         <a href="#canciones">música</a>
         <a href="#textos">textos</a>
         <a href="#visuales">visuales</a>
-        <a href="#conciertos">conciertos</a>
         <a href="#sobre-mi">sobre mí</a>
         <a href="#sobre-mi" class="star" aria-label="Contacto">✳</a>
       </nav>
@@ -366,31 +352,11 @@
       </div>
     </section>
 
-    <!-- CONCIERTOS -->
-    <section class="block" id="conciertos">
-      <div class="wrap">
-        <div class="sec-head"><h2>próximos conciertos</h2><div class="line"></div><span class="num">04</span></div>
-        <!--
-          EDITAR: cuando haya fechas, borra el bloque .empty y descomenta la lista (un <li> por concierto):
-          <ul class="shows">
-            <li>
-              <div class="date">12<small>DIC 2026</small></div>
-              <div><h3>Ciudad</h3><p>Sala</p></div>
-              <a class="pill" href="https://enlace-entradas" target="_blank" rel="noopener">entradas</a>
-            </li>
-          </ul>
-        -->
-        <div class="empty">
-          <img src="img/gato-dormido.jpg" alt="" loading="lazy" width="196" height="72">
-          <p>todavía no hay fechas. el gato duerme <span class="zz">z z z</span><br>vuelve pronto o escríbeme para tocar en tu ciudad.</p>
-        </div>
-      </div>
-    </section>
 
     <!-- SOBRE MÍ Y CONTACTO -->
     <section class="block" id="sobre-mi">
       <div class="wrap">
-        <div class="sec-head"><h2>sobre mí</h2><div class="line"></div><span class="num">05</span></div>
+        <div class="sec-head"><h2>sobre mí</h2><div class="line"></div><span class="num">04</span></div>
         <div class="about">
           <img class="torn" src="img/retrato.jpg" alt="Retrato dibujado de Kailkob con chaqueta azul" loading="lazy" width="205" height="360">
           <div>
@@ -402,7 +368,7 @@
           <a class="letter" href="mailto:[email]">
             <svg class="envelope" viewBox="0 0 120 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" filter="url(#rough)"><rect x="6" y="18" width="108" height="66" rx="3" fill="#b99ae633"/><path d="M6 20 L60 58 L114 20"/><path d="M6 84 L46 48 M114 84 L74 48"/></g><g stroke="var(--lime)" stroke-width="2" stroke-linecap="round" filter="url(#rough)"><path d="M48 8 l4 6 M60 3 v8 M72 8 l-4 6"/></g></svg>
             <span class="write">escríbeme</span>
-            <small>booking, prensa o lo que sea</small>
+            <small>prensa, colaboraciones o lo que sea</small>
           </a>
         </div>
         <!-- EDITAR: sustituye cada href="#" por el enlace real -->
