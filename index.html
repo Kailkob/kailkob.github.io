@@ -273,6 +273,67 @@
     .tagline { margin-top: 1.5rem; font-size: clamp(1.25rem, 3vw, 1.7rem); letter-spacing: .1em; }
     .scroll-hint { display: inline-block; margin-top: 1rem; font-size: 1.05rem; color: var(--muted); }
 
+    /* ---------- libreta interactiva ---------- */
+    .nb-wrap { position: relative; max-width: 66rem; margin: clamp(2rem, 5vw, 3rem) auto 0; padding-top: 3.4rem; }
+    .nb-tabs { position: absolute; top: 0; right: 4%; display: flex; gap: .3rem; z-index: 0; }
+    .nb-tab { padding: .35rem .9rem 1.6rem; font-size: 1.05rem; letter-spacing: .06em; clip-path: polygon(4% 0, 96% 3%, 100% 100%, 0 100%); transform: translateY(.5rem); transition: transform .2s var(--ease-out); }
+    .nb-tab[data-cat="indice"] { background: var(--paper) var(--paper-bg); background-blend-mode: multiply; color: var(--paper-ink); }
+    .nb-tab[data-cat="letras"] { background: var(--lilac); color: var(--lilac-ink); }
+    .nb-tab[data-cat="textos"] { background: var(--lime); color: var(--ink); }
+    .nb-tab[data-cat="borradores"] { background: #3b2a52; color: var(--chalk); }
+    .nb-tab[aria-current="true"] { transform: translateY(0); }
+    @media (hover: hover) and (pointer: fine) { .nb-tab:hover { transform: translateY(-.15rem); } }
+    .nb { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; aspect-ratio: 1.5; perspective: 2400px; outline: none; touch-action: pan-y; }
+    .nb:focus-visible { outline: 2px dashed var(--lime); outline-offset: 10px; }
+    .nb::before { content: ""; position: absolute; inset: -12px -12px -14px; z-index: -1; border-radius: 12px; background: #2a1d3a var(--paper-bg); background-blend-mode: multiply; box-shadow: 0 1.6rem 2.6rem rgb(0 0 0 / .6); }
+    .nb::after { content: ""; position: absolute; top: 18px; bottom: 18px; left: 50%; width: 26px; margin-left: -13px; z-index: 6; pointer-events: none;
+      background: radial-gradient(ellipse 9px 6px at 50% 50%, transparent 55%, #d8d1c3 60% 82%, #6f6658 86%, transparent 92%) 0 0 / 26px 24px repeat-y; filter: url(#ink); }
+    .slot { position: relative; }
+    .page { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; --lh: 1.85rem;
+      padding: 1.9rem clamp(1.4rem, 3.5vw, 2.6rem) 2.6rem clamp(2.6rem, 5vw, 3.6rem); color: var(--paper-ink);
+      background:
+        linear-gradient(90deg, transparent clamp(2rem, 4vw, 2.8rem), rgb(196 72 72 / .38) 0 calc(clamp(2rem, 4vw, 2.8rem) + 1.5px), transparent 0),
+        repeating-linear-gradient(transparent 0 calc(var(--lh) - 1px), rgb(110 90 170 / .22) calc(var(--lh) - 1px) var(--lh)) 0 4.4rem / 100% calc(100% - 4.4rem) no-repeat,
+        var(--paper) var(--paper-bg); background-blend-mode: normal, normal, multiply; }
+    .slot.left .page { border-radius: 8px 0 0 8px; box-shadow: inset -2.4rem 0 2.2rem -2rem rgb(0 0 0 / .32); }
+    .slot.right .page { border-radius: 0 8px 8px 0; box-shadow: inset 2.4rem 0 2.2rem -2rem rgb(0 0 0 / .32); }
+    .page .chip { align-self: flex-start; padding: .1rem .7rem; font-size: .95rem; letter-spacing: .08em; clip-path: var(--tag); margin-bottom: .6rem; }
+    .chip.letras { background: var(--lilac); color: var(--lilac-ink); } .chip.textos { background: var(--lime); color: var(--ink); } .chip.borradores { background: #3b2a52; color: var(--chalk); }
+    .page h3 { font-family: var(--gothic); font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.1; color: #4b3477; margin-bottom: .2rem; }
+    .page .meta { font-size: .95rem; color: #6f6658; letter-spacing: .05em; }
+    .page .body { flex: 1; min-height: 0; overflow: auto; margin-top: .9rem; font-size: clamp(1.1rem, 1.9vw, 1.3rem); line-height: var(--lh); white-space: pre-line; scrollbar-width: thin; }
+    .page .body.serif { font: clamp(1.05rem, 1.7vw, 1.18rem) / var(--lh) var(--serif); letter-spacing: 0; }
+    .page .pending { color: #7a7266; font-style: italic; }
+    .page .num { position: absolute; bottom: .8rem; font-size: .95rem; color: #7a7266; }
+    .slot.left .page .num { left: clamp(2.6rem, 5vw, 3.6rem); } .slot.right .page .num { right: 1.6rem; }
+    .page.pg-cover { align-items: center; justify-content: center; text-align: center; background: #241a31 var(--paper-bg); background-blend-mode: multiply; color: var(--chalk); }
+    .page.pg-cover h3 { color: var(--lilac); font-size: clamp(2.6rem, 5vw, 3.8rem); }
+    .page.pg-cover p { margin-top: .6rem; letter-spacing: .06em; }
+    .page.pg-cover svg { width: min(70%, 15rem); margin-top: 1.2rem; color: var(--chalk); }
+    .page .toc { list-style: none; padding: 0; margin: 1rem 0 0; font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: var(--lh); }
+    .page .toc button { display: flex; width: 100%; gap: .5rem; text-align: left; }
+    .page .toc button::after { content: ""; order: 2; flex: 1; border-bottom: 2px dotted #9b927f; margin-bottom: .45em; }
+    .page .toc .pn { order: 3; }
+    @media (hover: hover) and (pointer: fine) { .page .toc button:hover { color: #6d4fa0; } }
+    .page .toc .sub { padding-left: 1.2rem; font-size: .92em; color: #5c5446; }
+    .leaf { position: absolute; top: 0; bottom: 0; width: 50%; z-index: 5; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.45, .05, .25, 1); }
+    .leaf .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .leaf .face.back { transform: rotateY(180deg); }
+    .leaf.fwd { left: 50%; transform-origin: left center; } .leaf.back-turn { left: 0; transform-origin: right center; }
+    .leaf .face::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(0 0 0 / .18), transparent 40%); opacity: 0; transition: opacity .8s; }
+    .leaf.turning .face::after { opacity: 1; }
+    .nb-nav { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 1.8rem; font-size: 1.1rem; color: var(--muted); }
+    .nb-nav button { width: 3rem; height: 3rem; border-radius: 50%; border: 1.6px solid var(--chalk); color: var(--chalk); font-size: 1.4rem; }
+    .nb-nav button:disabled { opacity: .3; cursor: default; }
+    @media (hover: hover) and (pointer: fine) { .nb-nav button:not(:disabled):hover { background: var(--lime); color: var(--ink); border-color: var(--lime); } }
+    @media (max-width: 52rem) {
+      .nb { grid-template-columns: 1fr; aspect-ratio: .72; }
+      .nb::after { left: 0; margin-left: -6px; }
+      .slot.right { display: none; }
+      .slot.left .page { border-radius: 4px 8px 8px 4px; box-shadow: inset 2rem 0 2rem -1.8rem rgb(0 0 0 / .3); }
+      .leaf { width: 100%; } .leaf.fwd { left: 0; } .leaf.back-turn { left: 0; transform-origin: left center; }
+      .nb-tabs { right: 2%; } .nb-tab { padding: .4rem .6rem 1.3rem; font-size: .92rem; }
+    }
     /* ---------- manifiesto (textos) ---------- */
     .manifesto-wrap { padding: clamp(3rem, 8vw, 6rem) 0 clamp(6rem, 12vw, 9rem); position: relative; overflow: hidden; }
     .manifesto { font-size: clamp(2.3rem, 7.2vw, 5.4rem); line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
@@ -570,19 +631,21 @@
           <span class="l2">que empiezan</span>
           <span class="l3">donde <em class="lilac scribbled">no llego.</em></span>
         </p>
-        <div class="notes">
-          <svg class="doodle ink" viewBox="0 0 170 120" aria-hidden="true"><use href="#d-moon" x="118" y="0" width="44" height="44" style="color:var(--lime)"/><use href="#d-rat" x="0" y="44" width="134" height="72"/></svg>
-          <div class="grid-sheet">
-          <span class="tape"></span>
-          <article class="note">
-            <h3>Herbario nocturno</h3>
-            <h4>cosas que no sé decir</h4>
-            <p>A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.</p>
-          </article>
-          <article class="note">
-            <h4>borradores de madrugada</h4>
-            <p>una casa, un ruido,<br>algo que todavía<br>no tiene nombre.</p>
-          </article>
+        <div class="nb-wrap" role="region" aria-roledescription="libreta" aria-label="Herbario nocturno: letras, textos y borradores">
+          <div class="nb-tabs" role="toolbar" aria-label="Categorías de la libreta">
+            <button type="button" class="nb-tab" data-cat="indice">índice</button>
+            <button type="button" class="nb-tab" data-cat="letras">letras</button>
+            <button type="button" class="nb-tab" data-cat="textos">textos</button>
+            <button type="button" class="nb-tab" data-cat="borradores">borradores</button>
+          </div>
+          <div class="nb" id="nb" tabindex="0">
+            <div class="slot left" id="nb-left"></div>
+            <div class="slot right" id="nb-right"></div>
+          </div>
+          <div class="nb-nav">
+            <button type="button" class="press" id="nb-prev" aria-label="Página anterior">←</button>
+            <span id="nb-count" aria-live="polite"></span>
+            <button type="button" class="press" id="nb-next" aria-label="Página siguiente">→</button>
           </div>
         </div>
         <svg class="star ink" viewBox="0 0 40 40" aria-hidden="true"><use href="#d-star"/></svg>
@@ -932,6 +995,97 @@
       const f = box.querySelector('iframe'); if (f) f.style.setProperty('--s', box.clientWidth / 326);
     });
     fitPhones(); addEventListener('resize', fitPhones);
+
+    /* ---------- libreta: letras, textos y borradores ---------- */
+    /* EDITAR: textos y borradores. Las letras salen de SONGS (campo "letra"). */
+    const TEXTOS = [
+      { cat: 'textos', title: 'cosas que no sé decir', body: 'A veces todo se queda en la punta de la lengua. Palabras que giran, que no encuentran forma, que prefieren el silencio.', serif: true },
+      { cat: 'textos', title: 'hay canciones', body: 'hay canciones\nque empiezan\ndonde no llego.' },
+      { cat: 'borradores', title: 'borradores de madrugada', body: 'una casa, un ruido,\nalgo que todavía\nno tiene nombre.' },
+    ];
+    (() => {
+      const nb = $('nb'); if (!nb) return;
+      const CATS = { letras: 'letras', textos: 'textos', borradores: 'borradores' };
+      const pages = [{ type: 'cover' }, { type: 'toc' }];
+      SONGS.forEach(s => pages.push({ type: 'entry', cat: 'letras', title: s.title, meta: s.meta && s.meta !== 'pronto' ? s.meta : '', lang: s.lang, body: s.letra, pending: 'La letra llegará pronto.' }));
+      TEXTOS.forEach(t => pages.push({ type: 'entry', pending: '', ...t }));
+      if (pages.length % 2) pages.push({ type: 'end' });
+      const first = c => pages.findIndex(p => p.cat === c);
+      const esc = t => String(t).replace(/[&<>]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
+      const art = `<svg class="ink" viewBox="0 0 170 120" aria-hidden="true"><use href="#d-moon" x="118" y="0" width="44" height="44" style="color:var(--lime)"/><use href="#d-rat" x="0" y="44" width="134" height="72"/></svg>`;
+
+      function pageHTML(i) {
+        const p = pages[i]; if (!p) return '<div class="page"></div>';
+        const num = `<span class="num">${i}</span>`;
+        if (p.type === 'cover') return `<div class="page pg-cover"><h3>Herbario nocturno</h3><p>letras, textos y borradores</p>${art}</div>`;
+        if (p.type === 'end') return `<div class="page"><p class="body pending" style="margin-top:auto;text-align:center">— continuará —</p>${num}</div>`;
+        if (p.type === 'toc') {
+          const items = Object.keys(CATS).map(c => {
+            const subs = pages.map((q, j) => q.cat === c ? `<li class="sub"><button type="button" data-go="${j}"><span>${esc(q.title)}</span><span class="pn">${j}</span></button></li>` : '').join('');
+            return `<li><button type="button" data-go="${first(c)}"><span>${CATS[c]}</span><span class="pn">${first(c)}</span></button></li>${subs}`;
+          }).join('');
+          return `<div class="page"><h3>índice</h3><ul class="toc">${items}</ul>${num}</div>`;
+        }
+        const lang = p.lang ? ` lang="${p.lang}"` : '';
+        const body = p.body ? `<div class="body${p.serif ? ' serif' : ''}"${lang}>${esc(p.body)}</div>` : `<div class="body pending">${p.pending || ''}</div>`;
+        return `<div class="page"><span class="chip ${p.cat}">${p.cat === 'letras' ? 'letra' : p.cat === 'textos' ? 'texto' : 'borrador'}</span><h3 translate="no">${esc(p.title)}</h3>${p.meta ? `<p class="meta">${esc(p.meta)}${p.lang === 'ca' ? ' · en catalán' : ''}</p>` : ''}${body}${num}</div>`;
+      }
+
+      const single = matchMedia('(max-width: 52rem)');
+      let i = 0, busy = false;
+      const step = () => single.matches ? 1 : 2;
+      const norm = n => single.matches ? n : n - (n % 2);
+      function paint() {
+        $('nb-left').innerHTML = pageHTML(i);
+        $('nb-right').innerHTML = single.matches ? '' : pageHTML(i + 1);
+        $('nb-prev').disabled = i <= 0;
+        $('nb-next').disabled = i + step() >= pages.length;
+        const last = pages.length - 1;
+        $('nb-count').textContent = i === 0 ? (single.matches ? 'portada' : 'portada · índice') : single.matches ? `página ${i} de ${last}` : `páginas ${i}–${i + 1} de ${last}`;
+        const cur = pages[i + (single.matches ? 0 : 1)] || pages[i];
+        const cat = cur.cat || (cur.type === 'toc' || cur.type === 'cover' ? 'indice' : '');
+        document.querySelectorAll('.nb-tab').forEach(t => t.setAttribute('aria-current', t.dataset.cat === cat));
+      }
+      function turn(to) {
+        to = Math.max(0, Math.min(norm(to), pages.length - 1));
+        if (busy || to === i) return;
+        const fwd = to > i;
+        if (reduce.matches) { i = to; paint(); return; }
+        busy = true;
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf ' + (fwd ? 'fwd' : 'back-turn');
+        if (single.matches) {
+          leaf.innerHTML = fwd ? `<div class="face">${pageHTML(i)}</div><div class="face back"></div>` : `<div class="face">${pageHTML(to)}</div><div class="face back"></div>`;
+          if (fwd) { $('nb-left').innerHTML = pageHTML(to); }
+          else { leaf.style.transform = 'rotateY(-180deg)'; }
+        } else if (fwd) {
+          leaf.innerHTML = `<div class="face">${pageHTML(i + 1)}</div><div class="face back">${pageHTML(to)}</div>`;
+          $('nb-right').innerHTML = pageHTML(to + 1);
+        } else {
+          leaf.innerHTML = `<div class="face">${pageHTML(i)}</div><div class="face back">${pageHTML(to + 1)}</div>`;
+          $('nb-left').innerHTML = pageHTML(to);
+        }
+        leaf.querySelectorAll('.page').forEach(pg => pg.closest('.face').classList.add(fwd ? 'r' : 'l'));
+        nb.appendChild(leaf);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          leaf.classList.add('turning');
+          leaf.style.transform = single.matches ? (fwd ? 'rotateY(-180deg)' : 'rotateY(0deg)') : (fwd ? 'rotateY(-180deg)' : 'rotateY(180deg)');
+        }));
+        const done = () => { leaf.remove(); i = to; busy = false; paint(); };
+        leaf.addEventListener('transitionend', done, { once: true });
+        setTimeout(() => { if (busy) done(); }, 1200);
+      }
+      $('nb-prev').onclick = () => turn(i - step());
+      $('nb-next').onclick = () => turn(i + step());
+      document.querySelector('.nb-tabs').onclick = e => { const b = e.target.closest('.nb-tab'); if (b) turn(b.dataset.cat === 'indice' ? 0 : first(b.dataset.cat)); };
+      nb.addEventListener('click', e => { const g = e.target.closest('[data-go]'); if (g) turn(+g.dataset.go); });
+      nb.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); turn(i + step()); } if (e.key === 'ArrowLeft') { e.preventDefault(); turn(i - step()); } });
+      let sx = null;
+      nb.addEventListener('pointerdown', e => { if (!e.target.closest('button, .body')) sx = e.clientX; });
+      nb.addEventListener('pointerup', e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) turn(i + (dx < 0 ? step() : -step())); });
+      single.addEventListener('change', () => { i = norm(i); paint(); });
+      paint();
+    })();
 
     const m = location.hash.match(/^#cancion-(.+)$/);
     if (m && SONGS.some(x => x.id === m[1])) { select(m[1], false); addEventListener('load', () => setTimeout(() => $('canciones').scrollIntoView({ behavior: 'instant' }), 60)); }
