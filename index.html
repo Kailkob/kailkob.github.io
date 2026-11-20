@@ -34,6 +34,7 @@
       "https://www.tiktok.com/@kailkob"
     ],
     "album": [
+      { "@type": "MusicAlbum", "name": "Ding Dong Piro", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2026-11-20", "url": "https://music.apple.com/es/album/ding-dong-piro/6837050313" },
       { "@type": "MusicAlbum", "name": "BLV W/ME", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2025-09-18", "url": "https://music.apple.com/us/album/blv-w-me-single/1841047244" },
       { "@type": "MusicAlbum", "name": "1408", "albumReleaseType": "https://schema.org/SingleRelease", "datePublished": "2025-02-28", "url": "https://music.apple.com/us/album/1408-single/1798072933" }
     ]
@@ -784,15 +785,16 @@
        portada: ruta de la portada real (cuadrada); si no hay, sale el dibujo.
        lang: idioma de la letra ("ca" catalán, "es" castellano, "en" inglés). */
     const SONGS = [
+      { id: 'ddp', title: 'Ding Dong Piro', meta: 'single · 20 nov 2026 · 2:58',
+        links: { apple: 'https://music.apple.com/es/album/ding-dong-piro/6837050313?i=6837050314', youtube: 'https://www.youtube.com/watch?v=t5gnp1CU-3Y' }, portada: 'img/portada-ding-dong-piro.jpg', lang: '', letra: '',
+        historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
+        creditos: [['lanzamiento', 'Single · 20 de noviembre de 2026'], ['duración', '2:58'], ['contenido', 'Explícito'], ['℗', '2026 Kailkob']] },
       { id: 'blv', title: 'BLV W/ME', meta: 'single · 18 sep 2025',
         links: { spotify: 'https://open.spotify.com/track/4Hy7cy7MOtjH6xSABTpq3F', apple: 'https://music.apple.com/us/album/blv-w-me-single/1841047244', youtube: 'https://www.youtube.com/watch?v=ZtL3SEQkP40' }, portada: 'img/portada-blv.jpg', lang: '', letra: '', historia: '',
         creditos: [['lanzamiento', 'Single · 18 de septiembre de 2025'], ['género', 'Alternativa'], ['℗', '2025 Kailkob']] },
       { id: '1408', title: '1408', meta: 'single · 28 feb 2025 · 3:38',
         links: { spotify: 'https://open.spotify.com/track/111741v2R9zW5s7deueKdn', apple: 'https://music.apple.com/us/album/1408-single/1798072933', youtube: 'https://www.youtube.com/watch?v=hDjKMobCheo' }, portada: 'img/portada-1408.jpg', lang: 'ca', letra: '', historia: '',
         creditos: [['lanzamiento', 'Single · 28 de febrero de 2025'], ['duración', '3:38'], ['género', 'Urbano latino'], ['sello', '℗ 2025 Umamirecords'], ['videoclip', '<a href="#videoclips">ver videoclip</a>']] },
-      { id: 'ddp', title: 'Ding Dong Piro', meta: 'pronto', links: {}, lang: '', letra: '',
-        historia: 'Un lugar que se repite, una voz que vuelve, un ruido en la distancia. Ding dong piro es eso: el eco de algo que no termina de irse.',
-        creditos: [] },
       { id: 'rio', title: 'Que nos sofoque el río', meta: 'pronto', links: {}, lang: '', letra: '', historia: '', creditos: [] },
     ];
 
@@ -858,7 +860,7 @@
         img.src = m[1];
       });
     })();
-    let current = SONGS[1];
+    let current = SONGS[0];  // la más reciente
 
     $('song-select').innerHTML = SONGS.map(s => `<option value="${s.id}">${s.title}${s.meta === 'pronto' ? ' · pronto' : ''}</option>`).join('');
     $('song-select').addEventListener('change', e => select(e.target.value, true));
